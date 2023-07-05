@@ -1,8 +1,8 @@
-PWD /home/dg22309/Documents/Lab Presentations/15-6-23_Adaptive_MCMC_(mini)/slides
+PWD /home/dg22309/Documents/presentations/15-6-23_Adaptive_MCMC_(mini)/slides
 INPUT /usr/local/texlive/2022/texmf.cnf
 INPUT /usr/local/texlive/2022/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /home/dg22309/Documents/Lab Presentations/15-6-23_Adaptive_MCMC_(mini)/slides/presentation.tex
+INPUT /home/dg22309/Documents/presentations/15-6-23_Adaptive_MCMC_(mini)/slides/presentation.tex
 OUTPUT presentation.log
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/beamer/beamer.cls
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/beamer/beamer.cls
