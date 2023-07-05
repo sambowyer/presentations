@@ -1,0 +1,671 @@
+%]]] !LW recipe="pdflatex -> biber -> pdflatex * 2 "
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University of Bristol presentation theme based on the PowerPoint template
+%
+% Copyright (c) 2012, 2020 David A.W. Barton (david.barton@bristol.ac.uk)
+% All rights reserved.
+%
+% The latest version of this theme can be found at
+%   https://github.com/db9052/UoB-beamer-theme
+%
+% This is dual licensed under the MIT license and CC BY 4.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \documentclass[aspectratio=169, handout]{beamer}
+\documentclass[aspectratio=169]{beamer}
+    % Possible aspect ratios are 16:9, 16:10, 14:9, 5:4, 4:3 (default) and 3:2
+    % (Remember to remove the colon, i.e., 16:9 becomes the option 169) 
+
+% \bibliographystyle{apalike}
+
+\beamertemplatenavigationsymbolsempty % Remove navigation symbols
+
+\usepackage{tikz}
+%\usetikzlibrary{shapes,arrows,positioning}
+\usetikzlibrary{automata,arrows,positioning,calc}
+\usetikzlibrary{shapes,snakes}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{dsfont}
+
+\usepackage{mathtools}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+\newcommand{\Var}{\text{Var}}
+% \renewcommand{\bm{\Sigma}}{\bm{\bm{\Sigma}}}
+
+\DeclareMathOperator*{\argmax}{argmax} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmin}{argmin}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Short Title]{Adaptive MCMC}
+% \subtitle{Filtering, Smoothing \& Parameter Estimation}
+\author{}%Sam Bowyer}
+\date{5th July 2023}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lectures to include
+
+% Lectures available (see \lecture commands below):
+%   01: Introductory slides
+
+\ifdefined\uselecture
+  % Automatically generate specific lecture slides: run (lua/pdf)latex with
+  % latex -jobname "slides-01" "\def\uselecture{01}\input{slides.tex}"
+  % latex -jobname "handout-01" "\def\uselecture{01}\PassOptionsToClass{handout}{beamer}\input{slides.tex}"
+  \expandafter\includeonlylecture\expandafter{\uselecture}
+\else
+  % Default lecture to output - comment out to get all lectures
+  \includeonlylecture{01} 
+\fi
+
+% Uncomment to get title slides for each lecture
+% \AtBeginLecture{
+%   \subtitle{\insertlecture}
+%   \setcounter{framenumber}{0}
+%   \begin{frame}
+%     \titlepage
+%   \end{frame}
+% } 
+
+\AtBeginSection[]
+{
+    \begin{frame}
+        \frametitle{Table of Contents}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
+\usepackage[style=authoryear-ibid,
+            autocite=footnote,
+            backend=biber,
+           ]{biblatex}
+
+\addbibresource{refs.bib} 
+
+\let\oldfootnote\footnote
+\renewcommand{\footnote}{\only<+->\oldfootnote}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start of the slides
+
+\begin{document}
+
+% Available frame options:
+%   leftcolor, rightcolor: set the colour of the left or right panel
+%   leftimage, rightimage: put a (cropped) image in the left or right panel
+%   div: set the location of the divider between left and right panels
+%   urlcolor: set the colour of the url
+
+% Other commands available:
+%   \logo{X}: choose the logo to display (logo, white logo, or black logo)
+%   \urltext{X}: change the url for each slide
+
+% All standard University of Bristol colours are available:
+%   UniversityRed, CoolGrey, BrightAqua, BrightBlue, BrightOrange, BrightPurple,
+%   BrightPink, BrightLime, DarkAqua, DarkBlue, DarkOrange, DarkPurple,
+%   DarkPink, DarkLime
+
+\begin{frame}%[leftcolor=white,rightcolor=UniversityRed,div=0.8\paperwidth]
+  \titlepage
+  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lecture{Lecture 1}{01}
+
+\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents
+\end{frame}
+
+\section{1. MCMC Overview}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{MCMC Overview}
+    Goal: obtain a Markov chain $X_1, X_2, ...$ with transition $P$ on $\mathcal{X} \subset \mathbb{R}^{d}$ that has stationary distribution $\pi$ ("$\pi$-ergodicity"\footnote{Defined broadly in \cite{andrieu_tutorial_2008}}).
+    \onslide<+->
+    Then we can approximate $\pi$-integrable functions
+    $$I(f) = \int_\mathcal{X} f(x) \pi(dx)$$
+    by
+    $$\hat{I}_N(f) \vcentcolon = \frac{1}{N} \sum_{i=1}^N f(X_i)$$
+    \onslide<+->
+    (though perhaps ignoring the first few samples $X_1, ..., X_{i_0}$ for some $i_0 \in \mathbb{N}$ as \textit{burn-in} to allow the chain to mix sufficiently and reach the distribution $\pi$).
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{MCMC Overview}
+    \alert{Metropolis-Hastings}\footcite{metropolis_equation_1953, hastings_monte_1970} (MH) at each step $i=0,1,\ldots$:
+    \begin{enumerate}
+        \item Propose $Y_{i+1} \sim q(X_i, \cdot)$
+        \item Set $X_{i+1} = Y_{i+1}$ with probability
+            $$\alpha(X_i, Y_{i+1}) = \min \left(1, \frac{\pi(Y_{i+1}) q(Y_{i+1}, X_i)}{\pi(X_i) q(X_i, Y_{i+1})} \right),$$
+        otherwise $X_{i+1} = X_i$.
+    \end{enumerate}
+
+    \onslide<+->
+
+    E.g. \alert{Normal Symmetric Random Walk Metropolis} (N-SRWM):
+    $$q_\theta(X_i, Y_{i+1}) = \mathcal{N}(Y_{i+1}; X_i, \theta^2 I_d)$$
+    for some $\theta > 0$.
+    \onslide<+->
+    The corresponding estimator $\hat{I}_N^\theta(f)$ has high variance for values of $\theta$ that are too small or too large (the same can happen with non-isotropic proposal covariances in place of $\theta^2 I_d$).
+\end{frame}
+
+\section{2. Adaptive MCMC Overview}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Adaptive MCMC Overview}
+    % Some theoretical results exist for the optimal $\theta$ in different scenarios:
+
+    % \alert{LOOK AT ANDRIEU \& THOM TUTORIAL 2006 PG 352 FOR MORE HERE}
+    % \begin{itemize}
+    %     \item For RWM proposals\footcite{roberts_optimal_2001}:
+    %     \item Also for RWM proposals (multivariate i.e. w/ $\bm{\Sigma}$)\footcite{gelman_efficient_1996}: $2.38^2/d^{1/2}$
+    % \end{itemize}
+
+    Some theoretical results exist for the optimal proposals in different scenarios:
+    
+    \begin{itemize}
+        \item e.g. using a multivariate random walk 
+            $$Y_{i+1} \sim \mathcal{N}(X_i, 2.38^2 C / d)$$
+        where $d$ is the dimension of $\mathcal{X}$ and $C$ is the covariance of the target distribution $\pi$, which is a mixture of Gaussians (or just has a large dimension $d$)\footcite{roberts_optimal_2001}.
+    \end{itemize} 
+
+    \onslide<+->
+    But Adaptive MCMC algorithms aim to find such a $\theta$ automatically in a wider setting.
+    % \onslide<+->
+    % (Often these algorithms are motivated by theoretical results such as the one above, but are usually applied under more relaxed conditions so the exact theoretical results often no longer apply.)
+
+    \vspace{1em}
+    \onslide<+->
+    The general adaptive MCMC game:
+    \begin{itemize}[<+->]
+        \item Given some set of proposal parameters $\Theta$.
+        \item Choose some $\theta_i \in \Theta$ at each step $i$ (\alert{given $X_0, ..., X_{i-1}, Y_1, ..., Y_{i-1}$ and $\theta_{i-1}$}) and use transition $P_{\theta_i}$ to generate $X_{i+1}$.
+        \item Eventually we want to stop adapting and use the same $\theta$ for all steps (at least with high probability).
+    \end{itemize}
+
+\end{frame}
+
+\section{3. Theoretical Results for Convergence}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ensuring $\pi$-ergodicity}
+    In order to achieve $\pi$-ergodicity of our adaptive process, so that
+    $$|\mathbb{E}(f(X_i)) - \mathbb{E}_\pi (f(X)) | \to 0$$
+    as $i \to \infty$ for any $f: \mathcal{X} \to \mathbb{R}$, we require\footcite{roberts_coupling_2005}:
+
+    % \onslide<+->
+
+    \begin{enumerate}[<+->]
+        \item \alert{Stationarity}: Every $\theta \in \Theta$ has $\pi$-ergodicity.
+        \item \alert{Diminishing Adaptation}: The `amount' of adaptation decreases as $i \to \infty$,
+        $$\lim_{i \to \infty} \sup_{X \in \mathcal{X}} ||P_{\theta_{i+1}}(X, \cdot) - P_{\theta_i}(X, \cdot)|| = 0$$
+        % N.B. if we used $\sup_{X \subset \mathcal{X}$ this would be the limit of total variation (TV) distance
+        (in probability). 
+        This is usually achieved by making sure adaptations:
+
+        \begin{itemize}[<+->]
+            \item are small with high probability, or
+            \item take place with probability $p(i) \to 0$ as $i \to \infty$ (e.g. stop adapting after $\tau$ steps).% (''Vanishing adaptation''\footcite{andrieu_tutorial_2008}).
+        \end{itemize}
+        \item \alert{Containment}: Times from $X_i$ to stationary distribution $\pi$ are bounded in probability as $i \to \infty$.
+        (This is usually achieved as a result of the two conditions above, depending on how diminishing adaptation is achieved.)
+    \end{enumerate} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{WLLN (for bounded functions)}
+    Under stationarity, adaptation and containment we get:
+    $$\frac{\lim_{n \to \infty} \sum_{i=1}^n f(X_i)}{n} = \pi(f)$$
+    in probability for any bounded function $f$.
+
+    \pause 
+    \vspace{1em}
+
+    (But, convergence for all $\mathbf{L^1}$ functions does not follow\footcite{yang_ergodicity_2008}.)
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{When containment fails}
+    Containment fails when different subsets $\mathcal{K} \subset \Theta$ of parameters converge to $\pi$ 
+    % (as they must, because of stationarity)
+     in `different ways'---without a ``common drift function''.% (e.g. something like $\pi(X)^{-1/2}$).
+
+    \pause 
+    \vspace{1em}
+
+    % In practice, this means that we want to limit the subset of $\Theta$ that is explored during adaptation in order to avoid the ``bad'' values for which convergence to $\pi$ can take arbitrarily long (often at the boundary of $\Theta$).
+    \alert{Solution:} Limit the subset of $\Theta$ that is explored during adaptation in order to avoid the ``bad'' values for which convergence to $\pi$ can take arbitrarily long (often at the boundary of $\Theta$).
+
+    \pause
+
+    \begin{itemize}[<+->]
+        \item Truncate $\Theta$ to exclude these ``bad'' values. 
+        \begin{itemize}
+            \item Requires some knowledge of the problem at hand, but sometimes this can be found by considering a desired drift function (e.g. \cite{roberts_geometric_1996,atchade_adaptive_2006}).
+        \end{itemize}
+        % \cite{roberts_geometric_1996}---Find a large range of $\bm{\Sigma} \in \mathbb{R}^{d \times d}$ for which we can ensure containment with multivariate normal proposal distribution.
+        % \begin{itemize}
+        %     \item (In particular, we can use the drift function $\pi(X)^{-1/2}$ if "the contours of $\pi$ are sufficiently regular" for parameters $\bm{\Sigma}$ such that $\epsilon I_d \preccurlyeq \Theta \preccurlyeq \epsilon^{-1} I_d$ for a particular constant $\epsilon$ where $\preccurlyeq$ denotes the Loewner partial order (positive semi-definiteness).)
+        % \end{itemize}
+        \item \cite{andrieu_tutorial_2008}---``vanishing adaptation'' (i.e. no adaptation after a certain step $\tau \in \mathbb{N}$) is sufficient for containment.
+        % \begin{itemize}
+        %     \item They suggest a stopping rule that depends on the sequences $\{\theta_i\}$ and $\{X_i\}$, based on the Robbins-Monro algorithm.
+        % \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{Containment Fail Example}
+%     E.g. this example from andrieu \& Thom \footcite{andrieu_tutorial_2008}
+    
+%     \alert{PROBABLY NOT WORTH INCLUDING THIS SLIDE}
+
+%     \vspace{1em}
+
+%     \alert{OR MAYBE? BUT V FEW DETAILS, PERHAPS EVEN JUST A "see andrieu \& thom" WOULD BE ENOUGH?}
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Convergence towards $\pi$}
+    Assume we have a subset of ``good'' values $\mathcal{K} \subset \Theta$ for which containment is ensured (i.e. for which there is a common drift function), and let $\sigma$ be the first time $i$ at which $\theta_i \notin \mathcal{K}$ (this may be infinity).
+    \pause
+
+    Then under certain conditions\footcite{andrieu_ergodicity_2006} (satisfied by N-SRWM), with ``smoothly decaying'' step-sizes $|\theta_i - \theta_{i-1}| \leq \gamma_i$ (e.g. $\gamma_i = i^{-\alpha}, \alpha > 0$), there exists a constant $C' > 0$ such that for all $i \geq 1$ and $|f| \leq 1$:
+
+    $$| \mathbb{E}[(f(X_i) - \mathbb{E}_\pi(f))\underbrace{\mathbb{I}\{\sigma \geq i\}}_{\substack{\text{only consider} \\ \text{$\theta_i \in \mathcal{K}$}}}]| < C' \gamma_i.$$
+
+    \onslide<+-> 
+    That is, whilst $\theta$ doesn't leave $\mathcal{K}$, convergence to $\pi$ occurs at a rate of at least $\{\gamma_i\}$---and doesn't not require convergence of $\{\theta_i\}$! 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Monte Carlo Error}
+    Bias for a single sample $X_i$:
+    $$| \mathbb{E}[(f(X_i) - \mathbb{E}_\pi(f))\underbrace{\mathbb{I}\{\sigma \geq i\}}_{\substack{\text{only consider} \\ \text{$\theta_i \in \mathcal{K}$}}}]| < C' \gamma_i.$$
+    
+    \pause 
+
+    It can then be proved that there exist constants $A(\gamma, \mathcal{K})$ and $B(\gamma, \mathcal{K})$ such that for any $n \geq 1$ the error is bounded as:
+    $$\sqrt{\mathbb{E}\left[\left|\frac{1}{n} \sum_{i=1}^n f(X_i) - \mathbb{E}_\pi(f))\right|^2 \mathbb{I}\{\sigma \geq i\}\right]}
+    \leq \underbrace{\frac{A(\gamma, \mathcal{K})}{\sqrt{n}}}_{\text{standard Monte Carlo error}} + \underbrace{B(\gamma, \mathcal{K}) \frac{\sum_{i=1}^n \gamma_i}{n}}_{\text{price paid for adaptation}}$$
+
+    \pause
+    (So if $\gamma_i = i^{-\alpha}$, $\alpha \in (0,1)$, then $\frac{\sum_{i=1}^n \gamma_i}{n} \sim \frac{N^{-\alpha}}{1-\alpha}$, meaning there is no loss in rate of convergence for $\alpha \geq 1/2$.)
+\end{frame}
+
+\section{4. Adaptive MCMC Algorithms}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Adaptive MCMC Algorithms}
+    \begin{itemize}%[<+->]
+        % \onslide<+->
+        \item \alert{Random Walk Metropolis (RWM)}: 
+        $$q(X_i, dX) = \mathcal{N}(X_i, s_d \bm{\Sigma})$$
+         for matrix $\bm{\Sigma}$ and scaling factor $s_d > 0$.
+            % \onslide<+->
+            \pause
+            \begin{itemize}
+                \item Very popular and fairly simple
+                \item Many variations: component-wise, Metropolis-within-Gibbs (MwG), PCA-based, \&c. 
+                \item Lots of theoretical results
+            \end{itemize}
+            % \onslide<+->
+            \pause
+            We'll start with Haario et al.'s ``Adaptive Metropolis''\footcite{haario_adaptive_2001} (AM) and then look at variations.
+        
+        % \onslide<+->
+        \pause
+        \item \alert{Metropolis-Adjusted Langevin Algorithm (MALA)}\footcite{gilks_adaptive_1998}: for a matrix $\bm{\Sigma}$,
+        $$q_\theta(X_i, dX) = \mathcal{N}(X_i + \bm{\Sigma} \nabla \log \pi(X)/2, \bm{\Sigma}).$$
+
+        \pause
+        Can have faster convergence for high-dimensional proposals than RWM.
+            
+    \end{itemize}
+
+\end{frame}
+
+\subsection{RWM-based Algorithms: Adaptive Metropolis (AM)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{RWM: $q(X, dX) = \mathcal{N}(X, s_d \bm{\Sigma})$}
+    \alert{Theoretical result}\footcite{gelman_efficient_1996}: for a wide range of target distributions, optimal proposal for RWM is with $\bm{\Sigma} = C$ and $s_d = 2.38^2/d$ where $d$ is the dimension of $\mathcal{X}$ and $C$ is the covariance of $\pi$.
+
+    % \onslide<+->
+    \pause 
+    \vspace{1em}
+
+    Haario et al.'s ``Adaptive Metropolis''\footcite{haario_adaptive_2001} (AM) uses this result to adapt $\bm{\Sigma}$ at each step $i$, using an empirical covariance $\hat{C}_i$ multiplied by $s_d = 2.38^2/d$.
+
+    \onslide<+-> 
+    \vspace{1em}
+    In general, begin with some initial $\hat{C}_0$ and $i_0 \in \mathbb{N}$ initial steps without adaptation.
+    
+    $$\hat{C}_i = \begin{cases}
+            \hat{C}_0 & i \leq i_0 \\
+            s_d \text{cov}(X_0, ..., X_{i-1}) + s_d \epsilon I_d & i > i_0
+    \end{cases}$$
+    \pause
+
+    where $s_d > 0$ is a scale factor, $\epsilon > 0$ is a small constant (used to avoid singularity of $\hat{C}_i$---particularly in multimodal posteriors---and required for Haario's proof of AM's $\pi$-ergodicity).
+    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{AM: Efficient Updates}
+    Using the fact that 
+    $$\text{cov}(X_0, ..., X_{i}) = \frac{1}{i} \left(\sum_{k=0}^{i} X_k^T X_k - (i+1)\bar{X_i}\bar{X}_k^T\right),$$
+    where $\bar{X}_i = \frac{1}{i} \sum_{k=0}^i X_k,$ we can update $\hat{C}_i$ incrementally\footnote{(I \textit{think} that this is essentially the same as the ``Rao-Blackwellised AM algorithm'' presented by \cite{andrieu_tutorial_2008}.)}:
+
+    $$\hat{C}_{i+1} = \frac{i-1}{i}\hat{C}_i + \frac{s_d}{i}(i\bar{X}_{i-1}\bar{X}_{i-1}^T - (i+1) \bar{X}_{i}\bar{X}_{i-1}^T + X_i X_i^T + \epsilon I_d).$$
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{AM: Adapting the scale factor $s_d$}
+    Using $s_d = 2.38^2/d$ isn't always optimal (e.g. for multimodal non-Gaussian-mixture posteriors), so we can adapt $s_d$ too.
+    
+    \vspace{1em}
+    \pause 
+    The other common type of theoretical result is the optimal acceptance rate $\alpha^*$ for a given proposal and target distribution family:
+    \pause
+    \begin{itemize}
+        \item For full-rank multivariate Gaussian proposals, $\alpha^* = 0.234$.
+        \pause
+
+        \item For individual components of a multivariate Gaussian proposal, $\alpha^* = 0.44$ 
+        \pause 
+
+        \begin{itemize}
+            \item (often here the optimal proposal is $\mathcal{N}(X_i^{(j)}, 2.4^2 \xi_i^{(j)})$ where $\xi_i^{(j)}$ is the target \textit{conditional} variance of the $j$th component).
+        \end{itemize}
+    \end{itemize}
+
+    \pause 
+    \vspace{1em}
+    Adapting $s_d$ is particularly useful at the start of the algorithm, when our covariance estimate is likely to be poor.
+
+    \pause
+    \vspace{1em}
+    Then we can use Robbins-Monro style updates to optimise $\theta = s_d$ such that $\alpha_i(\theta) \to \alpha^*$ as $i \to \infty$.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{AM: Optimising $s_d$ via Robbins-Monro}
+    We want to match a target acceptance rate $\alpha^*$:
+    \begin{enumerate}
+        \item One-dimensional updates: $\alpha^* = 0.44$.
+
+        \item Multivariate updates: $\alpha^* = 0.234$.
+    \end{enumerate}
+    \pause
+
+    Robbins-Monro updates: with $\theta = s_d$ and non-negative step sizes $\{\gamma_i\}$,
+    $$\theta_{i+1} = \theta_i - \gamma_i (\bar{\alpha}_i(\theta) - \alpha^*),$$
+    \pause
+    where $L \in \mathbb{N}$, $Y_{i,1}, ..., Y_{i,L} \sim q_\theta(X_i, \cdot)$ are IID and
+    $$\bar{\alpha}_i(\theta) = \frac{1}{L}\sum_{l=1}^L \min \left(1, \frac{\pi(Y_{i,l}) q_\theta(Y_{i,l}, X_i)}{\pi(X) q_\theta(X_i, Y_{i,l})} \right).$$
+
+    \pause
+    Intuition: 
+    \begin{itemize}
+        \item if $\bar{\alpha}_i(\theta)$ is too high ($\bar{\alpha}_i(\theta) - \alpha^* > 0$), make proposal tighter by reducing $\theta = s_d$,
+        \item if $\bar{\alpha}_i(\theta)$ is too low ($\bar{\alpha}_i(\theta) - \alpha^* < 0$), make proposal wider by increasing $\theta = s_d$.
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{AM: Generic Robbins-Monro Updates}
+    Generic Robbins-Monro updates for any suitable parameterisation $\theta$ of the proposal $q_\theta$: 
+    $$\theta_{i+1} = \theta_i - \gamma_i H(\theta_i, X_0, \ldots, Y_i, X_i, Y_{i+1}, X_{i+1})$$
+    for some $H: \Theta \times \mathcal{X}^{1 + 2(i+1)} \to \Theta$ (note we have access to discarded proposals $Y_k$).
+    
+    \vspace{1em}
+    This is to find roots of the equation $H(\theta) = 0$.
+
+    \pause 
+    \vspace{1em}
+    (In the previous slide, $\Theta = \mathbb{R}^+$ and $H(\theta_i, X_0, \ldots, Y_i, X_i, Y_{i+1}, X_{i+1}) = \bar{\alpha}_i(\theta) - \alpha^*$.)
+    
+    % \pause 
+
+    % \alert{Moment matching}: if you know (or at least have good estimates of) the true mean and covariance of $\pi$ ($\mu_\pi$ and $\bm{\Sigma}_\pi$), try to find $\theta$ for which
+    %     $$(\mu_\pi, \bm{\Sigma}_\pi) = (\mu(\theta), \bm{\Sigma}(\theta))$$
+    % where $\mu(\theta), \bm{\Sigma}(\theta)$ are the empirical mean and covariance.
+    % \pause
+
+    % Under certain conditions, this can be shown\footcite{andrieu_ergodicity_2006} to be equivalent to minimising the KL, in which case we end up with
+    %     $$H(X, \theta) = \nabla_\theta \log \frac{\pi(X)}{q_\theta(X)}$$ 
+
+    % \pause
+    % So we want to find $q_\theta = \pi$---this is just VI (with a Metropolis acceptance step).
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{AM: Moment Matching}
+    % Generic Robbins-Monro updates for any suitable parameterisation $\theta$ of the proposal $q_\theta$: 
+    $$\theta_{i+1} = \theta_i - \gamma_i H(\theta_i, X_0, \ldots, Y_i, X_i, Y_{i+1}, X_{i+1})$$
+    % for some $H: \Theta \times \mathcal{X}^{1 + 2(i+1)} \to \Theta$ (note we have access to discarded proposals $Y_k$)
+    % \footnote{(In the previous slide, $\Theta = \mathbb{R}$ and $H(\theta_i, X_0, \ldots, Y_i, X_i, Y_{i+1}, X_{i+1}) = \bar{\alpha}_i(\theta) - \alpha^*$.)}.
+    
+    \pause 
+
+    \alert{Moment matching}: With $\mu_\pi, \bm{\Sigma}_\pi$ the true mean and covariance of $\pi$ and $\mu(\theta), \bm{\Sigma}(\theta)$ are the empirical mean and covariance, try to find $\theta$ for which
+        $$(\mu_\pi, \bm{\Sigma}_\pi) = (\mu(\theta), \bm{\Sigma}(\theta))$$
+    
+    \pause
+
+    Under certain conditions, this can be shown\footcite{andrieu_ergodicity_2006} to be equivalent to minimising the KL, in which case we end up with
+        $$H(X, \theta) = \nabla_\theta \log \frac{\pi(X)}{q_\theta(X)}$$ 
+
+    % \pause
+    % This is just VI with a Gaussian approximate posterior (and with a Metropolis acceptance step).
+    % Not sure this is very promising: no guarantee $\exists \theta$ s.t. $q_\theta = \pi$.
+    
+    % \pause 
+    % % \vspace{1em}
+    % But, we could use several separate (Gaussian) proposals for different parts of $\pi$ (e.g. for each latent r.v.) and tune these each with VI (with optional covariance scaling factor).
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{AM: VI Updates}
+    % Generic Robbins-Monro updates for any suitable parameterisation $\theta$ of the proposal $q_\theta$: 
+    $$\theta_{i+1} = \theta_i - \gamma_i H(\theta_i, X_0, \ldots, Y_i, X_i, Y_{i+1}, X_{i+1})$$
+    % for some $H: \Theta \times \mathcal{X}^{1 + 2(i+1)} \to \Theta$ (note we have access to discarded proposals $Y_k$)
+    % \footnote{(In the previous slide, $\Theta = \mathbb{R}$ and $H(\theta_i, X_0, \ldots, Y_i, X_i, Y_{i+1}, X_{i+1}) = \bar{\alpha}_i(\theta) - \alpha^*$.)}.
+    
+    % \pause 
+
+    % \alert{Moment matching}: With $\mu_\pi, \bm{\Sigma}_\pi$ the true mean and covariance of $\pi$ and $\mu(\theta), \bm{\Sigma}(\theta)$ are the empirical mean and covariance, try to find $\theta$ for which
+    %     $$(\mu_\pi, \bm{\Sigma}_\pi) = (\mu(\theta), \bm{\Sigma}(\theta))$$
+    
+    % \pause
+
+    % Under certain conditions, this can be shown\footcite{andrieu_ergodicity_2006} to be equivalent to minimising the KL, in which case we end up with
+        $$H(X, \theta) = \nabla_\theta \log \frac{\pi(X)}{q_\theta(X)}$$ 
+
+    \begin{itemize}[<+->]
+        \item This is just VI with a Gaussian approximate posterior (and with a Metropolis acceptance step).
+        \item Not sure this is very promising: no guarantee $\exists \theta$ s.t. $q_\theta = \pi$.
+        \item But, we could use several separate (Gaussian) proposals for different parts of $\pi$ (e.g. for each latent r.v.) and tune these each with VI (with optional covariance scaling factors).
+    \end{itemize}
+    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{AM: A stopping rule}
+    Stop adaptation once we see that 
+    $$\frac{1}{n} \sum_{i=1}^n H(\theta_i, X_{i+1})$$
+    stabilises and does not change by more than some small $\varepsilon > 0$ for $m \in \mathbb{N}$ consecutive iterations.
+
+    \pause 
+    \vspace{1em}
+
+    ``More principled statistical rules relying on the CLT can also be suggested, but we do not expand on this here''\footcite{andrieu_tutorial_2008}.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{AM: Adaptive step size}
+    Schemes for step sizes $\{\gamma_i\}$:
+    \begin{enumerate}
+        \item Deterministic and non-increasing e.g. $\gamma_i = i^{-\alpha}$, $\alpha >0$.
+        \pause
+
+        \item Random with $\gamma_i \in \{0, \delta\}$ such that $\mathbb{P}(\gamma_i = \delta) = p_i$, where $\{p_i\}$ deterministic and non-increasing s.t. $p_i \to 0$ as $i \to \infty$. 
+        \pause 
+        But ``it is not always clear what the advantage of introducing such an additional level of randomness is"\footcite{andrieu_tutorial_2008}.
+        \onslide<+-> 
+
+        \item Various automatic choices based on $\theta_i$ and $X_i$ given a predefined function $\gamma: [0, \infty) \to [0, \infty)$.
+        Typically based on the idea that alternating signs of $H(\theta, X)$ tend to suggest $\theta_i$ is oscillating around a solution.
+        E.g.:
+        \pause
+        \begin{itemize}%[<+->]
+            
+            \item With $\langle u, v \rangle$ denoting the inner product between vectors $u$ and $v$,
+            $$\gamma_i = \gamma \left(\sum_{k=1}^{i-1} \mathbb{I}\{\langle H(\theta_{k-1}, X_k), H(\theta_{k}, X_{k+1}) \rangle \leq 0\}\right).$$
+            \pause 
+
+            \item Same as above\footcite{delyon_accelerated_1993} but with separately derived step sizes for each component of $\theta$.
+            % This can speed up convergence but it's important to take care that restrictions such as positive-definiteness of $\bm{\Sigma}$ are not broken.
+            % $$\gamma_i = \gamma \left(\sum_{k=1}^{i-1} \mathbb{I}\{\langle H(\theta_{k-1}, X_k), H(\theta_{k}, X_{k+1}) \rangle \leq 0\}\right)$$
+        \end{itemize}
+    \end{enumerate}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{AM: Other Variations}
+    \begin{itemize}%[<+->]
+        \item Metropolis-within-Gibbs (MwG) with multivariate proposals that \textit{aren't} full rank in terms of $dim(\mathcal{X}) = d$.
+        \pause
+        % \begin{itemize}
+        %     \item(this is what massively parallel MCMC will be).
+        % \end{itemize}
+        % \pause
+
+        \item Update in the direction of a sampled principal component (with more important PCs more likely to be sampled) using online PCA.
+        \pause
+
+        \begin{itemize}
+            \item(Distance along this direction is sampled from a RWM proposal)\footcite{andrieu_tutorial_2008}.
+        \end{itemize}
+        \pause
+
+        \item Online EM algorithm version that uses Gaussian mixture proposals\footcite{andrieu_ergodicity_2006}.
+    \end{itemize}
+
+\end{frame}
+
+\subsection{Metropolis-Adjusted Langevin Algorithm (MALA)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Metropolis-Adjusted Langevin Algorithm (MALA)}
+    Perform AM as before (and all the variations that we've covered), but with a Langevin proposal (thus using drift function $\nabla \log \pi (X)$):
+    $$q_\theta(X, dX) = \mathcal{N}(X + \bm{\Sigma} \nabla \log \pi(X)/2, \bm{\Sigma}).$$
+
+    \pause
+
+    \begin{itemize}
+        \item Typically still use $\bm{\Sigma} = s_d C$ for some scaling factor $s_d > 0$ and covariance $C$ of $\pi$ (or an estimate thereof).
+        \pause
+
+        \item Optimal acceptance rate is typically $\alpha^* = 0.574$ in most situations.
+    \end{itemize}
+
+    \vspace{1em}
+    % \onslide<+->
+    \pause
+    Popular variation: Truncated drift MALA (T-MALA)\footcite{atchade_adaptive_2006}---solves some of MALA's convergence problems by truncating the drift function to avoid ``bad'' values of $\theta$.
+    $$\nabla \log \pi(X) \mapsto \frac{\delta}{\max(\delta, |\nabla \log \pi(X)|)}\nabla \log \pi(X)$$
+    where $\delta > 0$.
+
+\end{frame}
+
+\subsection{Comparison of Methods}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{A Quick Comparison of the Methods}
+    Generally speaking...
+    \begin{itemize}[<+->]
+        \item MALA has fastest convergence for multivariate proposals
+        \begin{itemize}
+            \item (Optimal convergence time is $\mathcal{O}(d^{1/3})$ compared to $\mathcal{O}(d)$ for RWM),
+        \end{itemize}
+        \item But MALA is less robust to light tails, discontinuous densities and very sub-optimal for single-component updates.
+        \begin{itemize}
+            \item (Although T-MALA aims to solve some of these problems).
+        \end{itemize}
+        \item RWM is very robust to a wide variety of distributions, with component-wise versions/Metropolis-within-Gibbs being at least as good (when sensibly scaled).
+        \item Full multivariate RWM tends to converge to the same proposals as component-wise/MwG proposals, but often more slowly.
+    \end{itemize}
+\end{frame}
+
+\section{5. Massively Parallel Adaptive MCMC}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Massively Parallel MCMC}
+    In massively parallel MCMC, at each iteration we have indexed latent samples $z^\mathbf{k} \in \mathcal{Z}$ (where $\mathbf{k} = (k_1, ..., k_n) \in \{1,...,K\}^n$ is a tuple of indices for of our $n$ latent variables) and we want to generate new `unindexed' samples $z^{/\mathbf{k}} \in \mathcal{Z}^{K-1}$.
+
+    \pause
+
+    The proposals that we use for the $j$th latent variable must be
+    \begin{itemize}[<+->]
+        \item independent of all other variables, 
+            $$q(z_j^{/k_j}; x, z^\mathbf{k}, z^{/\mathbf{k}}_{\text{qa}(j)}) = q(z_j^{/k_j}; z_j^{k_j}),$$
+        \item symmetric w.r.t. the choice of $k_j$, in the sense that for any $k_j' \neq k_j$, 
+            $$q(z_j^{/k_j}; z_j^{k_j}) = q(z_j^{/k_j'}; z_j^{k_j'}).$$
+    \end{itemize}
+
+    \pause
+    RWM satisfies these, as does (T-)MALA, so we should be able to use the adaptive schemes discussed above.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Massively Parallel Adaptive MCMC}
+    Recall the two main adaptive strategies (leading to functions $H$):
+    \begin{enumerate}
+        \item Try to reach a target acceptance rate $\alpha^*$ by adapting $s_d$ in the AM algorithm.
+        \item Moment matching/VI with a Metropolis acceptance step\footnote{There are a few more details involved/variations possible in this.}.
+    \end{enumerate}
+
+    \pause
+
+    In the massively parallel setting, we can do the following \textit{very} fast:
+    \begin{enumerate}
+        \item Compute moments---useful for AM algorithm.
+        \begin{itemize}
+            \item (Including with the AMMP-IS moving average thing over MH iterations?)
+        \end{itemize}
+        \item Perform VI.
+    \end{enumerate}
+
+    \pause
+
+    So both adaptive schemes seem promising (and hopefully not too complicated), both with RWM and (T-)MALA proposals.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Conclusion}
+    \begin{itemize}[<+->]
+        \item Adaptive MCMC is a \textit{very} big field with an endless number of variations for each algorithm.
+        \item But in general it seems that RWM and MALA are the most popular proposal types.
+        \item In particular, the basic AM algorithm (and its variations) seems like a good starting point for massively parallel adaptive MCMC.
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks]{References}
+    \printbibliography
+\end{frame}
+
+
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

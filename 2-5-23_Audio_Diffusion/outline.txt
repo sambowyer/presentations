@@ -1,0 +1,50 @@
+LAB PRESENTATION 2/5/23 - AUDIO DIFFUSION
+
+1. Title
+
+2. Audio diffusion in the news:
+    a. Drake song
+    b. Joe Biden clips
+
+
+3. Outline of the presentation (i.e. what papers we'll be looking at)
+    a. Music generation (via MIDI -> Spectrograms -> waveforms)
+        MULTI-INSTRUMENT MUSIC SYNTHESIS WITH SPECTROGRAM DIFFUSION 
+        https://arxiv.org/pdf/2206.05408.pdf
+
+    b. Voice generation (or just general raw audio/waves)
+        i. DiffWave https://arxiv.org/pdf/2009.09761.pdf
+        ii. WaveGrad https://arxiv.org/pdf/2009.00713.pdf
+
+
+    JUST DO DIFFWAVE
+
+4. Other Neural Vocoders
+    Very old Vocoders (NY World Fair 1940)
+
+    Autoregressive techniques (generating next sample based on previous sample) (e.g. Deepmind's WaveNet: https://arxiv.org/pdf/1609.03499.pdf)
+        Generally very slow
+
+    GANs used to be popular (and SotA) (e.g. WaveGAN: https://arxiv.org/pdf/1802.04208.pdf)
+
+    Now diffusion methods are proving to work well and allow for quick sampling (in part bc they're not autoregressive)
+    E.g. WaveGrad (Google) & DiffWave (NVIDIA & Baidu)
+
+5. DiffWave diffusion overviwew
+
+6. Training on ELBO
+
+7. Full architecture (w/ convolutions &c.)
+
+8. Performance
+    Explain the metrics
+
+
+
+
+
+
+
+Explain evaluation metrics:
+    Frechet distance
+    &c. 
