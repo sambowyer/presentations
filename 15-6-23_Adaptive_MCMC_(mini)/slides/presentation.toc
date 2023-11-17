@@ -1,8 +1,0 @@
-\beamer@sectionintoc {1}{1. MCMC Overview}{3}{0}{1}
-\beamer@sectionintoc {2}{2. Adaptive MCMC Overview}{10}{0}{2}
-\beamer@sectionintoc {3}{3. Theoretical Results for Convergence}{17}{0}{3}
-\beamer@sectionintoc {4}{4. Adaptive MCMC Algorithms}{37}{0}{4}
-\beamer@subsectionintoc {4}{1}{RWM-based Algorithms: Adaptive Metropolis (AM)}{45}{0}{4}
-\beamer@subsectionintoc {4}{2}{Metropolis-Adjusted Langevin Algorithm (MALA)}{85}{0}{4}
-\beamer@subsectionintoc {4}{3}{Comparison of Methods}{89}{0}{4}
-\beamer@sectionintoc {5}{5. Massively Parallel Adaptive MCMC}{95}{0}{5}

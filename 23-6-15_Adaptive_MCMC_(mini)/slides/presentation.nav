@@ -1,0 +1,101 @@
+\headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
+\headcommand {\beamer@framepages {1}{1}}
+\headcommand {\slideentry {0}{0}{2}{2/2}{}{0}}
+\headcommand {\beamer@framepages {2}{2}}
+\headcommand {\beamer@sectionpages {1}{2}}
+\headcommand {\beamer@subsectionpages {1}{2}}
+\headcommand {\sectionentry {1}{1. MCMC Overview}{3}{1. MCMC Overview}{0}}
+\headcommand {\slideentry {1}{0}{1}{3/3}{}{0}}
+\headcommand {\beamer@framepages {3}{3}}
+\headcommand {\slideentry {1}{0}{2}{4/6}{}{0}}
+\headcommand {\beamer@framepages {4}{6}}
+\headcommand {\slideentry {1}{0}{3}{7/9}{}{0}}
+\headcommand {\beamer@framepages {7}{9}}
+\headcommand {\beamer@sectionpages {3}{9}}
+\headcommand {\beamer@subsectionpages {3}{9}}
+\headcommand {\sectionentry {2}{2. Adaptive MCMC Overview}{10}{2. Adaptive MCMC Overview}{0}}
+\headcommand {\slideentry {2}{0}{1}{10/10}{}{0}}
+\headcommand {\beamer@framepages {10}{10}}
+\headcommand {\slideentry {2}{0}{2}{11/16}{}{0}}
+\headcommand {\beamer@framepages {11}{16}}
+\headcommand {\beamer@sectionpages {10}{16}}
+\headcommand {\beamer@subsectionpages {10}{16}}
+\headcommand {\sectionentry {3}{3. Theoretical Results for Convergence}{17}{3. Theoretical Results for Convergence}{0}}
+\headcommand {\slideentry {3}{0}{1}{17/17}{}{0}}
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\slideentry {3}{0}{2}{18/23}{}{0}}
+\headcommand {\beamer@framepages {18}{23}}
+\headcommand {\slideentry {3}{0}{3}{24/25}{}{0}}
+\headcommand {\beamer@framepages {24}{25}}
+\headcommand {\slideentry {3}{0}{4}{26/30}{}{0}}
+\headcommand {\beamer@framepages {26}{30}}
+\headcommand {\slideentry {3}{0}{5}{31/33}{}{0}}
+\headcommand {\beamer@framepages {31}{33}}
+\headcommand {\slideentry {3}{0}{6}{34/36}{}{0}}
+\headcommand {\beamer@framepages {34}{36}}
+\headcommand {\beamer@sectionpages {17}{36}}
+\headcommand {\beamer@subsectionpages {17}{36}}
+\headcommand {\sectionentry {4}{4. Adaptive MCMC Algorithms}{37}{4. Adaptive MCMC Algorithms}{0}}
+\headcommand {\slideentry {4}{0}{1}{37/37}{}{0}}
+\headcommand {\beamer@framepages {37}{37}}
+\headcommand {\slideentry {4}{0}{2}{38/44}{}{0}}
+\headcommand {\beamer@framepages {38}{44}}
+\headcommand {\beamer@subsectionpages {37}{44}}
+\headcommand {\beamer@subsectionentry {0}{4}{1}{45}{RWM-based Algorithms: Adaptive Metropolis (AM)}}
+\headcommand {\slideentry {4}{1}{1}{45/50}{RWM-based Algorithms: Adaptive Metropolis (AM)}{0}}
+\headcommand {\beamer@framepages {45}{50}}
+\headcommand {\slideentry {4}{1}{2}{51/51}{RWM-based Algorithms: Adaptive Metropolis (AM)}{0}}
+\headcommand {\beamer@framepages {51}{51}}
+\headcommand {\slideentry {4}{1}{3}{52/58}{RWM-based Algorithms: Adaptive Metropolis (AM)}{0}}
+\headcommand {\beamer@framepages {52}{58}}
+\headcommand {\slideentry {4}{1}{4}{59/62}{RWM-based Algorithms: Adaptive Metropolis (AM)}{0}}
+\headcommand {\beamer@framepages {59}{62}}
+\headcommand {\slideentry {4}{1}{5}{63/64}{RWM-based Algorithms: Adaptive Metropolis (AM)}{0}}
+\headcommand {\beamer@framepages {63}{64}}
+\headcommand {\slideentry {4}{1}{6}{65/67}{RWM-based Algorithms: Adaptive Metropolis (AM)}{0}}
+\headcommand {\beamer@framepages {65}{67}}
+\headcommand {\slideentry {4}{1}{7}{68/70}{RWM-based Algorithms: Adaptive Metropolis (AM)}{0}}
+\headcommand {\beamer@framepages {68}{70}}
+\headcommand {\slideentry {4}{1}{8}{71/72}{RWM-based Algorithms: Adaptive Metropolis (AM)}{0}}
+\headcommand {\beamer@framepages {71}{72}}
+\headcommand {\slideentry {4}{1}{9}{73/79}{RWM-based Algorithms: Adaptive Metropolis (AM)}{0}}
+\headcommand {\beamer@framepages {73}{79}}
+\headcommand {\slideentry {4}{1}{10}{80/84}{RWM-based Algorithms: Adaptive Metropolis (AM)}{0}}
+\headcommand {\beamer@framepages {80}{84}}
+\headcommand {\beamer@subsectionpages {45}{84}}
+\headcommand {\beamer@subsectionentry {0}{4}{2}{85}{Metropolis-Adjusted Langevin Algorithm (MALA)}}
+\headcommand {\slideentry {4}{2}{1}{85/88}{Metropolis-Adjusted Langevin Algorithm (MALA)}{0}}
+\headcommand {\beamer@framepages {85}{88}}
+\headcommand {\beamer@subsectionpages {85}{88}}
+\headcommand {\beamer@subsectionentry {0}{4}{3}{89}{Comparison of Methods}}
+\headcommand {\slideentry {4}{3}{1}{89/94}{Comparison of Methods}{0}}
+\headcommand {\beamer@framepages {89}{94}}
+\headcommand {\beamer@sectionpages {37}{94}}
+\headcommand {\beamer@subsectionpages {89}{94}}
+\headcommand {\sectionentry {5}{5. Massively Parallel Adaptive MCMC}{95}{5. Massively Parallel Adaptive MCMC}{0}}
+\headcommand {\slideentry {5}{0}{1}{95/95}{}{0}}
+\headcommand {\beamer@framepages {95}{95}}
+\headcommand {\slideentry {5}{0}{2}{96/100}{}{0}}
+\headcommand {\beamer@framepages {96}{100}}
+\headcommand {\slideentry {5}{0}{3}{101/104}{}{0}}
+\headcommand {\beamer@framepages {101}{104}}
+\headcommand {\slideentry {5}{0}{4}{105/107}{}{0}}
+\headcommand {\beamer@framepages {105}{107}}
+\headcommand {\beamer@sectionpages {95}{107}}
+\headcommand {\beamer@subsectionpages {95}{107}}
+\headcommand {\sectionentry {6}{References}{108}{References}{0}}
+\headcommand {\slideentry {6}{0}{0}{108/108}{}{0}}
+\headcommand {\beamer@framepages {108}{108}}
+\headcommand {\slideentry {6}{0}{0}{108/109}{}{0}}
+\headcommand {\beamer@framepages {108}{109}}
+\headcommand {\slideentry {6}{0}{0}{108/110}{}{0}}
+\headcommand {\beamer@framepages {108}{110}}
+\headcommand {\slideentry {6}{0}{0}{108/111}{}{0}}
+\headcommand {\beamer@framepages {108}{111}}
+\headcommand {\slideentry {6}{0}{0}{108/112}{}{0}}
+\headcommand {\beamer@framepages {108}{112}}
+\headcommand {\beamer@partpages {1}{112}}
+\headcommand {\beamer@subsectionpages {95}{112}}
+\headcommand {\beamer@sectionpages {95}{112}}
+\headcommand {\beamer@documentpages {112}}
+\headcommand {\gdef \inserttotalframenumber {36}}

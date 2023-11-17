@@ -1,0 +1,69 @@
+for ammp_is lrs:
+	all_weights is V. SLOW (and not very good)
+
+	bigger lr is better
+
+	ReLU makes regular AMMPIS a bit worse and no_inner_loop a lot better
+
+for rws_lrs:
+	regular is best, w/ smaller lrs performing better EVENTUALLY
+		but taking longer to get to the better posteriors
+
+	difference isn't all that good, but slight improvement for higher lrs
+
+	standardised isn't v impressive (but better than difference) 
+		and fairly invariant to lrs tried
+
+for inner_loop_count:
+	(again - ReLU is worse than non-ReLU)
+	for sufficiently easy (low enough N or high enough K) posteriors
+		not much in it really, so best to do low inner_loop_count
+		to save time
+
+	for difficult posteriors, mixed results:
+		non-ReLU, sometimes only 1 inner iter is best
+
+		ReLU, sometimes best results w/ max inner iters, 
+		      sometimes best results w/ min inner iters	
+
+	in general, however, non-ReLU is better (w/ a single inner iter)
+		and ReLU is never really much better, and to achieve
+		comparable results, we need HIGH inner iter (which is slow!)
+
+	ACTUAL OBSERVATIONS:
+		Often iter_count doesn't make a massive difference
+
+		for low N, non-ReLU wants high iters
+		for high N, non-RelU wants low iters
+
+		for most N, ReLU wants high iters
+
+		whether the iters are worth it in terms of time 
+			largely depends on K
+
+MAIN RESULTS:
+	(need to update these in the morning w/ a closer look)
+
+	regular natural_rws is actually not that bad...?
+
+	but regular ammpis(1) seems to be the best of the ammpises
+
+	
+	Q: when is natural_rws better than ammpis(1)? 
+		(i.e. w/ K, N, post_width)
+	A: When K is low, natural_rws is best, 
+		for K == 10:
+			low N (50): all amp-is > rws
+			N == 500: amp-is(1) ONLY > rws
+			N == 5000: rws best
+		for K == 30:
+			ampis is king (but rws still tends to beat hmc)
+		
+		AND (i think...) these good ones of ours are all still 
+			faster than HMC
+	
+	amp_is (and rws?) seem to be better in general (compared to hmc)
+		 with narrow posteriors
+	
+	BUT no_inner_loop is only good WITH ReLU, 
+		but even with ReLU we get weird results for high N,K

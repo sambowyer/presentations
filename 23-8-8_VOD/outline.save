@@ -1,0 +1,57 @@
+intro: ~2 mins 
+	motivating ODQA
+	w/ v high level overview
+
+	"this paper suggests a new method for ODQA based on Renyi Divergence VI and is evaluated on Q&A datasets, but the authors make the point that the VOD technique could be applied to many other settings (e.g. semantic search in sec 4.6)"
+
+retireval augmented tasks: ~5 mins
+	the reader/retriever model (Eq. 1)
+
+	we can do this with VI (using the ELBO) if we define an approx posterior
+	...then VI will do x,y,z...
+
+	But the authors suggest that we use Renyi Divergence VI...
+
+Renyi Divergence VI: ~10 mins
+	usually use the RVB (Eq. 2) which (like the ELBO) is a lower bound on the marginal log-likelihood
+	(and RVB_alpha->1 == ELBO AND RVB_alpha=0 == marge ll)
+
+	In practice, we use an importance weighted version: IW-RVB (Eq. 3)
+
+	and importantly the IW is consistent, so as K->N the IW-RVB -> RVB
+
+	[We can also write the RVB gradient as (Eq. 5)
+		this might not be worth including, BUT if I do include it,
+			can talk about the joint optimisation of reader & retriever
+			+ that nice comment about knowledge distillation
+			+ the bits at the start of "Stabilizing training using the RVB"
+
+		... so probably worth including...
+	]
+
+VOD objective: ~10 mins
+	PROBLEM: size of corpus, N, is v large as hell so IW over all N documents might not be ideal
+	SOLUTION: use *priority sampling*
+
+		priority sampling: ~2 mins max.
+			basically IW (w/ a uniform proposal?) but only store the top highest-K weights and set the rest equal to the (K-1)-th weight
+
+			nice thing is that (potentially surprisingly) this gives consistent estimators
+
+	... so we can use priority sampling instead of regular IS in the IW-RVB
+		and then we reach the VOD objective (Eq. 6)
+
+	[need to think about whether defn of v (Eq. 7) is worth it...
+		might be better to just say 
+			"v is a priority-sampling approximation of the regular importance weights w"
+	]
+
+	NICE FACT: VOD objective and its gradient are consistent
+		(i.e. converge to the RVB in the limit K -> N)
+		AND can be evaluated w/ complexity O(K)
+			(compared to IW-RVB's O(N))
+
+
+VOD Q&A implementation:
+	medical Q&A datasets---MULTIPLE CHOICE (M=4 choices afaicr)
+		[c
