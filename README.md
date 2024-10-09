@@ -3,9 +3,12 @@
 A collection of presentations on various ML subjects/papers.
 Mostly for internal lab meetings.
 
+## 2022
 - [HMMs (Bootcamp)](<22-09-07 HMMs (Bootcamp)>)
     - An introductory presentation on Hidden Markov Models and the forward-backward and Baum-Welch algorithms.
     - _Presentation for [Compass CDT](https://www.bristol.ac.uk/cdt/compass/) first-year Bootcamp module_
+
+## 2023
 - [Audio Diffusion](<23-05-02 Audio Diffusion>)
     - Diffusion-based neural vocoders for high-quality audio generation, with a focus on [WaveGrad](https://arxiv.org/abs/2009.00713) and [DiffWave](https://arxiv.org/abs/2009.09761).
     - _Lab meeting presentation_
@@ -24,6 +27,8 @@ Mostly for internal lab meetings.
 - [SBI](<23-11-07 SBI>)
     - An overview of neural simulation-based inference methods.
     - _Lab meeting presentation_
+
+## 2024
 - [Sequential Bayes for Continual Learning](<24-02-20 Sequential Bayes for Continual Learning>)
     - Discusses the use of sequential Bayesian inference in continual learning scenarios, specifically via the [ProtoCL](https://arxiv.org/abs/2301.01828) algorithm.
     - _Lab meeting presentation_
