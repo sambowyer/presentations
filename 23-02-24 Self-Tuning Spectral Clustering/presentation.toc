@@ -1,0 +1,6 @@
+\beamer@sectionintoc {1}{1. Recap: Spectral Clustering}{3}{0}{1}
+\beamer@sectionintoc {2}{2. Self-Tuning Spectral Algorithm}{7}{0}{2}
+\beamer@subsectionintoc {2}{1}{Selecting $\sigma $}{10}{0}{2}
+\beamer@subsectionintoc {2}{2}{Selecting $K$}{15}{0}{2}
+\beamer@subsectionintoc {2}{3}{Algorithm}{34}{0}{2}
+\beamer@sectionintoc {3}{3. Experiments}{40}{0}{3}

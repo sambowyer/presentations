@@ -1,0 +1,56 @@
+\headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
+\headcommand {\beamer@framepages {1}{1}}
+\headcommand {\slideentry {0}{0}{2}{2/2}{}{0}}
+\headcommand {\beamer@framepages {2}{2}}
+\headcommand {\beamer@sectionpages {1}{2}}
+\headcommand {\beamer@subsectionpages {1}{2}}
+\headcommand {\sectionentry {1}{1. Recap: Spectral Clustering}{3}{1. Recap: Spectral Clustering}{0}}
+\headcommand {\slideentry {1}{0}{1}{3/6}{}{0}}
+\headcommand {\beamer@framepages {3}{6}}
+\headcommand {\beamer@sectionpages {3}{6}}
+\headcommand {\beamer@subsectionpages {3}{6}}
+\headcommand {\sectionentry {2}{2. Self-Tuning Spectral Algorithm}{7}{2. Self-Tuning Spectral Algorithm}{0}}
+\headcommand {\slideentry {2}{0}{1}{7/9}{}{0}}
+\headcommand {\beamer@framepages {7}{9}}
+\headcommand {\beamer@subsectionpages {7}{9}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{10}{Selecting $\sigma $}}
+\headcommand {\slideentry {2}{1}{1}{10/10}{Selecting $\sigma $}{0}}
+\headcommand {\beamer@framepages {10}{10}}
+\headcommand {\slideentry {2}{1}{2}{11/14}{Selecting $\sigma $}{0}}
+\headcommand {\beamer@framepages {11}{14}}
+\headcommand {\beamer@subsectionpages {10}{14}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{15}{Selecting $K$}}
+\headcommand {\slideentry {2}{2}{1}{15/16}{Selecting $K$}{0}}
+\headcommand {\beamer@framepages {15}{16}}
+\headcommand {\slideentry {2}{2}{2}{17/18}{Selecting $K$}{0}}
+\headcommand {\beamer@framepages {17}{18}}
+\headcommand {\slideentry {2}{2}{3}{19/21}{Selecting $K$}{0}}
+\headcommand {\beamer@framepages {19}{21}}
+\headcommand {\slideentry {2}{2}{4}{22/24}{Selecting $K$}{0}}
+\headcommand {\beamer@framepages {22}{24}}
+\headcommand {\slideentry {2}{2}{5}{25/30}{Selecting $K$}{0}}
+\headcommand {\beamer@framepages {25}{30}}
+\headcommand {\slideentry {2}{2}{6}{31/33}{Selecting $K$}{0}}
+\headcommand {\beamer@framepages {31}{33}}
+\headcommand {\beamer@subsectionpages {15}{33}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{34}{Algorithm}}
+\headcommand {\slideentry {2}{3}{1}{34/39}{Algorithm}{0}}
+\headcommand {\beamer@framepages {34}{39}}
+\headcommand {\beamer@sectionpages {7}{39}}
+\headcommand {\beamer@subsectionpages {34}{39}}
+\headcommand {\sectionentry {3}{3. Experiments}{40}{3. Experiments}{0}}
+\headcommand {\slideentry {3}{0}{1}{40/40}{}{0}}
+\headcommand {\beamer@framepages {40}{40}}
+\headcommand {\slideentry {3}{0}{2}{41/41}{}{0}}
+\headcommand {\beamer@framepages {41}{41}}
+\headcommand {\slideentry {3}{0}{3}{42/42}{}{0}}
+\headcommand {\beamer@framepages {42}{42}}
+\headcommand {\slideentry {3}{0}{4}{43/43}{}{0}}
+\headcommand {\beamer@framepages {43}{43}}
+\headcommand {\slideentry {3}{0}{5}{44/44}{}{0}}
+\headcommand {\beamer@framepages {44}{44}}
+\headcommand {\beamer@partpages {1}{44}}
+\headcommand {\beamer@subsectionpages {40}{44}}
+\headcommand {\beamer@sectionpages {40}{44}}
+\headcommand {\beamer@documentpages {44}}
+\headcommand {\gdef \inserttotalframenumber {18}}

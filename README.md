@@ -9,6 +9,9 @@ Mostly for internal lab meetings.
     - _Presentation for [Compass CDT](https://www.bristol.ac.uk/cdt/compass/) first-year Bootcamp module_
 
 ## 2023
+- [Self-Tuning Spectral Clustering](<23-02-24 Self-Tuning Spectral Clustering>)
+    - Discusses the paper [Self-Tuning Spectral Clustering](https://proceedings.neurips.cc/paper_files/paper/2004/file/40173ea48d9567f1f393b20c855bb40b-Paper.pdf) which introduces a novel spectral clustering algorithm that automatically tunes the number of clusters and kernel bandwidth.
+    - _Presentation for [Compass CDT](https://www.bristol.ac.uk/cdt/compass/) first-year Statistical Methods 2 module_
 - [Audio Diffusion](<23-05-02 Audio Diffusion>)
     - Diffusion-based neural vocoders for high-quality audio generation, with a focus on [WaveGrad](https://arxiv.org/abs/2009.00713) and [DiffWave](https://arxiv.org/abs/2009.09761).
     - _Lab meeting presentation_

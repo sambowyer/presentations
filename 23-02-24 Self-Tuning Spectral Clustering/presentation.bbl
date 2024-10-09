@@ -1,0 +1,11 @@
+\begin{thebibliography}{}
+
+\bibitem[Ng et~al., 2001]{ng_spectral_2001}
+Ng, A.~Y., Jordan, M.~I., and Weiss, Y. (2001).
+\newblock On {Spectral} {Clustering}: {Analysis} and an algorithm.
+
+\bibitem[Zelnik-Manor and Perona, 2004]{zelnik-manor_self-tuning_2004}
+Zelnik-Manor, L. and Perona, P. (2004).
+\newblock Self-{Tuning} {Spectral} {Clustering}.
+
+\end{thebibliography}
