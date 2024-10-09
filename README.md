@@ -17,17 +17,25 @@ Mostly for internal lab meetings.
     - _Internal presentation_
 - [VOD (Variational Open-Domain Q&A)](<23-08-08 VOD (Variational Open-Domain Q&A)>)
     - Presents the paper [Variational Open-Domain Question Answering](https://arxiv.org/pdf/2210.06345) which uses Rényi divergence variational inference for RAG in open-domain question answering.
+    - _Lab meeting presentation_
 - [ML vs RWS](<23-08-09 ML vs RWS>)
-    - Compares machine learning techniques with reward-weighted sampling.
+    - Compares QEM (AMP-IS) and [(massively parallel) Reweighted Wake-Sleep (RWS)](https://arxiv.org/pdf/2305.11022) for Bayesian inference.
+    - _Internal presentation_
 - [SBI](<23-11-07 SBI>)
-    - Covers Simulation-Based Inference and its applications in machine learning.
+    - An overview of neural simulation-based inference methods.
+    - _Lab meeting presentation_
 - [Sequential Bayes for Continual Learning](<24-02-20 Sequential Bayes for Continual Learning>)
-    - Discusses the use of sequential Bayesian methods in continual learning scenarios.
+    - Discusses the use of sequential Bayesian inference in continual learning scenarios, specifically via the [ProtoCL](https://arxiv.org/abs/2301.01828) algorithm.
+    - _Lab meeting presentation_
 - [KANs (Kolmogorov-Arnold Networks)](<24-05-28 KANs (Kolmogorov-Arnold Networks)>)
-    - Presents KANs and their application in solving complex functional equations.
+    - Presents [Kolmogorov-Arnold Networks (KANs)](https://arxiv.org/abs/2404.19756), a novel neural network architecture to rival MLPs.
+    - _Lab meeting presentation_
 - [MP-VI](<24-07-05 MP-VI>)
-    - Introduces MP-VI, a novel variational inference method.
+    - An introduction to massively parallel inference (see: [alan](https://github.com/alan-ppl/alan) and [Tensor Monte Carlo](https://arxiv.org/abs/1806.08593)) and variational inference more generally.
+    - _Compass Seminar presentation_
 - [Transformer Neural Processes](<24-07-30 Transformer Neural Processes>)
-    - Explores the integration of transformer architectures in neural process models.
+    - Covers the paper [Transformer Neural Processes: Uncertainty-Aware Meta Learning Via Sequence Modeling](https://arxiv.org/abs/2207.04179).
+    - _Lab meeting presentation_
 - [Why Linearised Laplace is Better](<24-10-08 Why Linearised Laplace is Better>)
-    - Discusses the advantages of using linearised Laplace approximation in machine learning models.
+    - Covers the paper [Reparameterization invariance in approximate Bayesian inference](https://arxiv.org/abs/2406.03334) which explains why the massive number of reparameterisations available in Baysian Neural Networks leads to the Linearised Laplace approximation underfitting less than the Laplace approximation. The paper also introduces 'Laplace Diffusion' as a reparameterisation-invariant approximation for non-linearised BNNs.
+    - _Lab meeting presentation_
