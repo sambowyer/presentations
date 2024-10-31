@@ -48,5 +48,5 @@ Mostly for internal lab meetings.
     - Covers the paper [Reparameterization invariance in approximate Bayesian inference](https://arxiv.org/abs/2406.03334) which explains why the massive number of reparameterisations available in Baysian Neural Networks leads to the Linearised Laplace approximation underfitting less than the Laplace approximation. The paper also introduces 'Laplace Diffusion' as a reparameterisation-invariant approximation for non-linearised BNNs.
     - _Lab meeting presentation_
 - [Finetuning LLMs](<24-10-22 Finetuning LLMs>)
-    - A short talk entitled "_How YOU -- yes, YOU! -- can train an LLM_" which covers the basics of finetuning large language models, specifically using LoRA, and why a Bayesian approach might be useful.
+    - A short talk entitled _"How YOU -- yes, YOU! -- can train an LLM"_ which covers the basics of finetuning large language models, specifically using LoRA, and why a Bayesian approach might be useful.
     - _Lightning talk at the 2024 [Compass Conference](https://www.bristol.ac.uk/cdt/compass/compass-annual-conference/)_
