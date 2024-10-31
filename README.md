@@ -28,7 +28,7 @@ Mostly for internal lab meetings.
     - Compares QEM (AMP-IS) and [(massively parallel) Reweighted Wake-Sleep (RWS)](https://arxiv.org/pdf/2305.11022) for Bayesian inference.
     - _Internal presentation_
 - [SBI](<23-11-07 SBI>)
-    - An overview of neural simulation-based inference methods.
+    - An overview of neural simulation-based inference methods. Largely based on the paper [The frontier of simulation-based inference](https://arxiv.org/pdf/1911.01429).
     - _Lab meeting presentation_
 
 ## 2024
@@ -47,3 +47,6 @@ Mostly for internal lab meetings.
 - [Why Linearised Laplace is Better](<24-10-08 Why Linearised Laplace is Better>)
     - Covers the paper [Reparameterization invariance in approximate Bayesian inference](https://arxiv.org/abs/2406.03334) which explains why the massive number of reparameterisations available in Baysian Neural Networks leads to the Linearised Laplace approximation underfitting less than the Laplace approximation. The paper also introduces 'Laplace Diffusion' as a reparameterisation-invariant approximation for non-linearised BNNs.
     - _Lab meeting presentation_
+- [Finetuning LLMs](<24-10-22 Finetuning LLMs>)
+    - A short talk entitled "_How YOU -- yes, YOU! -- can train an LLM_" which covers the basics of finetuning large language models, specifically using LoRA, and why a Bayesian approach might be useful.
+    - _Lightning talk at the 2024 [Compass Conference](https://www.bristol.ac.uk/cdt/compass/compass-annual-conference/)_

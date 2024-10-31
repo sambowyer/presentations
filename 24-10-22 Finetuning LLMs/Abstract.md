@@ -1,0 +1,2 @@
+## How YOU - yes, YOU! - can train an LLM
+So you want to build your own LLM. Big mistake -- that's really hard. But I can let you in on a secret: people have done the hard work already! Let the mega-rich tech companies do the heavy lifting and just tweak some of the model's parameters to suit your needs afterwards! In this talk I'll show you how to finetune a pretrained neural network and try to convince you that in the age of Big Tech, individuals don't need to be left in the dust.
