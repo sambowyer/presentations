@@ -4,6 +4,9 @@ A collection of presentations on various ML subjects/papers.
 Mostly for internal lab meetings.
 
 ## 2024
+- [Bayesian Evals](<24-12-17 Bayesian Evals>)
+    - Explores recent developments in the standardisation and uncertainty quantification of evals (see e.g. [Anthropic's error bar paper](https://arxiv.org/pdf/2411.00640), Desi Ivanova's [blog](https://substack.com/home/post/p-152149873) [posts](https://substack.com/home/post/p-150508215)). Used as an introduction to current work on Bayesian evals.
+    - _Lab meeting presentation_
 - [Finetuning LLMs](<24-10-22 Finetuning LLMs>)
     - A short talk entitled _"How YOU -- yes, YOU! -- can train an LLM"_ which covers the basics of finetuning large language models, specifically using LoRA, and why a Bayesian approach might be useful. Largely based on my Compass Student Blog post: [Bayesian LLM Finetuning](https://compass.blogs.bristol.ac.uk/2024/08/28/student-perspectives-bayesian-llm-finetuning/).
     - _Lightning talk at the 2024 [Compass Conference](https://www.bristol.ac.uk/cdt/compass/compass-annual-conference/)_
