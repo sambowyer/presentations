@@ -4,6 +4,9 @@ A collection of presentations on various ML subjects/papers.
 Mostly for internal lab meetings.
 
 ## 2024
+- [Large Language Diffusion Models](<25-02-25 Large Language Diffusion Models>)
+    - A presentation on the paper [Large Language Diffusion Models](https://arxiv.org/abs/2502.09992) which introduces a scalable (8B parameter) LLM based on Discrete Diffusion Models (DDMs).
+    - _Lab meeting presentation_
 - [Bayesian Evals](<24-12-17 Bayesian Evals>)
     - Explores recent developments in the standardisation and uncertainty quantification of evals (see e.g. [Anthropic's error bar paper](https://arxiv.org/pdf/2411.00640), Desi Ivanova's [blog](https://substack.com/home/post/p-152149873) [posts](https://substack.com/home/post/p-150508215)). Used as an introduction to current work on Bayesian evals.
     - _Lab meeting presentation_
