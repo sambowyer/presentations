@@ -1,0 +1,2 @@
+[ ] Put bernoulli variance formula in the CLT slide and leave the next slide jsut for the CI 
+    (maybe with diagram of gaussian?)
