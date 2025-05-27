@@ -114,7 +114,7 @@ If $X_1, \dots, X_N$ are <span class="highlight-red">IID</span> r.v.s with mean 
 
 <div class="mt-8 p-4 bg-blue-100 border-l-4 border-blue-500">
 
-We construct CLT-based confidence intervals at confidence level $1-\alpha$ as 
+We construct CLT-based confidence intervals at confidence level $1-\alpha \in [0,1]$ as 
 $$\text{CI}_{1-\alpha}(\mu) = \hat{\mu} \pm z_{\alpha/2} \text{SE}(\hat{\mu}),$$
 where $z_{\alpha/2}$ is the $100(1-\alpha/2)$-th percentile of the standard normal distribution and 
 $$ \text{SE}(\hat{\mu}) = \sqrt{\hat{\sigma}^2 / N}$$
@@ -236,7 +236,7 @@ We'll focus on two metrics for evaluating intervals:
 
 - <span class="highlight-red">Coverage</span>
     - What proportion of the time does a $1-\alpha$ confidence-level interval *actually contain* the true underlying value of $\theta$? 
-    - Ideally, this should match the _nominal_ coverage level of $1-\alpha$.
+    - Ideally: _actual_ coverage $=$ _nominal_ coverage (i.e. $1-\alpha$).
     - (This is a frequentist measure really, but still a useful one for evaluating Bayesian methods too.)
 - <span class="highlight-red">Width</span> 
     - Ideally, our intervals would be as tight as possible.
@@ -259,9 +259,9 @@ We have to rely on synthetic data so that we *know* the true parameter $\theta$.
 
 - Draw $\theta \sim \text{Uniform}[0, 1]$.
 
-- Draw $N \in \{10,30,100,300\}$ IID Bernoulli datapoints with parameter $\theta$.
+- Draw $N \in \{3,10,30,100\}$ IID Bernoulli datapoints with parameter $\theta$.
 
-- Construct $1-\alpha$ confidence-level intervals for $\theta$ using various methods.
+- Construct $1-\alpha$ confidence-level intervals for $\theta$ using both methods with various $\alpha$ values.
 
 - Repeat for this 20,000 times for each of the 4 values of $N$.
 
@@ -398,22 +398,24 @@ cp_ci = result.proportion_ci("exact", 0.95)
 <v-clicks depth="2">
 
 ## Clustered Questions
-Instead of N IID questions, we have T tasks, each with K=N/T IID questions.
+
+Instead of $N$ IID questions, we have $T$ tasks, each with $N_t$ IID questions.
 
 <!-- <div class="h-[5vh]"></div> -->
 
 ## Independent Comparisons
-Compare $\theta_A$ and $\theta_B$ for two different models, with $N$ IID questions each.
+
+Compare $\theta_A$ and $\theta_B$ for two different models, with access _only_ to $N_A, N_B, \hat{\theta}_A,$ and $\hat{\theta}_B$.
 
 <!-- <div class="h-[5vh]"></div> -->
 
 ## Paired Comparisons
-Compare $\theta_A$ and $\theta_B$ for two different models, each with <u>the same</u> N IID questions.
+
+Compare $\theta_A$ and $\theta_B$ for two different models, each with <u>the same</u> $N$ IID questions and access to question-level successes $\{y_{A;i}\}_{i=1}^N$ and $\{y_{B;i}\}_{i=1}^N$.
 
 <!-- <div class="h-[5vh]"></div> -->
 
-## Metrics that aren't simple averages of binary results
-E.g. F1 score.
+## Metrics that aren't simple averages of binary results (e.g. F1 score).
 
 </v-clicks>
 
@@ -422,8 +424,9 @@ E.g. F1 score.
 
 # Clustered Questions Setting
 
-<div class="absolute top-4 right-4 text-sm">
-(Instead of N IID questions, we have T tasks, each with K=N/T IID questions.)
+<div class="absolute top-4 right-4 text-xs">
+
+(Instead of $N$ IID questions, we have $T$ tasks, each with $N_t$ IID questions.)
 </div>
 <!-- (E.g. each task asks $K$ questions about a single piece of input text/data.) -->
 
@@ -510,12 +513,12 @@ $$\text{CI}_{1-\alpha}(\theta) = \hat{\theta} \pm z_{\alpha/2} \text{SE}_\text{c
 
 </div> -->
 
-Compare $\theta_A$ and $\theta_B$ for two different models, with $N$ IID questions each.
+Compare $\theta_A$ and $\theta_B$ for two different models, with access _only_ to $N = N_A = N_B, \hat{\theta}_A,$ and $\hat{\theta}_B$.
 
 <v-clicks depth="2">
 
-- Compute an interval over the <span class="highlight-red">difference</span> $\theta_A - \theta_B$, check if it contains 0.
-- Compute an interval over the <span class="highlight-red">odds ratio</span> $\frac{\theta_A/(1-\theta_A)}{\theta_B/(1-\theta_B)}$, check if it contains 1.
+- Compute an interval over the <span class="highlight-red">difference</span> $\theta_A - \theta_B$ check if it's positive
+- Compute an interval over the <span class="highlight-red">odds ratio</span> $\frac{\theta_A/(1-\theta_A)}{\theta_B/(1-\theta_B)}$, check if it's greater than 1.
 </v-clicks>
 
 <div v-click></div>
@@ -550,9 +553,12 @@ bayes_or = np.percentile(ps_or, [2.5, 97.5])
 
 ## Frequentist Approach
 
-- Use the CLT directly for the **difference**:
-$$\text{CI}_{1-\alpha}(\mu_A - \mu_B) 
-    = (\hat{\mu}_A - \hat{\mu}_B)  \pm z_{\alpha/2}\,\text{SE}(\hat{\mu}_A - \hat{\mu}_B).$$
+- Use the CLT for the **difference** and add $A$ and $B$'s squared standard errors:
+$$
+\text{CI}_{1-\alpha}(\theta_A - \theta_B) 
+    % = (\hat{\theta}_A - \hat{\theta}_B)  \pm z_{\alpha/2}\,\sqrt{\text{SE}(\hat{\theta}_A)^2 + \text{SE}(\hat{\theta}_B)^2}.
+    = (\hat{\theta}_A - \hat{\theta}_B)  \pm z_{\alpha/2}\,\sqrt{S_A^2/N_A + S_B^2/N_B}.
+$$
 
 <div v-click>
 
@@ -560,17 +566,16 @@ $$\text{CI}_{1-\alpha}(\mu_A - \mu_B)
 
 <div v-if="$slidev.nav.clicks === 5">
 
-- Use an inverted Fisher's Exact Test for the **odds ratio**:
-    - Much like the Clopper-Pearson exact intervals, this will never under-cover.
+- Use an inverted Fisher's Exact Test for the **odds ratio** (this will never under-cover):
+    - Equivalent to Bayesian intervals with strong priors: $\theta_A \sim \text{Beta}(1, 0)$ and $\theta_B \sim \text{Beta}(0, 1)$.
 
 ```python
 # y_A and y_B are vectors of evals for two models
 from scipy.stats.contingency import odds_ratio
 S_A, S_B = y_A.sum(), y_B.sum()
-
 result = odds_ratio([[S_A, N_A - S_A], [S_B, N_B - S_B]])
 ci_or = result.confidence_interval(confidence_level=0.95, alternative='two-sided')
-```   
+```
 </div>
 </div>
 
@@ -617,10 +622,16 @@ Compute intervals over the difference $\theta_A - \theta_B$, where we have acces
 
 ## Frequentist Approach
 
-Use the CLT directly for the difference:
+Use the CLT directly for the difference $D_i = y_{A;i} - y_{B;i}$:
 
-$$\text{CI}_{1-\alpha}(\mu_A - \mu_B) 
-    = (\hat{\mu}_A - \hat{\mu}_B)  \pm z_{\alpha/2}\,\text{SE}(\hat{\mu}_A - \hat{\mu}_B).$$
+$$
+\begin{aligned}
+D_i &\sim \text{Bernoulli}(\theta_A - \theta_B), \\
+\hat{\theta}_D &= \frac{1}{N}\sum_{i=1}^N D_i, \\
+\text{CI}_{1-\alpha}(\theta_A - \theta_B) 
+    &= \hat{\theta}_D  \pm z_{\alpha/2}\,\text{SE}(\hat{\theta}_D).
+\end{aligned}
+$$
 
 </div>
 
@@ -718,7 +729,7 @@ $$\text{e.g.} \quad \text{Beta}(100,20), \quad \mathbb{E}[\theta] = 0.83, \quad 
 - Use Bayes (or Wilson), it's not hard (`scipy` or `bayes_evals`), it's safer, and it's still cheap for large $N$.
 - Plus you get the flexibility of Bayes! 
     - Computing probabilities $\mathbb{P}(\theta_A > \theta_B)$
-    - Intervals on nonlinear functions of parameters (e.g. F1 score)
+    - Intervals on nonlinear functions of parameters e.g. F1 score (harmonic mean of precision and recall)
 
 </v-clicks>
 
