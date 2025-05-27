@@ -123,7 +123,7 @@ is the standard error of the sample mean.
 
 <div v-click>
 
-For binary data (e.g. correct/incorrect), $X_i \sim \text{Bernoulli}(\theta)$, we can use the Bernoulli variance formula:
+For binary data (e.g. correct/incorrect), $X_i \sim \text{nnoulli}(\theta)$, we can use the Bernoulli variance formula:
 
 $$\text{SE}(\hat{\theta}) = \sqrt{\frac{\hat{\theta}(1-\hat{\theta})}{N}}.$$
 </div>
@@ -517,7 +517,7 @@ Compare $\theta_A$ and $\theta_B$ for two different models, with access _only_ t
 
 <v-clicks depth="2">
 
-- Compute an interval over the <span class="highlight-red">difference</span> $\theta_A - \theta_B$ check if it's positive
+- Compute an interval over the <span class="highlight-red">difference</span> $\theta_A - \theta_B$ check if it's positive.
 - Compute an interval over the <span class="highlight-red">odds ratio</span> $\frac{\theta_A/(1-\theta_A)}{\theta_B/(1-\theta_B)}$, check if it's greater than 1.
 </v-clicks>
 
@@ -593,7 +593,7 @@ ci_or = result.confidence_interval(confidence_level=0.95, alternative='two-sided
 <div class="mt-8 p-0.5 bg-blue-100 border-l-4 border-blue-500">
 <span class="highlight-red">Bayesian Bonus:</span> we can easily compute probabilities of one model being better than the other:
 $$
-\mathbb{P}(\theta_A > \theta_B | y_{A;1:N}, y_{B;1:N}) = \frac{1}{K} \sum_{k=1}^K {1}[\theta_A^{(k)} > \theta_B^{(k)}]
+\mathbb{P}(\theta_A > \theta_B | y_{A;1:N}, y_{B;1:N}) = \frac{1}{K} \sum_{k=1}^K {1}[\theta_A^{(k)} > \theta_B^{(k)}],
 $$
 where $\theta_m^{(k)} \sim p(\theta_m | y_{m, 1:N})$ are posterior samples for models $m \in \{A, B\}$.
 
@@ -614,9 +614,9 @@ Compute intervals over the difference $\theta_A - \theta_B$, where we have acces
 
 
 <div v-click></div>
-<div v-click></div>
 
-<div v-if="$slidev.nav.clicks === 1">
+
+<div v-if="$slidev.nav.clicks >= 1 && $slidev.nav.clicks <= 4">
 
 <!-- <div v-click> -->
 
@@ -626,7 +626,6 @@ Use the CLT directly for the difference $D_i = y_{A;i} - y_{B;i}$:
 
 $$
 \begin{aligned}
-D_i &\sim \text{Bernoulli}(\theta_A - \theta_B), \\
 \hat{\theta}_D &= \frac{1}{N}\sum_{i=1}^N D_i, \\
 \text{CI}_{1-\alpha}(\theta_A - \theta_B) 
     &= \hat{\theta}_D  \pm z_{\alpha/2}\,\text{SE}(\hat{\theta}_D).
@@ -634,12 +633,16 @@ D_i &\sim \text{Bernoulli}(\theta_A - \theta_B), \\
 $$
 
 </div>
+<div v-click></div>
 
-
-<div v-if="$slidev.nav.clicks >= 2">
+<div v-if="$slidev.nav.clicks >= 5">
 <!-- <div v-click> -->
 
 ## Bayesian Approach (Importance Sampling)
+
+<div v-click></div>
+<div v-click></div>
+<div v-click></div>
 
 <div class="flex">
 <div class="flex-1">
@@ -711,7 +714,7 @@ Ensures $y_{A;i} \sim \text{Ber}(\theta_A)$ and $y_{B;i} \sim \text{Ber}(\theta_
 
 <div v-click>
 
-$$\text{e.g.} \quad \text{Beta}(100,20), \quad \mathbb{E}[\theta] = 0.83, \quad \text{Var}[\theta] = 0.0011$$
+$$\text{e.g.} \quad \text{Beta}(100,20), \quad \mathbb{E}[\theta] = 0.83, \quad \text{Var}[\theta] = 0.034^2$$
 
 <Transform scale="0.75" origin="top">
 <img src="/img/pngs/exp4-1_beta-100-20_mismatch.png" alt="Prior Mismatch" class="h-full object-contain mx-auto">
@@ -728,8 +731,8 @@ $$\text{e.g.} \quad \text{Beta}(100,20), \quad \mathbb{E}[\theta] = 0.83, \quad 
 
 - Use Bayes (or Wilson), it's not hard (`scipy` or `bayes_evals`), it's safer, and it's still cheap for large $N$.
 - Plus you get the flexibility of Bayes! 
-    - Computing probabilities $\mathbb{P}(\theta_A > \theta_B)$
-    - Intervals on nonlinear functions of parameters e.g. F1 score (harmonic mean of precision and recall)
+    - Computing probabilities $\mathbb{P}(\theta_A > \theta_B)$.
+    - Intervals on nonlinear functions of parameters e.g. F1 score (harmonic mean of precision and recall).
 
 </v-clicks>
 
