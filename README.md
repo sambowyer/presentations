@@ -4,6 +4,9 @@ A collection of presentations on various ML subjects/papers.
 Mostly for internal lab meetings.
 
 ## 2025
+- [Don't Use The CLT](<25-05-26 Dont Use The CLT>)
+    - A presentation on my ICML 2025 Spotlight paper [Position: Don't use the CLT in LLM evals with fewer than a few hundred datapoints](https://arxiv.org/pdf/2503.01747), which shows better methods for constructing error bars on LLM evals and analyses the CLT's failures when its assumptions aren't met.
+    - _Lab meeting presentation_
 - [Large Language Diffusion Models](<25-02-25 Large Language Diffusion Models>)
     - A presentation on the paper [Large Language Diffusion Models](https://arxiv.org/abs/2502.09992) which introduces a scalable (8B parameter) LLM based on Discrete Diffusion Models (DDMs).
     - _Lab meeting presentation_
