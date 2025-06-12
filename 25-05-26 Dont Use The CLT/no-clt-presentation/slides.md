@@ -39,8 +39,27 @@ Sam Bowyer, Laurence Aitchison, and Desi R. Ivanova
 
 <div class="absolute bottom-10">
   <span class="font-700">
-    May 27, 2025
+    June 12, 2025
   </span>
+</div>
+
+---
+
+<!-- <div class="h-0"></div> -->
+
+<!-- <div class="grid grid-cols-2 gap-4">
+  <div>
+    <h2>Recommendation</h2>
+    <p>Use Bayes or Wilson Score Intervals, not the CLT.</p>
+  </div>
+  <div>
+    <img src="/img/anthropic_blog.png" alt="Anthropic Blog Post" class="w-full">
+  </div>
+</div> -->
+
+<!-- <div class="h-[20vh]"></div> -->
+<div class="flex justify-center">
+<img src="/img/anthropic_blog2.png" alt="Anthropic Blog Post" class="w-5/6 h-full object-contain">
 </div>
 
 ---
@@ -77,7 +96,23 @@ transition: slide-left
 
 <!-- {n-click} -->
 
-<<< @/snippets/snippet1.py
+<!-- <<< @/snippets/snippet1.py -->
+
+```python
+# y is a length N binary "eval" vector
+from scipy.stats import binomtest, beta
+
+S, N = y.sum(), len(y) # total successes & questions
+result = binomtest(k=S, n=N)
+
+# 95% Wilson score and Clopper-Pearson intervals
+wilson_ci = result.proportion_ci("wilson", 0.95)
+cp_ci = result.proportion_ci("exact", 0.95)
+
+# Bayesian Credible interval
+posterior = beta(1+S, 1+(N-S))
+bayes_ci = posterior.interval(confidence=0.95)
+```
 
 
 
@@ -123,7 +158,7 @@ is the standard error of the sample mean.
 
 <div v-click>
 
-For binary data (e.g. correct/incorrect), $X_i \sim \text{nnoulli}(\theta)$, we can use the Bernoulli variance formula:
+For binary data (e.g. correct/incorrect), $X_i \sim \text{Bernoulli}(\theta)$, we can use the Bernoulli variance formula:
 
 $$\text{SE}(\hat{\theta}) = \sqrt{\frac{\hat{\theta}(1-\hat{\theta})}{N}}.$$
 </div>
@@ -177,10 +212,21 @@ Treat the data as IID Bernoulli with a uniform prior on the parameter $\theta$.
 $${1-2|all}
 \begin{aligned}
 \theta &\sim \text{Beta}(1, 1) = \text{Uniform}[0, 1] \\
-y_i &\sim \text{Bernoulli}(\theta) \; \text{for } i=1,\dots N \\
-\mathbb{P}(\theta | {y_{1:N}}) &= \text{Beta}\left(1+\sum_{i=1}^N y_i, 1 + \sum_{i=1}^N (1-y_i)\right)
+y_i &\sim \text{Bernoulli}(\theta) \; \text{for } i=1,\dots N 
 \end{aligned}
 $$
+
+<div v-click>
+
+We say $y_i$ is correct if $y_i = 1$ and incorrect if $y_i = 0$. (Think of $\theta$ as the probability of correctness.)
+
+</div>
+
+<div v-click>
+
+$$\mathbb{P}(\theta | {y_{1:N}}) = \text{Beta}\left(1+\sum_{i=1}^N y_i, 1 + \sum_{i=1}^N (1-y_i)\right)$$
+
+</div>
 
 <div class="h-2"></div>
 
@@ -240,6 +286,7 @@ We'll focus on two metrics for evaluating intervals:
     - (This is a frequentist measure really, but still a useful one for evaluating Bayesian methods too.)
 - <span class="highlight-red">Width</span> 
     - Ideally, our intervals would be as tight as possible.
+    - _"For a certain width of interval, method X achieves the highest coverage."_
 
 </v-clicks>
 
@@ -296,7 +343,7 @@ where $z_{\alpha/2}$ is the $100(1-\alpha/2)$-th percentile of the standard norm
 
 - Not centered at $\hat{\theta}$.
 
-- Based on a normal approximation to the binomial distribution.
+- Based on a normal approximation to the binomial distribution (but __not__ the CLT).
 </v-clicks>
 
 <div v-click>
@@ -341,7 +388,7 @@ where $B(\alpha, a, b)$ is the $\alpha$-th quantile of the Beta$(a, b)$ distribu
 </div>
 <v-clicks depth="2">
 
-- Guaranteed to never under-cover (very conservative method).
+- Guaranteed to never under-cover (very conservative method; 'worst-case' approach).
   - Contains all $\theta \in [0,1]$ that would not reject $H_0: \theta = \hat{\theta}$ in favour of $H_1: \theta \neq \hat{\theta}$ at confidence level $\alpha$.
 - Equivalent to the Bayesian interval with the uniform prior on $\theta$ removed.
 </v-clicks>
@@ -389,6 +436,7 @@ cp_ci = result.proportion_ci("exact", 0.95)
 
 <div class="h-[20vh]"></div>
 
+
 ---
 
 # Other Eval Settings
@@ -419,6 +467,35 @@ Compare $\theta_A$ and $\theta_B$ for two different models, each with <u>the sam
 
 </v-clicks>
 
+---
+
+# Clustered Questions Setting
+
+<div class="absolute top-4 right-4 text-xs">
+
+(Instead of $N$ IID questions, we have $T$ tasks, each with $N_t$ IID questions.)
+</div>
+<!-- (E.g. each task asks $K$ questions about a single piece of input text/data.) -->
+<v-clicks depth="1">
+
+Some tasks are easier than others. (E.g. each task asks $K$ questions about a single piece of input text.)
+- 'Dispersion' parameter $d$ controls the range of difficulty across tasks.
+$$d \sim \text{Gamma}(1, 1)$$
+- $\theta$ is the mean difficulty of the questions across tasks.
+$$
+\theta \sim \text{Beta}(1, 1) = \text{Uniform}[0, 1]
+$$
+- $\theta_t$ is the difficulty of the questions in task $t$ (we ensure that $\mathbb{E}[\theta_t] = \theta$).
+$$
+\theta_t \sim \text{Beta}(d \theta, d (1-\theta))
+$$
+- If $d$ is small, then $\theta_t$ is close to $\theta$ for all tasks.
+- If $d$ is large, then $\theta_t$ is more variable across tasks.
+</v-clicks>
+
+
+
+
 
 ---
 
@@ -432,10 +509,9 @@ Compare $\theta_A$ and $\theta_B$ for two different models, each with <u>the sam
 
 
 ## Generative Model
-<v-clicks depth="2">
+<v-clicks depth="1">
 
-- 'Dispersion' parameter $d$ controls the range of difficulty of the questions.
-- We ensure that the mean difficulty of the questions across tasks is $\theta$ (that is, $\mathbb{E}[\theta_t] = \theta$).
+- 'Dispersion' parameter $d$ controls the range of difficulty of the questions, whilst maintaining $\mathbb{E}[\theta_t] = \theta$.
 </v-clicks>
 
 <div v-click>
@@ -453,26 +529,27 @@ $$
 <div v-click></div>
 <div v-click></div>
 <div v-click></div>
+<div v-click></div>
 
-<div v-if="$slidev.nav.clicks === 4 || $slidev.nav.clicks === 5">
+<div v-if="$slidev.nav.clicks >= 3 && $slidev.nav.clicks <= 5">
 
 ## Bayesian Inference
-The number of successes per task is Beta-Binomial distributed: 
+- Can we integrate out the per-task difficulty parameters $\theta_t$?
+
+<div v-if="$slidev.nav.clicks >= 4">
+
+- Yes! The number of successes per task is Beta-Binomial distributed: 
 $$\sum_{i=1}^{N_t} y_{i,t} = Y_t \sim \text{BetaBinomial}(N_t, d \theta, d (1-\theta))$$
 
-<div v-if="$slidev.nav.clicks === 5">
+<div v-if="$slidev.nav.clicks >= 5">
 
 Get an <span class="highlight-red">importance-weighted posterior</span> for $\theta$: draw prior samples $\{(\theta^{(k)}, d^{(k)})\}_{k=1}^K$, then compute weights
 
 $$
-w^{(k)} = \prod_{t=1}^T \text{BetaBinomial}(Y_t; N_t, d^{(k)} \theta^{(k)}, d^{(k)}(1-\theta^{(k)}))
+w^{(k)} = \prod_{t=1}^T p(Y_t | \theta^{(k)}, d^{(k)})
 $$
 
-Then we can compute the posterior for $\theta$ as 
-$$
-\theta = \frac{\sum_{k=1}^K w^{(k)} \theta^{(k)}}{\sum_{k=1}^K w^{(k)}}
-$$
-
+</div>
 </div>
 </div>
 
@@ -498,6 +575,10 @@ $$\text{CI}_{1-\alpha}(\theta) = \hat{\theta} \pm z_{\alpha/2} \text{SE}_\text{c
 ---
 
 # Clustered Questions Setting
+<div class="absolute top-4 right-4 text-xs">
+
+(Dotted lines are IID-assuming methods, solid lines are clustered methods.)
+</div>
 
 <img src="/img/pngs/exp4-2.png" alt="Clustered Questions Setting" class="w-full h-full object-contain">
 
@@ -591,14 +672,13 @@ ci_or = result.confidence_interval(confidence_level=0.95, alternative='two-sided
 
 <div v-click>
 <div class="mt-8 p-0.5 bg-blue-100 border-l-4 border-blue-500">
+
 <span class="highlight-red">Bayesian Bonus:</span> we can easily compute probabilities of one model being better than the other:
 $$
-\mathbb{P}(\theta_A > \theta_B | y_{A;1:N}, y_{B;1:N}) = \frac{1}{K} \sum_{k=1}^K {1}[\theta_A^{(k)} > \theta_B^{(k)}],
+\mathbb{P}(\theta_A > \theta_B | y_{A;1:N}, y_{B;1:N}) = \frac{1}{K} \sum_{k=1}^K {1}[\theta_A^{(k)} > \theta_B^{(k)}].
 $$
-where $\theta_m^{(k)} \sim p(\theta_m | y_{m, 1:N})$ are posterior samples for models $m \in \{A, B\}$.
-
+where $\theta_m^{(k)} \sim p(\theta_m | y_{m, 1:N})$ are posterior samples for models $m \in \{A, B\}$. 
 </div>
-
 
 </div>
 
@@ -616,7 +696,7 @@ Compute intervals over the difference $\theta_A - \theta_B$, where we have acces
 <div v-click></div>
 
 
-<div v-if="$slidev.nav.clicks >= 1 && $slidev.nav.clicks <= 4">
+<div v-if="$slidev.nav.clicks === 1">
 
 <!-- <div v-click> -->
 
@@ -635,14 +715,14 @@ $$
 </div>
 <div v-click></div>
 
-<div v-if="$slidev.nav.clicks >= 5">
+<div v-if="$slidev.nav.clicks >= 2">
 <!-- <div v-click> -->
 
 ## Bayesian Approach (Importance Sampling)
 
+<!-- <div v-click></div>
 <div v-click></div>
-<div v-click></div>
-<div v-click></div>
+<div v-click></div> -->
 
 <div class="flex">
 <div class="flex-1">
@@ -690,6 +770,10 @@ Ensures $y_{A;i} \sim \text{Ber}(\theta_A)$ and $y_{B;i} \sim \text{Ber}(\theta_
 
 # Model Comparison (Paired)
 
+<div class="absolute top-4 right-4 text-xs">
+(Dotted lines are unpaired methods, solid lines are paired methods.)
+</div>
+
 <!-- <div class="h-10"></div> -->
 
 <!-- <div class="flex justify-left"> -->
@@ -732,7 +816,7 @@ $$\text{e.g.} \quad \text{Beta}(100,20), \quad \mathbb{E}[\theta] = 0.83, \quad 
 - Use Bayes (or Wilson), it's not hard (`scipy` or `bayes_evals`), it's safer, and it's still cheap for large $N$.
 - Plus you get the flexibility of Bayes! 
     - Computing probabilities $\mathbb{P}(\theta_A > \theta_B)$.
-    - Intervals on nonlinear functions of parameters e.g. F1 score (harmonic mean of precision and recall).
+    - Intervals on nonlinear functions of sample means e.g. F1 score (harmonic mean of precision and recall).
 
 </v-clicks>
 
@@ -750,7 +834,7 @@ $$\text{e.g.} \quad \text{Beta}(100,20), \quad \mathbb{E}[\theta] = 0.83, \quad 
 layout: section
 ---
 
-# Thanks for listening!
+# Questions?
 
 <div class="h-[8vh]"></div>
 
@@ -784,10 +868,62 @@ layout: section
 
 ## Appendix -- Clustered Importance Sampling Code
 
-<<< snippets/snippet4.py
+<!-- <<< snippets/snippet4.py -->
+
+```python
+S_t, N_t: np.arrays of length T with total successes & questions per task
+# set number of samples, K
+K = 10_000
+
+# get K samples from the prior (with extra dimension for broadcasting over tasks)
+thetas = np.random.beta(1,1, size=(K,1))
+ds = np.random.gamma(1,1, size=(K,1))
+
+# obtain weights via the likelihood (sum the per-task log-probs)
+log_weights = scipy.stats.betabinom(N_t, (ds*thetas), (ds*(1-thetas))).logpmf(S_t).sum(-1)
+
+# normalise the weights
+weights = np.exp(log_weights - log_weights.max())
+weights /= weights.sum()
+
+# obtain samples from the posterior
+posterior = thetas[np.random.choice(K, size=K, replace=True, p=weights)]
+
+# Bayesian credible interval
+bayes_ci = np.percentile(posterior, [2.5, 97.5])
+```
 
 ---
 
 ## Appendix -- Paired Importance Sampling Code
 
-<<< @/snippets/snippet5.py{style="font-size:0.2em"}
+<!-- <<< @/snippets/snippet5.py{style="font-size:0.2em"} -->
+
+```python {style="font-size:0.2em"}
+# y_A, y_B: length N binary "eval" vectors
+from binorm import binorm_cdf # 2D Gaussian CDF, defined elsewhere
+K = 10_000
+# get K samples from the prior
+theta_As, theta_Bs, rhos = np.random.beta(1,1, size=K), np.random.beta(1,1,size=K), 2*np.random.beta(4,2, size=K) - 1
+# 2x2 contingency table (flattened)
+S = (y_A * y_B).sum(-1)             # S = A correct,   B correct
+T = (y_A * (1 - y_B)).sum(-1)       # T = A correct,   B incorrect
+U = ((1 - y_A) * y_B).sum(-1)       # U = A incorrect, B correct
+V = ((1 - y_A) * (1 - y_B)).sum(-1) # V = A incorrect, B incorrect
+# calculate the bivariate normal mean
+mu_As, mu_Bs = scipy.stats.norm(0,1).ppf(theta_As), scipy.stats.norm(0,1).ppf(theta_Bs)
+# Calculate probabilities of each cell in the 2x2 table
+theta_V = binorm_cdf(x1=0, x2=0, mu1=mu_As, mu2=mu_Bs, sigma1=1, sigma2=1, rho=rhos)
+theta_S = theta_As + theta_Bs + theta_V - 1
+theta_T = 1 - theta_Bs - theta_V
+theta_U = 1 - theta_As - theta_V
+# (probabilities may be very small and negative instead of 0)
+valid_idx = (theta_S > 0) & (theta_T > 0) & (theta_U > 0) & (theta_V > 0) 
+log_weights = S*np.log(theta_S[valid_idx]) + T*np.log(theta_T[valid_idx]) + \
+              U*np.log(theta_U[valid_idx]) + V*np.log(theta_V[valid_idx])
+# normalise the weights and obtain samples from the posterior
+weights = np.zeros(K)
+weights[valid_idx] = np.exp(log_weights - log_weights.max())
+posterior = (theta_As - theta_Bs)[np.random.choice(K, size=K, replace=True, p=weights/weights.sum())]
+bayes_ci = np.percentile(posterior, [2.5, 97.5])
+```
