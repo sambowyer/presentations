@@ -44,6 +44,8 @@ Sam Bowyer, Laurence Aitchison, and Desi R. Ivanova
 
 # Motivation
 
+<div class="h-2"></div>
+
 <v-clicks depth="2">
 
 - Error bars are important for interpreting evals.
@@ -57,16 +59,36 @@ Sam Bowyer, Laurence Aitchison, and Desi R. Ivanova
   <img v-if="$slidev.nav.clicks >= 1" src="/img/langchain_clt.png" alt="Real Data Langchain Subset" class="block mx-auto max-h-80 object-contain">
 </div>
 
+
+<div v-if="$slidev.nav.clicks >= 2">
+<div class="absolute top-3 right-10 text-sm">
+<div class="mt-0.5 p-0.5 bg-blue-100 border-l-4 border-blue-500">
+
+CLT-based CI at confidence level $1-\alpha$ for binary data $X_i \sim \text{Bernoulli}(\theta)$:
+
+$$
+\begin{aligned}
+% X_i &\sim \text{Bernoulli}(\theta) \\
+\text{CI}_{1-\alpha}(\theta) &= \bar{X} \pm z_{\alpha/2} \sqrt{\frac{\bar{X}(1-\bar{X})}{N}} \\
+% \bar{X} &= \frac{1}{N}\sum_{i=1}^N X_i
+\end{aligned}
+$$
+
+</div>
+
+</div>
+</div>
+
 <div class="absolute bottom-5 left-10 text-sm">
   <i>
     Langchain Typewriter Tool Use Benchmark (N=20)
   </i>
 </div>
 
----
+<!-- ---
 
-# Central Limit Theorem (CLT)
-
+# Central Limit Theorem (CLT) Intervals on Binary Data
+<!-- 
 <div class="mt-6 p-2 bg-blue-100 border-l-4 border-blue-500">
 
 If $X_1, \dots, X_N$ are <span class="highlight-red">IID</span> r.v.s with mean $\mu \in \R$ and finite variance $\sigma^2$, then 
@@ -75,7 +97,8 @@ If $X_1, \dots, X_N$ are <span class="highlight-red">IID</span> r.v.s with mean 
 
 
 </div>
-<div v-click>
+<div v-click> -->
+<div class="h-15"></div>
 <div class="mt-6 p-2 bg-blue-100 border-l-4 border-blue-500">
 
 For binary data (e.g. correct/incorrect), $X_i \sim \text{Bernoulli}(\theta)$, we construct the CLT-based confidence interval at confidence level $1-\alpha \in [0,1]$ as
@@ -83,8 +106,8 @@ For binary data (e.g. correct/incorrect), $X_i \sim \text{Bernoulli}(\theta)$, w
 $$\text{CI}_{1-\alpha}(\theta) = \hat{\theta} \pm z_{\alpha/2} \sqrt{\frac{\hat{\theta}(1-\hat{\theta})}{N}},$$
 
 where $z_{\alpha/2}$ is the $100(1-\alpha/2)$-th percentile of $\mathcal{N}(0,1)$ and $\hat{\theta} = \frac{1}{N}\sum_{i=1}^N X_i$ is the sample mean.
-</div>
-</div>
+<!-- </div> -->
+</div> -->
 
 ---
 
@@ -134,7 +157,7 @@ bayes_ci = posterior.interval(confidence=0.95)
 
 <!-- Notes for Beta-Binomial Model -->
 
----
+<!-- ---
 
 # Frequentist vs. Bayesian Intervals
 
@@ -150,7 +173,7 @@ bayes_ci = posterior.interval(confidence=0.95)
     - <span class="highlight-red">The parameter is random,</span> we infer the posterior distribution of the parameter given the data.
     - "*There is a $100 \times (1-\alpha)\%$ probability that the interval contains the true parameter. (Under some modelling assumptions.)*"
 
-</v-clicks>
+</v-clicks> -->
 
 
 
@@ -209,9 +232,9 @@ We have to rely on synthetic data so that we *know* the true parameter $\theta$.
 
 ---
 
-# Alternative \#2 -- Wilson Score Intervals
+# Frequentist Alternatives
 
-<div class="mt-8 p-4 bg-blue-100 border-l-4 border-blue-500">
+<!-- <div class="mt-2 p-0.5 bg-blue-100 border-l-4 border-blue-500">
 
 $$
 \text{CI}_{1-\alpha, \text{Wilson}}(\theta) = \frac{\hat{\theta} + \frac{z_{\alpha/2}^2}{2N}}{1 + \frac{z_{\alpha/2}^2}{N}} \pm \frac{\frac{z_{\alpha/2}}{2N}}{1 + \frac{z_{\alpha/2}^2}{N}}\sqrt{4N\hat{\theta}(1 - \hat{\theta}) + z_{\alpha/2}^2}
@@ -219,41 +242,10 @@ $$
 where $z_{\alpha/2}$ is the $100(1-\alpha/2)$-th percentile of the standard normal distribution. 
 </div>
 
-<v-clicks depth="2">
-
-- Not centered at $\hat{\theta}$.
-
-- Based on a normal approximation to the binomial distribution (but __not__ the CLT).
-</v-clicks>
-
 <div v-click>
 
-```python
-# y is a length N binary "eval" vector
-S, N = y.sum(), len(y) # total successes & questions
-result = scipy.stats.binomtest(k=S, n=N)
 
-# 95% Wilson score interval
-wilson_ci = result.proportion_ci("wilson", 0.95)
-```
-<!-- <<< @/snippets/snippet1_wils.py -->
-
-</div>
-
-<!-- Notes for Wilson and Clopper-Pearson -->
-
----
-
-# Alternative \#3 -- Clopper-Pearson Exact Intervals
-
-<div class="mt-3 p-0.5 bg-blue-100 border-l-4 border-blue-500">
-<!-- $$
-\begin{aligned}
-\text{CI}_{1-\alpha, \text{CP}}(\theta) &= [\theta_\text{lower}, \theta_\text{upper}] \\
-\theta_\text{lower} &= B\left(\frac{\alpha}{2}, \sum_{i=1}^N y_i, 1+\sum_{i=1}^N(1-y_i)\right) \\
-\theta_\text{upper} &= B\left(1-\frac{\alpha}{2}, 1+ \sum_{i=1}^N y_i, \sum_{i=1}^N(1-y_i)\right)
-\end{aligned}
-$$ -->
+<div class="mt-2 p-0.5 bg-blue-100 border-l-4 border-blue-500">
 
 $$
 \text{CI}_{1-\alpha, \text{CP}}(\theta) = [\theta_\text{lower}, \theta_\text{upper}]
@@ -266,23 +258,31 @@ $$
 
 where $B(\alpha, a, b)$ is the $\alpha$-th quantile of the Beta$(a, b)$ distribution.
 </div>
+
+</div> -->
+
+<div class="h-10"></div>
 <v-clicks depth="2">
 
-- Guaranteed to never under-cover (very conservative method; 'worst-case' approach).
-  - Contains all $\theta \in [0,1]$ that would not reject $H_0: \theta = \hat{\theta}$ in favour of $H_1: \theta \neq \hat{\theta}$ at confidence level $\alpha$.
-- Equivalent to the Bayesian interval with the uniform prior on $\theta$ removed.
+- <span class="highlight-red">Wilson score interval</span>
+  - Based on the normal approximation to the binomial distribution (but __not__ the CLT).
+- <span class="highlight-red">Clopper-Pearson exact interval</span>
+  - Guaranteed to never under-cover (very conservative method; 'worst-case' approach).
 </v-clicks>
 
-<div v-click>
-<!-- <<< @/snippets/snippet1_clop.py -->
+<div class="h-10"></div>
+
+<div v-click> 
+
 ```python
 # y is a length N binary "eval" vector
 S, N = y.sum(), len(y) # total successes & questions
 result = scipy.stats.binomtest(k=S, n=N)
-# 95% Clopper-Pearson exact interval
+
+# 95% Wilson score interval and Clopper-Pearson exact interval
+wilson_ci = result.proportion_ci("wilson", 0.95)
 cp_ci = result.proportion_ci("exact", 0.95)
 ```
-
 </div>
 
 
