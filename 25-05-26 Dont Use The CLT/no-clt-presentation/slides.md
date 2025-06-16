@@ -224,7 +224,7 @@ We say $y_i$ is correct if $y_i = 1$ and incorrect if $y_i = 0$. (Think of $\the
 
 <div v-click>
 
-$$\mathbb{P}(\theta | {y_{1:N}}) = \text{Beta}\left(1+\sum_{i=1}^N y_i, 1 + \sum_{i=1}^N (1-y_i)\right)$$
+$$p(\theta | {y_{1:N}}) = \text{Beta}\left(1+\sum_{i=1}^N y_i, 1 + \sum_{i=1}^N (1-y_i)\right)$$
 
 </div>
 
