@@ -41,6 +41,8 @@ Sam Bowyer, Laurence Aitchison, and Desi R. Ivanova
 
 
 ---
+transition: none
+---
 
 # Motivation
 
@@ -48,15 +50,15 @@ Sam Bowyer, Laurence Aitchison, and Desi R. Ivanova
 
 <v-clicks depth="2">
 
-- Error bars are important for interpreting evals.
-- The CLT is the most common method for computing error bars, but it's often unwise.
+- Error bars are important for interpreting evals. 
+- The CLT is the most common method for computing error bars, but it's often unwise. 
 - Error bars can collapse to <span class="highlight-red">zero-width</span> or <span class="highlight-red">extend past $[0,1]$.</span>
 
 </v-clicks>
 
 <div class="pt-4">
-  <img v-if="$slidev.nav.clicks === 0" src="/img/langchain_plain.png" alt="Real Data Langchain Subset" class="block mx-auto max-h-80 object-contain">
-  <img v-if="$slidev.nav.clicks >= 1" src="/img/langchain_clt.png" alt="Real Data Langchain Subset" class="block mx-auto max-h-80 object-contain">
+  <img v-if="$slidev.nav.clicks <= 0" src="/img/langchain_plain.png" alt="Real Data Langchain Subset" class="block mx-auto max-h-80 object-contain">
+  <img v-if="$slidev.nav.clicks >= 1  " src="/img/langchain_clt.png" alt="Real Data Langchain Subset" class="block mx-auto max-h-80 object-contain">
 </div>
 
 
@@ -85,29 +87,69 @@ $$
   </i>
 </div>
 
-<!-- ---
 
-# Central Limit Theorem (CLT) Intervals on Binary Data
-<!-- 
+---
+
+# Motivation
+
+<div class="h-2"></div>
+
+- Error bars are important for interpreting evals. 
+- The CLT is the most common method for computing error bars, but it's often unwise. 
+- Error bars can collapse to <span class="highlight-red">zero-width</span> or <span class="highlight-red">extend past $[0,1]$.</span>
+
+<div class="pt-4">
+  <img src="/img/langchain_clt.png" alt="Real Data Langchain Subset" class="block mx-auto max-h-80 object-contain">
+</div>
+
+
+<div class="absolute top-3 right-10 text-sm">
+<div class="mt-0.5 p-0.5 bg-blue-100 border-l-4 border-blue-500">
+
+CLT-based CI at confidence level $1-\alpha$ for binary data $X_i \sim \text{Bernoulli}(\theta)$:
+
+$$
+\begin{aligned}
+% X_i &\sim \text{Bernoulli}(\theta) \\
+\text{CI}_{1-\alpha}(\theta) &= \bar{X} \pm z_{\alpha/2} \sqrt{\frac{\bar{X}(1-\bar{X})}{N}} \\
+% \bar{X} &= \frac{1}{N}\sum_{i=1}^N X_i
+\end{aligned}
+$$
+
+
+</div>
+</div>
+
+<div class="absolute bottom-5 left-10 text-sm">
+  <i>
+    Langchain Typewriter Tool Use Benchmark (N=20)
+  </i>
+</div>
+
+
+--- 
+
+# Central Limit Theorem (CLT)
+
 <div class="mt-6 p-2 bg-blue-100 border-l-4 border-blue-500">
 
 If $X_1, \dots, X_N$ are <span class="highlight-red">IID</span> r.v.s with mean $\mu \in \R$ and finite variance $\sigma^2$, then 
   $$\sqrt{N} (\hat{\mu} - \mu) \xrightarrow{d} \mathcal{N} \left( 0, \sigma^2 \right) \; \text{as } \text{\colorbox{crimson}{\color{white}{$N \rightarrow \infty$}}},$$
   where $\hat{\mu} = \frac{1}{N}\sum_{i=1}^N X_i$ is the sample mean.
 
-
 </div>
-<div v-click> -->
-<div class="h-15"></div>
-<div class="mt-6 p-2 bg-blue-100 border-l-4 border-blue-500">
 
-For binary data (e.g. correct/incorrect), $X_i \sim \text{Bernoulli}(\theta)$, we construct the CLT-based confidence interval at confidence level $1-\alpha \in [0,1]$ as
+<div class="h-10"></div>
 
-$$\text{CI}_{1-\alpha}(\theta) = \hat{\theta} \pm z_{\alpha/2} \sqrt{\frac{\hat{\theta}(1-\hat{\theta})}{N}},$$
+<v-clicks depth="2">
 
-where $z_{\alpha/2}$ is the $100(1-\alpha/2)$-th percentile of $\mathcal{N}(0,1)$ and $\hat{\theta} = \frac{1}{N}\sum_{i=1}^N X_i$ is the sample mean.
-<!-- </div> -->
-</div> -->
+- The CLT relies on a <span class="highlight-red">large $N$</span> assumption.
+- As LLM capabilitites improve, constructing and running benchmarks is becoming more time-intensive.
+- Researchers are increasingly using benchmarks with smaller $N$.
+- We need alternative methods for computing error bars that work for both large _and_ small $N$.
+</v-clicks>
+
+
 
 ---
 
@@ -129,15 +171,15 @@ We say $y_i$ is correct if $y_i = 1$ and incorrect if $y_i = 0$. (Think of $\the
 
 <div v-click>
 
-$$\mathbb{P}(\theta | {y_{1:N}}) = \text{Beta}\left(1+\sum_{i=1}^N y_i, 1 + \sum_{i=1}^N (1-y_i)\right)$$
+$$p(\theta | {y_{1:N}}) = \text{Beta}\left(1+\sum_{i=1}^N y_i, 1 + \sum_{i=1}^N (1-y_i)\right)$$
 
 </div>
 
-<div class="h-2"></div>
+<!-- <div class="h-2"></div> -->
 
 <div v-click>
 
-Construct a quantile-based Bayesian *credible interval* for $\theta$ from the <span class="highlight-red">closed form posterior</span>.
+Obtain quantile-based Bayesian *credible intervals* for $\theta$ from the <span class="highlight-red">closed form posterior</span> (with confidence level $1-\alpha$).
 
 </div>
 
@@ -179,59 +221,6 @@ bayes_ci = posterior.interval(confidence=0.95)
 
 ---
 
-# Interval Comparison
-
-We'll focus on two metrics for evaluating intervals:
-
-<v-clicks depth="2">
-
-- <span class="highlight-red">Coverage</span>
-    - What proportion of the time does a $1-\alpha$ confidence-level interval *actually contain* the true underlying value of $\theta$? 
-    - Ideally: _actual_ coverage $=$ _nominal_ coverage (i.e. $1-\alpha$).
-- <span class="highlight-red">Width</span> 
-    - Ideally, our intervals would be as tight as possible.
-
-</v-clicks>
-
-<div class="h-2"></div>
-
----
-transition: slide-left
----
-
-# Experiment Setup
-
-<div class="h-15"></div>
-
-We have to rely on synthetic data so that we *know* the true parameter $\theta$.
-
-<v-clicks depth="1">
-
-- Draw $\theta \sim \text{Uniform}[0, 1]$.
-
-- Draw $N \in \{3,10,30,100\}$ IID Bernoulli datapoints with parameter $\theta$.
-
-- Construct $1-\alpha$ confidence-level intervals for $\theta$ using both methods with various $\alpha$ values.
-
-- Repeat for this 20,000 times for each of the 4 values of $N$.
-
-- Compute the coverage and average width of the intervals.
-
-</v-clicks>
-
-
----
-
-# IID Questions Setting - Bayes vs. CLT
-
-<img src="/img/pngs/exp4-1_bayes_clt.png" alt="IID Questions Setting" class="w-full h-full object-contain">
-
-
-
-<!-- Notes for Comparing CLT vs. Bayes -->
-
----
-
 # Frequentist Alternatives
 
 <!-- <div class="mt-2 p-0.5 bg-blue-100 border-l-4 border-blue-500">
@@ -267,7 +256,7 @@ where $B(\alpha, a, b)$ is the $\alpha$-th quantile of the Beta$(a, b)$ distribu
 - <span class="highlight-red">Wilson score interval</span>
   - Based on the normal approximation to the binomial distribution (but __not__ the CLT).
 - <span class="highlight-red">Clopper-Pearson exact interval</span>
-  - Guaranteed to never under-cover (very conservative method; 'worst-case' approach).
+  - 'Worst-case' approach (very conservative method; guaranteed to never under-cover).
 </v-clicks>
 
 <div class="h-10"></div>
@@ -287,7 +276,36 @@ cp_ci = result.proportion_ci("exact", 0.95)
 
 
 
-<!-- Notes for Wilson and Clopper-Pearson -->
+---
+
+# Interval Comparison
+
+We'll focus on two metrics for evaluating intervals:
+
+<v-clicks depth="2">
+
+- <span class="highlight-red">Coverage</span>
+    - What proportion of the time does a $1-\alpha$ confidence-level interval *actually contain* the true underlying value of $\theta$? 
+    - Ideally: _actual_ coverage $=$ _nominal_ coverage (i.e. $1-\alpha$).
+- <span class="highlight-red">Width</span> 
+    - Ideally, our intervals would be as tight as possible.
+
+</v-clicks>
+
+<div v-click>
+
+We have to rely on synthetic eval data so that we *know* the true parameter $\theta$.
+
+</div>
+<v-clicks depth="1">
+
+- Draw $\theta \sim \text{Uniform}[0, 1]$.
+- Draw $N \in \{3,10,30,100\}$ IID Bernoulli datapoints with parameter $\theta$.
+- Construct intervals with various $1-\alpha$ confidence levels.
+- Repeat many times and calculate the true coverage and width of the intervals.
+
+</v-clicks>
+
 
 ---
 
@@ -317,7 +335,7 @@ Instead of $N$ IID questions, we have $T$ tasks, each with $N_t$ IID questions.
 
 ## Independent Comparisons
 
-Compare $\theta_A$ and $\theta_B$ for two different models, with access _only_ to $N_A, N_B, \hat{\theta}_A,$ and $\hat{\theta}_B$.
+Compare $\theta_A$ and $\theta_B$ for two different models, with access _only_ to $N_A, N_B, \bar{y}_A,$ and $\bar{y}_B$.
 
 <!-- <div class="h-[5vh]"></div> -->
 
@@ -335,55 +353,31 @@ Compare $\theta_A$ and $\theta_B$ for two different models, each with <u>the sam
 
 # Conclusion
 
+Use Bayes or Wilson Score intervals.
+
 <v-clicks depth="2">
 
-- Use Bayes, it's not hard (`scipy` or `bayes_evals`), it's safer, and it's still cheap for large $N$.
-    - Computing probabilities $\mathbb{P}(\theta_A > \theta_B)$ is easy.
-    - Better performance than CLT-based methods.
-    - Robust to mismatched priors --- many ablations provided in the paper's appendix.
+- It's not hard (use `scipy` or `bayes_evals`).
+- It's safer than CLT-based methods.
+- It's still cheap for large $N$.
 
 </v-clicks>
-<div v-if="$slidev.nav.clicks === 4">
 
-<img src="/img/pngs/exp4-1_beta-100-20_mismatch.png" alt="Mismatched prior plot" class="w-70% object-contain object-top mx-auto">
-<div class="absolute bottom-5 right-10 text-sm">
-
-<!-- Instead of $\theta \sim \text{Uniform}[0, 1]$, we have -->
-$$
-\begin{aligned} 
-\theta &\sim \text{Beta}(100,20) \\
-\mathbb{E}[\theta] &= 0.83 \\
-\text{Var}[\theta] &= 0.034^2
-\end{aligned}
-$$
-</div>
-</div>
-
-<!-- ![](/img/table_small.png) -->
-
-
-<!-- Notes for Main argument -->
-
----
-layout: section
----
-
-# Thanks!
-
-<div class="h-[8vh]"></div>
+<div v-click>
 
 <div class="grid grid-cols-2 gap-4">
 <div class="flex flex-col items-center">
 <h2><span class="highlight-red">Paper</span></h2>
 <a href="https://arxiv.org/pdf/2503.01747" target="_blank">https://arxiv.org/pdf/2503.01747</a>
 <div class="h-[3vh]"></div>
-<img src="/img/arxiv_qr.png" class="w-48 h-48 object-contain">
+<img src="/img/arxiv_qr.png" class="w-36 h-36 object-contain">
 </div>
 
 <div class="flex flex-col items-center">
 <h2><span class="highlight-red">bayes_evals</span> package</h2>
 <a href="https://github.com/sambowyer/bayes_evals" target="_blank">https://github.com/sambowyer/bayes_evals</a>
 <div class="h-[3vh]"></div>
-<img src="/img/github_qr.png" class="w-48 h-48 object-contain">
+<img src="/img/github_qr.png" class="w-36 h-36 object-contain">
+</div>
 </div>
 </div>
