@@ -20,7 +20,7 @@ Mostly for internal lab meetings.
     - A short talk entitled _"How YOU -- yes, YOU! -- can train an LLM"_ which covers the basics of finetuning large language models, specifically using LoRA, and why a Bayesian approach might be useful. Largely based on my Compass Student Blog post: [Bayesian LLM Finetuning](https://compass.blogs.bristol.ac.uk/2024/08/28/student-perspectives-bayesian-llm-finetuning/).
     - _Lightning talk at the 2024 [Compass Conference](https://www.bristol.ac.uk/cdt/compass/compass-annual-conference/)_
 - [Why Linearised Laplace is Better](<24-10-08 Why Linearised Laplace is Better>)
-    - Covers the paper [Reparameterization invariance in approximate Bayesian inference](https://arxiv.org/abs/2406.03334) which explains why the massive number of reparameterisations available in Baysian Neural Networks leads to the Linearised Laplace approximation underfitting less than the Laplace approximation. The paper also introduces 'Laplace Diffusion' as a reparameterisation-invariant approximation for non-linearised BNNs.
+    - Covers the paper [Reparameterization invariance in approximate Bayesian inference](https://arxiv.org/abs/2406.03334) which explains why the massive number of reparameterisations available in Bayesian Neural Networks leads to the Linearised Laplace approximation underfitting less than the Laplace approximation. The paper also introduces 'Laplace Diffusion' as a reparameterisation-invariant approximation for non-linearised BNNs.
     - _Lab meeting presentation_
 - [Transformer Neural Processes](<24-07-30 Transformer Neural Processes>)
     - Covers the paper [Transformer Neural Processes: Uncertainty-Aware Meta Learning Via Sequence Modeling](https://arxiv.org/abs/2207.04179).
