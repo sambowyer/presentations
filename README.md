@@ -4,6 +4,9 @@ A collection of presentations on various ML subjects/papers.
 Mostly for internal lab meetings.
 
 ## 2025
+- [Q-SFT](<25-08-12 Q-SFT>)
+    - A presentation on the paper [Q-SFT: Q-Learning for Language Models via Supervised Fine-Tuning](https://arxiv.org/pdf/2411.05193) which introduces Q-SFT, an offline RL method for finetuning language models utilising their pretrained logits.
+    - _Lab meeting presentation_
 - [Don't Use The CLT](<25-05-26 Dont Use The CLT>)
     - A presentation on my ICML 2025 Spotlight paper [Position: Don't use the CLT in LLM evals with fewer than a few hundred datapoints](https://arxiv.org/pdf/2503.01747), which shows better methods for constructing error bars on LLM evals and analyses the CLT's failures when its assumptions aren't met.
     - _External and internal lab meeting presentation_
