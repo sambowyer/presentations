@@ -49,7 +49,7 @@ Mostly for internal lab meetings.
     - Presents the paper [Variational Open-Domain Question Answering](https://arxiv.org/pdf/2210.06345) which uses Rényi divergence variational inference for RAG in open-domain question answering.
     - _Lab meeting presentation_
 - [AMP-IS Exploration](<23-08-02 AMP-IS Exploration>)
-    - Discusses the AMP-IS algorithm (later renamed QEM) for efficient massively-parallel Bayesian inference with [alan](https://github.com/alan-ppl/alan).
+    - Discusses the AMP-IS algorithm (later renamed [QEM](https://arxiv.org/pdf/2503.08264)) for efficient massively-parallel Bayesian inference with [alan](https://github.com/alan-ppl/alan).
     - _Internal presentation_
 - [Adaptive MCMC (mini)](<23-06-15 Adaptive MCMC (mini)>)
     - Introduction to Adaptive Markov Chain Monte Carlo methods for efficient sampling.
