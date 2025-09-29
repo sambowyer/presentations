@@ -1,0 +1,16 @@
+- Recap of Diffsion models
+- MDMs specifically (maybe touch on MD4, D3PM? or just LLaDA)
+- SAMPLING/DECODING:
+    - LLaDA
+    - Top-prob
+    - Top prob margin
+    - Gumbel top-prob
+    - confidence aware
+    - entropy bound
+    - PC sampling
+    - Hyperscheduling? (maybe ignore tbh)
+    - ... SiMDM
+- SiMDM:
+    - train a model q to tell us which tokens to sample next
+    - use VI 
+    - try to figure out link between entropy bound approach and SiMDM
