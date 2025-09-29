@@ -43,7 +43,7 @@ Mostly for internal lab meetings.
     - An overview of neural simulation-based inference methods. Largely based on the paper [The frontier of simulation-based inference](https://arxiv.org/pdf/1911.01429).
     - _Lab meeting presentation_
 - [ML vs RWS](<23-08-09 ML vs RWS>)
-    - Compares QEM (AMP-IS) and [(massively parallel) Reweighted Wake-Sleep (RWS)](https://arxiv.org/pdf/2305.11022) for Bayesian inference.
+    - Compares [QEM](https://arxiv.org/pdf/2503.08264) (AMP-IS) and [(massively parallel) Reweighted Wake-Sleep (RWS)](https://arxiv.org/pdf/2305.11022) for Bayesian inference.
     - _Internal presentation_
 - [VOD (Variational Open-Domain Q&A)](<23-08-08 VOD (Variational Open-Domain Q&A)>)
     - Presents the paper [Variational Open-Domain Question Answering](https://arxiv.org/pdf/2210.06345) which uses Rényi divergence variational inference for RAG in open-domain question answering.
