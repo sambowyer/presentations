@@ -4,6 +4,9 @@ A collection of presentations on various ML subjects/papers.
 Mostly for internal lab meetings.
 
 ## 2025
+- [Sampling from MDMs](<25-09-30 Sampling from MDMs>)
+    - Recap on Masked Diffusion Models (MDMs) and review of a few recently proposed sampling methods (e.g. [Top Probability-Margin](https://arxiv.org/pdf/2502.06768) and [Entropy Bound Sampling](https://arxiv.org/pdf/2505.24857)).
+    - _Lab meeting presentation_
 - [Q-SFT](<25-08-12 Q-SFT>)
     - A presentation on the paper [Q-SFT: Q-Learning for Language Models via Supervised Fine-Tuning](https://arxiv.org/pdf/2411.05193) which introduces Q-SFT, an offline RL method for finetuning language models utilising their pretrained logits.
     - _Lab meeting presentation_
