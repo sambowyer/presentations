@@ -43,13 +43,13 @@ Mostly for internal lab meetings.
     - An overview of neural simulation-based inference methods. Largely based on the paper [The frontier of simulation-based inference](https://arxiv.org/pdf/1911.01429).
     - _Lab meeting presentation_
 - [ML vs RWS](<23-08-09 ML vs RWS>)
-    - Compares QEM (AMP-IS) and [(massively parallel) Reweighted Wake-Sleep (RWS)](https://arxiv.org/pdf/2305.11022) for Bayesian inference.
+    - Compares [QEM](https://arxiv.org/pdf/2503.08264) (AMP-IS) and [(massively parallel) Reweighted Wake-Sleep (RWS)](https://arxiv.org/pdf/2305.11022) for Bayesian inference.
     - _Internal presentation_
 - [VOD (Variational Open-Domain Q&A)](<23-08-08 VOD (Variational Open-Domain Q&A)>)
     - Presents the paper [Variational Open-Domain Question Answering](https://arxiv.org/pdf/2210.06345) which uses Rényi divergence variational inference for RAG in open-domain question answering.
     - _Lab meeting presentation_
 - [AMP-IS Exploration](<23-08-02 AMP-IS Exploration>)
-    - Discusses the AMP-IS algorithm (later renamed QEM) for efficient massively-parallel Bayesian inference with [alan](https://github.com/alan-ppl/alan).
+    - Discusses the AMP-IS algorithm (later renamed [QEM](https://arxiv.org/pdf/2503.08264)) for efficient massively-parallel Bayesian inference with [alan](https://github.com/alan-ppl/alan).
     - _Internal presentation_
 - [Adaptive MCMC (mini)](<23-06-15 Adaptive MCMC (mini)>)
     - Introduction to Adaptive Markov Chain Monte Carlo methods for efficient sampling.
