@@ -1,6 +1,6 @@
 ---
 theme: apple-basic
-title: "Position: Don't Use the CLT in LLM Evals With Fewer Than a Few Hundred Datapoints"
+title: "Robust Uncertainty Quantification for LLM Evaluations"
 info: |
   Presentation on the ICML 2025 Spotlight Position Paper: "Position: Don't Use the CLT in LLM Evals With Fewer Than a Few Hundred Datapoints"
 transition: slide-left
@@ -20,11 +20,11 @@ shiki:
   }
 </style>
 
-# Position: Don't Use the CLT in LLM Evals With Fewer Than a Few Hundred Datapoints
+# Robust Uncertainty Quantification for LLM Evaluations
 
 Sam Bowyer, Laurence Aitchison, and Desi R. Ivanova
 
-<div class="absolute bottom-20">
+<div class="absolute bottom-25">
   <div class="flex gap-2">
     <img src="/img/sam.png" class="rounded-full w-24 h-24" alt="Sam Bowyer">
     <img src="/img/laurence.png" class="rounded-full w-24 h-24" alt="Laurence Aitchison">
@@ -33,10 +33,11 @@ Sam Bowyer, Laurence Aitchison, and Desi R. Ivanova
 </div>
 
 
-<div class="absolute bottom-10">
+<div class="absolute bottom-5">
   <span class="font-700">
     ICML 2025 Spotlight Position Paper
-  </span>
+  </span><br>
+  <span class="font-700 italic"> Position: Don't Use the CLT in LLM Evals With Fewer Than a Few Hundred Datapoints</span>
 </div>
 
 
@@ -48,17 +49,19 @@ transition: none
 
 <div class="h-2"></div>
 
-<v-clicks depth="2">
+<v-clicks depth="1">
 
-- Error bars are important for interpreting evals. 
-- The CLT is the most common method for computing error bars, but it's often unwise. 
+- Error bars are important for interpreting evals.  <v-click></v-click>
+- The CLT is the most common method for computing error bars, but it's often unwise (assumes <span class="highlight-red">large $N$</span>).
 - Error bars can collapse to <span class="highlight-red">zero-width</span> or <span class="highlight-red">extend past $[0,1]$.</span>
+- Smaller, more intricate and expensive LLM benchmarks are becoming increasingly common.
 
 </v-clicks>
 
+<!-- <div class="h--10"></div> -->
 <div class="pt-4">
-  <img v-if="$slidev.nav.clicks <= 0" src="/img/langchain_plain.png" alt="Real Data Langchain Subset" class="block mx-auto max-h-80 object-contain">
-  <img v-if="$slidev.nav.clicks >= 1  " src="/img/langchain_clt.png" alt="Real Data Langchain Subset" class="block mx-auto max-h-80 object-contain">
+  <img v-if="$slidev.nav.clicks == 1" src="/img/langchain_plain.png" alt="Real Data Langchain Subset" class="block mx-auto max-h-73 object-contain">
+  <img v-if="$slidev.nav.clicks >= 2  " src="/img/langchain_clt.png" alt="Real Data Langchain Subset" class="block mx-auto max-h-73 object-contain">
 </div>
 
 
@@ -81,7 +84,7 @@ $$
 </div>
 </div>
 
-<div class="absolute bottom-5 left-10 text-sm">
+<div class="absolute bottom-3 left-10 text-sm" v-if="$slidev.nav.clicks >= 1">
   <i>
     Langchain Typewriter Tool Use Benchmark (N=20)
   </i>
@@ -90,73 +93,10 @@ $$
 
 ---
 
-# Motivation
-
-<div class="h-2"></div>
-
-- Error bars are important for interpreting evals. 
-- The CLT is the most common method for computing error bars, but it's often unwise. 
-- Error bars can collapse to <span class="highlight-red">zero-width</span> or <span class="highlight-red">extend past $[0,1]$.</span>
-
-<div class="pt-4">
-  <img src="/img/langchain_clt.png" alt="Real Data Langchain Subset" class="block mx-auto max-h-80 object-contain">
-</div>
-
-
-<div class="absolute top-3 right-10 text-sm">
-<div class="mt-0.5 p-0.5 bg-blue-100 border-l-4 border-blue-500">
-
-CLT-based CI at confidence level $1-\alpha$ for binary data $X_i \sim \text{Bernoulli}(\theta)$:
-
-$$
-\begin{aligned}
-% X_i &\sim \text{Bernoulli}(\theta) \\
-\text{CI}_{1-\alpha}(\theta) &= \bar{X} \pm z_{\alpha/2} \sqrt{\frac{\bar{X}(1-\bar{X})}{N}} \\
-% \bar{X} &= \frac{1}{N}\sum_{i=1}^N X_i
-\end{aligned}
-$$
-
-
-</div>
-</div>
-
-<div class="absolute bottom-5 left-10 text-sm">
-  <i>
-    Langchain Typewriter Tool Use Benchmark (N=20)
-  </i>
-</div>
-
-
---- 
-
-# Central Limit Theorem (CLT)
-
-<div class="mt-6 p-2 bg-blue-100 border-l-4 border-blue-500">
-
-If $X_1, \dots, X_N$ are <span class="highlight-red">IID</span> r.v.s with mean $\mu \in \R$ and finite variance $\sigma^2$, then 
-  $$\sqrt{N} (\hat{\mu} - \mu) \xrightarrow{d} \mathcal{N} \left( 0, \sigma^2 \right) \; \text{as } \text{\colorbox{crimson}{\color{white}{$N \rightarrow \infty$}}},$$
-  where $\hat{\mu} = \frac{1}{N}\sum_{i=1}^N X_i$ is the sample mean.
-
-</div>
-
-<div class="h-10"></div>
-
-<v-clicks depth="2">
-
-- The CLT relies on a <span class="highlight-red">large $N$</span> assumption.
-- As LLM capabilitites improve, constructing and running benchmarks is becoming more time-intensive.
-- Researchers are increasingly using benchmarks with smaller $N$.
-- We need alternative methods for computing error bars that work for both large _and_ small $N$.
-</v-clicks>
-
-
-
----
-
-# Alternative \#1 -- Beta-Binomial Model
+# Bayesian Alternative -- Beta-Bernoulli Model
 Treat the data as IID Bernoulli with a uniform prior on the parameter $\theta$.
 
-$${1-2|all}
+$$
 \begin{aligned}
 \theta &\sim \text{Beta}(1, 1) = \text{Uniform}[0, 1] \\
 y_i &\sim \text{Bernoulli}(\theta) \; \text{for } i=1,\dots N 
@@ -278,9 +218,9 @@ cp_ci = result.proportion_ci("exact", 0.95)
 
 ---
 
-# Interval Comparison
+# Interval Comparison Simulations
 
-We'll focus on two metrics for evaluating intervals:
+<!-- We'll focus on two metrics for evaluating intervals:
 
 <v-clicks depth="2">
 
@@ -292,16 +232,18 @@ We'll focus on two metrics for evaluating intervals:
 
 </v-clicks>
 
-<div v-click>
+<div v-click> -->
+
+<div class="h-20"></div>
 
 We have to rely on synthetic eval data so that we *know* the true parameter $\theta$.
 
-</div>
+<!-- </div> -->
 <v-clicks depth="1">
 
 - Draw $\theta \sim \text{Uniform}[0, 1]$.
 - Draw $N \in \{3,10,30,100\}$ IID Bernoulli datapoints with parameter $\theta$.
-- Construct intervals with various $1-\alpha$ confidence levels.
+- Construct intervals with various methods for various $1-\alpha$ confidence levels.
 - Repeat many times and calculate the true coverage and width of the intervals.
 
 </v-clicks>
@@ -311,12 +253,16 @@ We have to rely on synthetic eval data so that we *know* the true parameter $\th
 
 # IID Questions Setting
 
-<img src="/img/pngs/exp4-1.png" alt="IID Questions Setting" class="w-full h-full object-contain">
 
+<div class="relative w-full h-full">
+  <img src="/img/pngs/exp4-1.png" alt="IID Questions Setting" class="w-full h-full object-contain">
 
-<!-- Notes for Plot 2 -->
-<!-- - (Briefly mention bootstrap -- it's what OpenAI suggest (ref?) bc it's flexible but it's bad)
-- Basically: Bayes and Wilson are the best (they make binary assumptions about data and aren't overly cautious, like CP) -->
+  <div v-if="$slidev.nav.clicks < 1" class="absolute bottom-[9%] left-0 w-full h-[44%] bg-white"></div>
+  <!-- White overlay covers lower half of the slide -->
+
+  <div v-click></div>
+
+</div>
 
 
 ---
@@ -325,7 +271,7 @@ We have to rely on synthetic eval data so that we *know* the true parameter $\th
 
 <div class="h-[1vh]"></div>
 
-<v-clicks depth="2">
+<v-clicks depth="1">
 
 ## Clustered Questions
 
@@ -333,19 +279,24 @@ Instead of $N$ IID questions, we have $T$ tasks, each with $N_t$ IID questions.
 
 <!-- <div class="h-[5vh]"></div> -->
 
-## Independent Comparisons
+## Comparisons Between Two Models, $\theta_A$ and $\theta_B$
 
-Compare $\theta_A$ and $\theta_B$ for two different models, with access _only_ to $N_A, N_B, \bar{y}_A,$ and $\bar{y}_B$.
+<!-- <v-clicks depth="2"> -->
+- __Independent Comparisons__: Using $N_A, N_B, \bar{y}_A,$ and $\bar{y}_B$.
+
+- __Paired Comparisons__: Using $N_A = N_B, \{y_{A;i}\}_{i=1}^N,$ and $\{y_{B;i}\}_{i=1}^N$.
+
+<!-- </v-clicks> -->
 
 <!-- <div class="h-[5vh]"></div> -->
 
-## Paired Comparisons
+## Metrics that aren't simple averages of binary results (e.g. F1 score)
 
-Compare $\theta_A$ and $\theta_B$ for two different models, each with <u>the same</u> $N$ IID questions and access to question-level successes $\{y_{A;i}\}_{i=1}^N$ and $\{y_{B;i}\}_{i=1}^N$.
+<div>
+<div class="h-[5vh]"></div>
 
-<!-- <div class="h-[5vh]"></div> -->
-
-## Metrics that aren't simple averages of binary results (e.g. F1 score).
+## Also, what if the prior is mismatched? (i.e. $\theta \nsim \text{Uniform}[0, 1]$)
+</div>
 
 </v-clicks>
 
@@ -353,10 +304,11 @@ Compare $\theta_A$ and $\theta_B$ for two different models, each with <u>the sam
 
 # Conclusion
 
-Use Bayes or Wilson Score intervals.
+Advice to practitioners who might not be so familiar with stats:
 
 <v-clicks depth="2">
 
+- Use Bayesian Beta-Bernoulli or Wilson Score intervals.
 - It's not hard (use `scipy` or `bayes_evals`).
 - It's safer than CLT-based methods.
 - It's still cheap for large $N$.
