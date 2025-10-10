@@ -4,6 +4,9 @@ A collection of presentations on various ML subjects/papers.
 Mostly for internal lab meetings.
 
 ## 2025
+- [UQ for LLM Evals](<25-10-21 UQ for LLM Evals>)
+    - A presentation on the paper [Position: Don't Use the CLT in LLM Evals With Fewer Than a Few Hundred Datapoints](https://arxiv.org/pdf/2503.01747). Slightly altered version of the 5-min talk in [Don't Use The CLT](<25-05-26 Dont Use The CLT>). 
+    - _Lightning talk at the 2025 [Compass Conference](https://www.bristol.ac.uk/cdt/compass/compass-annual-conference/)_
 - [Sampling from MDMs](<25-09-30 Sampling from MDMs>)
     - Recap on Masked Diffusion Models (MDMs; see previous presentation on [Large Language Diffusion Models](<25-02-25 Large Language Diffusion Models>)) and review of a few recently proposed sampling methods (e.g. [Top Probability-Margin](https://arxiv.org/pdf/2502.06768) and [Entropy Bounded Sampling](https://arxiv.org/pdf/2505.24857)).
     - _Lab meeting presentation_
