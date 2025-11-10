@@ -136,7 +136,8 @@
   \begin{itemize}[<+->]
     \item Global IS scales poorly with the number of latent variables, $n$.
     \begin{itemize}
-      \item E.g. $n$ is the dimension of $z$ if all latent variables are scalar.
+      \item $z = (z_1, \ldots, z_n) \in \mathcal{Z}$.
+      % \item E.g. $n$ is the dimension of $z$ if all latent variables are scalar.
     \end{itemize} 
     \item Chatterjee \& Diaconis (2018) show that as $n$ increases, the number of samples, $K$, must increase with $O(e^{D_{\text{KL}}(P(z|x) || Q(z))}) \approx O(e^n)$. (This is a lot!)
     \item Solution: \textbf{Massively Parallel Importance Sampling (MP-IS)}
@@ -213,14 +214,15 @@
     \pause
     $$
     % \begin{aligned}
-      \mathcal{P}_\text{MP}(z) = \frac{1}{K^3} \sum_{k_1 \in [K]} \sum_{k_2 \in [K]} \sum_{k_3 \in [K]} \frac{P(z_1^{k_1}) P(z_2^{k_2} | z_1^{k_1}) P(z_3^{k_3} | z_2^{k_2}) P(x | z_3^{k_3})}{Q_\text{MP}(z^\mathbf{k}, \mathbf{k})} 
+      \mathcal{P}_\text{MP}(z) = \frac{1}{K^3} \sum_{k_1 \in [K]} \sum_{k_2 \in [K]} \sum_{k_3 \in [K]} \frac{P(z_1^{k_1}) P(z_2^{k_2} | z_1^{k_1}) P(z_3^{k_3} | z_2^{k_2}) P(x | z_3^{k_3})}{Q(z_1^{k_1}) Q(z_2^{k_2}) Q(z_3^{k_3})}
+      % = \frac{1}{K^3} \sum_{k_1 \in [K]} \sum_{k_2 \in [K]} \sum_{k_3 \in [K]} r_{k_1,k_2,k_3}(z)
     $$
     \pause
     $$
-      = \frac{1}{K^3} \sum_{k_1 \in [K]} \underbrace{\frac{P(z_1^{k_1})}{Q_\text{MP}(z_1^{k_1}, k_1)}}_{\text{Vector of size } K} 
-      \sum_{k_2 \in [K]} \underbrace{\frac{P(z_2^{k_2} | z_1^{k_1})}{Q_\text{MP}(z_2^{k_2}, \mathbf{k}_{1:2})}}_{\text{Matrix of size } K \times K}
-      \sum_{k_3 \in [K]} \underbrace{\frac{P(z_3^{k_3} | z_2^{k_2})}{Q_\text{MP}(z_3^{k_3}, \mathbf{k}_{2:3})}}_{\text{Matrix of size } K \times K}
-      \underbrace{\frac{P(x | z_3^{k_3})}{Q_\text{MP}(x | z_3^{k_3}, k_3)}}_{\text{Vector of size } K}
+      = \frac{1}{K^3} \sum_{k_1 \in [K]} \underbrace{\frac{P(z_1^{k_1})}{Q(z_1^{k_1})}}_{\text{Vector of size } K} 
+      \sum_{k_2 \in [K]} \underbrace{\frac{P(z_2^{k_2} | z_1^{k_1})}{Q(z_2^{k_2})}}_{\text{Matrix of size } K \times K}
+      \sum_{k_3 \in [K]} \underbrace{\frac{P(z_3^{k_3} | z_2^{k_2})}{Q(z_3^{k_3})}}_{\text{Matrix of size } K \times K}
+      \underbrace{P(x | z_3^{k_3})}_{\text{Vector of size } K}
     % \end{aligned}
     $$
     % \item This can be computed efficiently on a GPU using tensor operations.
@@ -286,7 +288,7 @@
 
 \begin{frame}{MP Algorithms}
   \begin{itemize}[<+->]
-    \item We showed that we can obtain unbiased posterior moment estimates efficiently using autodiff (Bowyer et al. (2024)).
+    \item We can obtain unbiased posterior moment estimates via autodiff (Bowyer et al. (2024)).
       $$
       m_\text{MP}(z) = \frac{1}{K^n} \sum_{\mathbf{k} \in [K]^n} \frac{r_\mathbf{k}(z)}{\mathcal{P}_\text{MP}(z)}m(z^\mathbf{k})
       $$
@@ -294,21 +296,25 @@
       $$
       \mathcal{P}_\text{MP}^\text{exp}(z, J) = \frac{1}{K^n} \sum_{\mathbf{k} \in [K]^n} r_\mathbf{k}(z) \exp(J m(z^\mathbf{k}))
       $$
-    \item Then differentiating with respect to $J$ and setting $J=0$ we get:
+    \item Then differentiating the log of this with respect to $J$ and setting $J=0$ we get:
       $$
-      \frac{\partial}{\partial J}\bigg|_{J=0} \log \mathcal{P}_\text{MP}^\text{exp} (z, J) = m_\text{MP}(z)
+      \frac{\partial}{\partial J}\bigg|_{J=0} \log \mathcal{P}_\text{MP}^\text{exp} (z, J) = \frac{\frac{\partial}{\partial J}\bigg|_{J=0} \mathcal{P}_\text{MP}^\text{exp} (z, J)}{\mathcal{P}_\text{MP}^\text{exp} (z, 0)} = m_\text{MP}(z)
       $$
-    \item Through a similar argument, we can set $J$ to be vector- or tensor-valued based on $K$ and the shape of $z$, allowing us to compute marginal likelihoods and importance samples too.
+    \item By similar arguments: $J \in \mathbb{R}^K$ gives us marginal importance weights; $J \in \mathbb{R}^{K^{1+|pa(i)|}}$ gives us importance samples for $z_i$, given its parents $pa(i)$
   \end{itemize}
   \vspace{0.1cm}
 \end{frame}
 
 \begin{frame}{QEM: An Adaptive Importance Sampling Algorithm}
   \begin{minipage}{0.4\textwidth}
-    \begin{itemize}
-      \item \textbf{QEM:} use these posterior moment estimates to iteratively update the approximate posterior $Q_\text{MP}$ in an EM-like algorithm for adaptive imortance sampling (Heap et al. (2025)).
-      % \item This algorithm is called QEM (Expectation-Maximisation for Approximate Posteriors).
-    \end{itemize}    
+    \textbf{QEM} (Heap et al. (2025))
+    \begin{enumerate}
+      \item Start with an initial approximate posterior $Q_0$.
+      \item Compute posterior moment estimates $m_\text{MP}(z)$ using MP-IS.
+      \item Update the approximate posterior $Q_{t+1}$ using the moment estimates.
+    \end{enumerate}    
+  
+    Can be seen as an EM-like algorithm for adaptive imortance sampling.
   \end{minipage}
   \begin{minipage}{0.59\textwidth}
     \begin{figure}
@@ -364,11 +370,15 @@
   \pause
   \begin{itemize}[<+->]
       % \item Error bars are important for interpreting evals.
-      \item In the case of binary data, the CLT-based confidence interval is:
+      \item The CLT-based confidence interval is:
       $$
-        \text{CI}_{1-\alpha}(\theta) = \bar{X} \pm z_{\alpha/2} \sqrt{\frac{\bar{X}(1-\bar{X})}{N}}
+        \text{CI}_{1-\alpha}(\mu) = \hat{\mu} \pm z_{\alpha/2} \text{SE}(\hat{\mu})
       $$
-      where $z_{\alpha/2}$ is the $100(1-\alpha/2)$-th percentile of $\mathcal{N}(0, 1)$.
+      where $z_{\alpha/2}$ is the $100(1-\alpha/2)$-th percentile of $\mathcal{N}(0, 1)$ and $\text{SE}(\hat{\mu}) = \sqrt{\frac{\hat{\sigma}^2}{N}}$ is the standard error of the sample mean.
+      \item In the case of binary data $X_i \in \{0, 1\}$, this becomes:
+      $$
+        \text{CI}_{1-\alpha}(\theta) = \bar{X} \pm z_{\alpha/2} \sqrt{\bar{X}(1-\bar{X})/N}.
+      $$
   \end{itemize}
   
 \end{frame}
@@ -378,19 +388,19 @@
     \item If $N$ is too small, CLT-based error bars can collapse to \alert{zero-width} or \alert{extend past $[0,1]$}.
     \item Smaller, more intricate, and expensive LLM benchmarks are becoming increasingly common, so we need to find alternatives for the few-data regime.
   \end{itemize}
-  \vspace{0.5cm}
+  % \vspace{0.5cm}
   \begin{minipage}{0.45\textwidth}
     \centering
     \begin{figure}
       \includegraphics[height=4.2cm, keepaspectratio]{img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png}
-      \caption{Math Arena's AIME II 2025 Benchmark (N=15)}
+      \caption{Math Arena's AIME II 2025 Benchmark (N=15). Various 95\% interval types shown.}
     \end{figure}
   \end{minipage}
   \begin{minipage}{0.45\textwidth}
     \centering
     \begin{figure}
         \includegraphics[height=4.2cm, keepaspectratio]{img/bayes_evals/langchain_clt.png}
-        \caption{Langchain Typewriter Tool Use Benchmark (N=20)}
+        \caption{Langchain Typewriter Tool Use Benchmark (N=20). CLT-based 95\% intervals only.}
     \end{figure}
   \end{minipage}
 \end{frame}
@@ -440,7 +450,8 @@
       \item \alert{Wilson score interval}: Based on normal approximation to the binomial distribution.
         \pause
         $$ \text{CI}_{1-\alpha, \text{Wilson}}(\theta) = \frac{\hat{\theta} + \frac{z_{\alpha/2}^2}{2N}}{1 + \frac{z_{\alpha/2}^2}{N}} \pm \frac{\frac{z_{\alpha/2}}{2N}}{1 + \frac{z_{\alpha/2}^2}{N}}\sqrt{4N\hat{\theta}(1 - \hat{\theta}) + z_{\alpha/2}^2} $$
-      \item \alert{Clopper-Pearson `exact' interval}: A 'worst-case' approach; very conservative method guaranteed to never under-cover.
+        \pause
+      \item \alert{Clopper-Pearson `exact' interval}: A `worst-case' approach; very conservative method guaranteed to never under-cover.
       $\text{CI}_{1-\alpha, \text{CP}}(\theta) = [\theta_\text{lower}, \theta_\text{upper}]$, 
         \pause
         $$ \theta_\text{lower} = B\left(\frac{\alpha}{2}, \sum_{i=1}^N y_i, 1+\sum_{i=1}^N(1-y_i)\right) \; \text{and} \; \theta_\text{upper} = B\left(1-\frac{\alpha}{2}, 1+ \sum_{i=1}^N y_i, \sum_{i=1}^N(1-y_i)\right) $$
@@ -529,18 +540,19 @@
 
 \begin{frame}{Clustered Questions Setting: A Bayesian Approach}
   \begin{itemize}[<+->]
-    \item 'Dispersion' parameter $d$ controls the range of difficulty across tasks,
+    \item `Dispersion' parameter $d$ controls the range of difficulty across tasks,
     $$d \sim \text{Gamma}(1, 1).$$
     \item $\theta$ is the mean difficulty of the questions across tasks,
     $$
     \theta \sim \text{Beta}(1, 1) = \text{Uniform}[0, 1].
     $$
-    \item $\theta_t$ is the difficulty of the questions in task $t$ (we ensure that $\mathbb{E}[\theta_t] = \theta$),
+    \item $\theta_t$ is the difficulty of the questions in task $t$ (we ensure that $\mathbb{E}[\theta_t | \theta] = \theta$),
     $$  
     \theta_t \sim \text{Beta}(d \theta, d (1-\theta)).
     $$
-    \item If $d$ is small, then $\theta_t$ is close to $\theta$ for all tasks.
-    \item If $d$ is large, then $\theta_t$ is more variable across tasks.
+    \item $\text{Var}(\theta_t | \theta) = \frac{\theta (1-\theta)}{d^2 + 1}$.
+    \item If $d$ is large, then $\theta_t$ is close to $\theta$ for all tasks.
+    \item If $d$ is small, then $\theta_t$ is more variable across tasks.
   \end{itemize}
 \end{frame}
 
@@ -570,6 +582,11 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Clustered Questions Setting: Bayesian Implementation}
+  \begin{figure}
+    \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/bayes_evals_code3.png}
+  \end{figure}
+\end{frame}
 
 \begin{frame}{Clustered Questions Setting: Results}
   \begin{figure}
@@ -583,8 +600,9 @@
   Advice to practitioners:
   
   \begin{itemize}[<+->]
-      \item Use \alert{Bayesian Beta-Bernoulli} or \alert{Wilson Score intervals}.
-      \item It's \textbf{simple} (use \texttt{scipy} or \texttt{bayes\_evals}).
+      \item Use \alert{Bayesian Beta-Bernoulli} or \alert{Wilson Score intervals} for IID setting.
+      \item Use simple \alert{Bayesian models} for other settings (for flexibility and interpretability).
+      \item It's \textbf{easy} (use \texttt{scipy} or \texttt{bayes\_evals}).
       \item It's \textbf{safer} than CLT-based methods.
       \item It's still \textbf{cheap} for large $N$.
   \end{itemize}
@@ -614,6 +632,190 @@
   %     \includegraphics[width=3cm]{img/bayes_evals/github_qr.png}
   % \end{columns}
 \end{frame}
+
+
+\begin{frame}{Bayesian Evals for Interpretability}
+  \begin{itemize}[<+->]
+    \item Apply hierarchical Bayesian modelling to evals: infer latent variables for \alert{benchmark difficulty} and \alert{model performance}.
+  \end{itemize}
+
+  \pause
+  
+  \begin{minipage}[t]{0.32\textwidth}
+    \centering
+    \resizebox{\linewidth}{!}{%
+      \begin{tikzpicture}
+          % nodes
+          \node[obs] (obs) {$y_{m,t, i}$};%
+
+          \node[latent, right=of obs, xshift=0.0cm, yshift=-0.0cm] (task_difficulty) {\(\tau_{t}\)}; %
+
+          \node[latent, left=of obs, xshift=0.0cm, yshift=0cm] (model_performance_across_task) {\( \lambda_{m}\)}; 
+
+
+           \node[latent, above=of task_difficulty, yshift=0.1cm]  (task_difficulty_std) {$\sigma_\tau$ }; 
+
+           \node[latent, above=of model_performance_across_task, yshift=0.0cm, yshift=0.1cm]  (model_performance_across_task_std) {$\sigma_\lambda$ }; 
+
+           
+          \node[latent, right=of model_performance_across_task_std, xshift=-0.5cm] (mass) {$\eta$}; 
+          
+          \node[latent, left=of task_difficulty_std, xshift=0.5cm] (bias) {$b$}; 
+          
+          % plates
+          \coordinate (dummy_bottom) at ([yshift=-1.3cm] obs.south);
+          \coordinate (dummy_top) at ([yshift=0.6cm] obs.north);
+          \plate [inner sep=0.1cm] {platequestion} {(obs)
+          } {$N_t$ questions}; 
+          
+          \plate [inner sep=0.1cm] {platetask} {
+               (platequestion)  (task_difficulty) (dummy_top) % (acc)
+          } {$T$ tasks}; 
+          
+          \plate [inner sep=0.1cm ] {platemodel} {
+           (obs) (model_performance_across_task) (dummy_bottom) (platequestion)
+          } {$M$ models}; 
+          
+          % edges
+          \edge {task_difficulty, model_performance_across_task, bias, mass} {obs}
+          \edge {task_difficulty_std} {task_difficulty}
+          \edge {model_performance_across_task_std} {model_performance_across_task}
+       
+   \end{tikzpicture} 
+    }
+    \vspace{0.4em}
+    \scriptsize Task-based model.
+  \end{minipage}\hfill\pause
+  \begin{minipage}[t]{0.32\textwidth}
+    \centering
+    \resizebox{\linewidth}{!}{%
+      \begin{tikzpicture}
+          % nodes
+       
+          %R
+          \node[obs] (acc) {$y_{m,t, i}$};%
+          %C
+          \node[latent, right=of acc, xshift=0.8cm] (question_difficulty) { $\kappa_{t, i}$ };   
+       
+          %S
+          \node[latent, above=of question_difficulty, xshift=0.0cm, yshift=-0.7cm] (task_difficulty) {\(\tau_{t}\)}; %
+       
+          \node[latent, above=of acc, xshift=0.0cm, yshift=-0.35cm] (model_performance_specific_task) {\( \mu_{m,t}\)}; 
+          \node[latent, right=of model_performance_specific_task,xshift=-0.3cm]  (model_performance_specific_task_std) {\(\sigma_{\mu_t}\)}; %
+           
+          %global
+          \node[latent, right=of question_difficulty, xshift=-0.3cm]  (question_difficulty_std) {$\sigma_\kappa$}; 
+          \node[latent, right=of task_difficulty, xshift=-0.3cm]  (task_difficulty_std) {$\sigma_\tau$ }; 
+          % Move beta to the global latents
+          \node[latent, above=of task_difficulty_std, yshift=-0.2cm] (bias) {$b$}; 
+                 
+          
+          % plates
+          % \coordinate (dummy_bottom) at ([xshift=-0.9, yshift=-0.58cm] acc.south);
+          \coordinate (dummy_temp) at ([yshift=-0.58cm] acc.south);
+          \coordinate (dummy_bottom) at ([xshift=0.7cm] dummy_temp);
+          \plate [inner sep=0.10cm ] {platemodel} {(acc) (model_performance_specific_task) (dummy_bottom)} {$M$ models}; 
+          \plate [inner sep=0.05cm] {platequestion} {(acc)(question_difficulty)} {$N_t$ questions}; 
+          \plate [inner sep=0.35cm] {platetask} {(platequestion)(task_difficulty)(model_performance_specific_task)(model_performance_specific_task_std)} {$T$ tasks}; 
+       
+          % edges
+          \edge {bias, task_difficulty, question_difficulty, model_performance_specific_task} {acc}
+          \edge {question_difficulty_std} {question_difficulty}
+          \edge {task_difficulty_std} {task_difficulty}
+          \edge {model_performance_specific_task_std} {model_performance_specific_task}
+       
+       \end{tikzpicture} 
+    }
+    \vspace{0.4em}
+    \scriptsize Question-task difficulty model.
+  \end{minipage}\hfill
+  \pause
+  \begin{minipage}[t]{0.32\textwidth}
+    \centering
+    \resizebox{\linewidth}{!}{%
+     \begin{tikzpicture}
+      % nodes
+
+      %R
+      \node[obs] (acc) {$y_{m,t, i}$};%
+      %C
+      \node[latent, right=of acc, xshift=0.8cm] (question_difficulty) { $\kappa_{t, i}$ };   
+
+      %S
+      \node[latent, above=of question_difficulty, xshift=0.0cm, yshift=-0.7cm] (task_difficulty) {\(\tau_{t}\)}; %
+
+      \node[latent, above=of acc, xshift=0.0cm, yshift=-0.35cm] (model_performance_specific_task) {\( \mu_{m,t}\)}; 
+
+      \node[latent, left=of acc, xshift=0.45cm, yshift=1.0cm] (model_performance_across_task) {\( \lambda_{m}\)}; 
+      
+      \node[latent, right=of model_performance_specific_task,xshift=-0.3cm]  (model_performance_specific_task_std) {\(\sigma_{\mu_t}\)}; %
+       
+      %global
+      \node[latent, right=of question_difficulty, xshift=-0.3cm]  (question_difficulty_std) {$\sigma_\kappa$}; 
+      \node[latent, right=of task_difficulty,xshift=-0.3cm]  (task_difficulty_std) {$\sigma_\tau$ }; 
+      \node[latent, above=of model_performance_across_task, yshift=-0.2cm]  (model_performance_across_task_std) {$\sigma_\lambda$ }; 
+      
+      % Move beta to the global latents
+      \node[latent, above=of task_difficulty_std, yshift=-0.2cm] (bias) {$b$}; 
+             
+      
+      % plates
+      % \coordinate (dummy_bottom) at ([yshift=-0.6cm] acc.south);
+      \coordinate (dummy_temp) at ([yshift=-0.58cm] acc.south);
+      \coordinate (dummy_bottom) at ([xshift=0.7cm] dummy_temp);
+      \plate [inner sep=0.10cm ] {platemodel} {(acc) (model_performance_specific_task)  (model_performance_across_task)(dummy_bottom)} {$M$ models}; 
+      \plate [inner sep=0.05cm] {platequestion} {(acc)(question_difficulty)} {$N_t$ questions}; 
+      \plate [inner sep=0.35cm] {platetask} {(platequestion)(task_difficulty)(model_performance_specific_task)(model_performance_specific_task_std)} {$T$ tasks}; 
+
+      % edges
+      \edge {bias, task_difficulty, question_difficulty, model_performance_specific_task, model_performance_across_task} {acc}
+      \edge {question_difficulty_std} {question_difficulty}
+      \edge {task_difficulty_std} {task_difficulty}
+      \edge {model_performance_specific_task_std} {model_performance_specific_task}
+      \edge {model_performance_across_task_std} {model_performance_across_task}
+
+   \end{tikzpicture}
+    }
+    \vspace{0.4em}
+    \scriptsize + Across-task performance latent variable.
+  \end{minipage}
+  \par\vspace{0.8em}\small Graphical models of the proposed hierarchical models. \alert{Way too complicated!}
+  
+\end{frame}
+
+\begin{frame}{Bayesian Evals for Interpretability}
+  \begin{figure}
+  \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/fig/pretrained_bbh_subset.pdf}
+  \end{figure}
+  \pause 
+  So just use Beta-Binomial!
+\end{frame}
+
+\begin{frame}{Bayesian Evals for Interpretability}
+  \begin{itemize}[<+->]
+    \item Given the eval question and reponse for an LLM, use an SAE-like model to enforce sparsity on features across the latent dimensions.
+  \end{itemize}
+  \vspace{-0.2cm}
+  \pause
+  \begin{figure}
+    \includegraphics[width=\textwidth, height=0.77\textheight, keepaspectratio]{img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}{Future Directions}
+  \begin{itemize}[<+->]
+    \item The results were interesting, but not as straightforwardly interpretable as we hoped.
+    \item Perhaps these techniques could be used more successfully for predicting eval performance based on something like pretraining metrics?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Thank You}
+  \begin{itemize}[<+->]
+    \item Any questions?
+  \end{itemize}
+\end{frame}
+
 
 \begin{frame}[allowframebreaks]{References}
   \nocite{*}
