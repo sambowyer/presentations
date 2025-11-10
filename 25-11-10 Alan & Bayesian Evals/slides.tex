@@ -1,0 +1,623 @@
+\documentclass[aspectratio=169]{beamer}
+% \documentclass[aspectratio=169, handout]{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{beaver}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{bayesnet}
+\usetikzlibrary{arrows}
+
+
+% \usepackage{graphicx}
+% \usepackage{booktabs}
+% \usepackage{pgfplots}
+% \pgfplotsset{compat=1.14}
+% \usepackage{anyfontsize}
+% % \usepackage{minted}
+% \usepackage[cache=false]{minted} 
+% \setminted[python]{
+%     linenos,
+%     % bgcolor=LightGray,
+%     % breaklines,
+%     fontsize=\scriptsize,
+%     % xleftmargin=1.1em,
+%     numbersep=4pt
+% }
+
+% \usepackage{tcolorbox}
+
+% \newtcolorbox[auto counter]{pbox}[2][]{
+%   colback=white,
+%   title=#2,
+%   #1,
+%   fonttitle= \large, %\sffamily,
+%   % fontupper=\sffamily,
+%   boxrule=0.5pt, 
+%   arc=2pt,
+%   top=1pt, 
+%   bottom=1pt,
+%   before={\vspace{2pt}}, 
+%   after={\vspace{2pt}} 
+%   % colframe=..,
+%   % coltitle=..,
+%   % colbacktitle=..,
+%   % toptitle=0.05cm,
+%   % bottomtitle=0.125cm
+% }
+
+% \usepackage{fancyvrb}
+
+
+\setbeamertemplate{caption}{%
+  \raggedright
+  \insertcaption\par
+}
+
+\usepackage[style=authoryear, autocite=footnote, backend=biber]{biblatex}
+\addbibresource{refs.bib}
+
+\title[Cohere Research Talk]{Cohere Research Talk: Massively Parallel Inference \& Bayesian Evals}
+\author{Sam Bowyer}
+\date{10 November 2025}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+% --- Part 1: Overview ---
+\section{About Me}
+
+\begin{frame}{About Me}
+  \begin{itemize}[<+->] 
+    \item Fourth (final) year PhD student at Bristol's Compass CDT (Computational Statistics and Data Science).
+    \item Based in the School of Maths, but supervised by Laurence Aitchison (CS/Engineering Maths), Mengyue Yang (Engineering Maths), and Song Liu (Maths).
+    \item Currently working on discrete diffusion models (training an `auxilliary' model with VI to suggest the order in which to decode tokens).
+    % \item Also worked on RL and LoRA finetuning.
+    \item Two projects I'll be talking about today: Alan (massively parallel probabilistic programming) \& Bayesian Evals.
+  \end{itemize}
+\end{frame}
+
+
+% --- Part 2: Alan, Massively Parallel Inference ---
+\section{Alan: Massively Parallel Probabilistic Programming}
+
+
+\begin{frame}{Alan: A Massively Parallel Probabilistic Programming Language}
+  \begin{figure}
+    \centering
+    \includegraphics[height=0.25\textheight]{img/laurence.png}
+    \includegraphics[height=0.25\textheight]{img/thomas.png}
+    \includegraphics[height=0.25\textheight]{img/sam.png}
+    \caption{Work done with Laurence Aitchison and Thomas Heap over the first two years of my PhD.}
+  \end{figure}
+  \pause
+  \begin{itemize}[<+->]
+    % \item Work with Laurence Aitchison and Thomas Heap over the first two years of my PhD.
+    \item Dual goals:
+      \begin{itemize}
+        \item Develop `massively parallel' Bayesian inference algorithms: fast, accurate, and scalable; desinged for GPU acceleration.
+        \item Implement these algorithms in a probabilistic programming language in pytorch (\texttt{alan}), allowing users to specify general probabilistic models.
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Regular Bayesian Inference}
+  \begin{itemize}[<+->]
+    \item \textbf{Bayesian inference}: Prior $P(z)$ and likelihood $P(x|z)$ for latent variables $z$ and data $x$.
+      $$P(z|x) = \frac{P(x|z)P(z)}{\int_\mathcal{Z} P(x,z') dz'}$$
+    \item \textbf{Importance sampling}: 
+      \begin{enumerate}
+        \item Sample $K$ latent variables from a proposal distribution $Q$ (usually IID):
+          $$z = (z^1, \ldots, z^K) \sim Q(z).$$ 
+        \item Compute importance weights: 
+          $$r_k(z) = \frac{P(x , z^k)}{Q(z^k)}.$$ 
+        \item Approximate the normalising constant using the 'global' estimator: 
+          $$\mathcal{P}_\text{global}(z) = \frac{1}{K} \sum_{k=1}^K r_k(z) \quad \text{such that } \quad \mathbb{E}_{z \sim Q}[\mathcal{P}_\text{global}(z)] = P(x).$$ 
+      \end{enumerate}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Limitations of Importance Sampling (IS)}
+  \begin{itemize}[<+->]
+    \item Global IS scales poorly with the number of latent variables, $n$.
+    \begin{itemize}
+      \item E.g. $n$ is the dimension of $z$ if all latent variables are scalar.
+    \end{itemize} 
+    \item Chatterjee \& Diaconis (2018) show that as $n$ increases, the number of samples, $K$, must increase with $O(e^{D_{\text{KL}}(P(z|x) || Q(z))}) \approx O(e^n)$. (This is a lot!)
+    \item Solution: \textbf{Massively Parallel Importance Sampling (MP-IS)}
+      \begin{itemize}
+        \item Reason about all $K^N$ possible joint samples at once.
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Massively Parallel Importance Sampling (MP-IS)}
+  \begin{minipage}{0.55\textwidth}
+    \begin{figure}
+      \includegraphics[width=\textwidth]{img/alan/MPIS.pdf}
+    \end{figure}
+  \end{minipage}
+  \begin{minipage}{0.43\textwidth}
+    \begin{itemize}[<+->]
+      \item Suppose each latent sample $z^k = (z_1^k, \ldots, z_n^k) \sim Q(z)$ is comprised of $n$ variables.
+      \item We can construct $K^n$ different samples from the full joint space 
+      $$(z_1^{k_1}, \ldots, z_n^{k_n}) \in \mathcal{Z}$$
+      where $\mathbf{k} = (k_1, \ldots, k_n) \in [K]^n$ is the indexing vector for each latent variable.
+    \end{itemize}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}{Massively Parallel Importance Sampling (MP-IS)}
+  \begin{minipage}{0.55\textwidth}
+    \begin{figure}
+      \includegraphics[width=\textwidth]{img/alan/MPIS.pdf}
+    \end{figure}
+  \end{minipage}
+  \begin{minipage}{0.43\textwidth}
+    \begin{itemize}[<+->]
+      \item Rather than using the global IS estimator
+      $$\mathcal{P}_\text{global}(z) = \frac{1}{K} \sum_{k=1}^K \frac{P(x, z^k)}{Q(z^k)}.$$
+      \item ...we can use the MP-IS estimator
+      $$\mathcal{P}_\text{MP}(z) = \frac{1}{K^n} \sum_{\mathbf{k}\in [K]^n} \frac{P(x, z^\mathbf{k})}{Q_\text{MP}(z^\mathbf{k}, \mathbf{k})}.$$
+      (Which is still unbiased.)
+    \end{itemize}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}{MP-IS: Some Complications...}
+  $$\mathcal{P}_\text{MP}(z) = \frac{1}{K^n} \sum_{\mathbf{k}\in [K]^n} \frac{P(x, z^\mathbf{k})}{Q_\text{MP}(z^\mathbf{k}, \mathbf{k})}.$$
+  \begin{itemize}[<+->]
+    \item We have to be careful about how we define $Q_\text{MP}$ over the space of all $K^n$ joint samples.
+    \item We can use a hierarchical model:
+      $$Q_\text{MP}(z, \mathbf{k}) = \prod_{i=1}^n Q_\text{MP}(z_i^{k_i} | z_j \text{ for } j \in \text{qa}(i)),$$
+      where $\text{qa}(i)$ is the set of indices of parents of $z_i$ in the proposal model.
+    \item If variable $z_i$ has a parent samples $z_j = (z_j^1, \ldots, z_j^K) \sim Q(z_j)$, then we can sample $z_i^{k_i}$ from $Q(z_i^{k_i} | z_j^{\pi(k_i)})$ for a (uniformly) random permutation $\pi$ of $[K]$.  \end{itemize}
+\end{frame}
+
+\begin{frame}{MP-IS: Some More Complications...}
+  $$\mathcal{P}_\text{MP}(z) = \frac{1}{K^n} \sum_{\mathbf{k}\in [K]^n} \frac{P(x, z^\mathbf{k})}{Q_\text{MP}(z^\mathbf{k}, \mathbf{k})} = \frac{1}{K^n} \sum_{\mathbf{k}\in [K]^n} r_\mathbf{k}(z).$$
+
+  \begin{itemize}[<+->]
+    \item At first glance, this thing doesn't look all that nice to compute...
+    \item But we can exploit the conditional independencies in the model to render it tractable.
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{MP-IS: Some More Complications...}
+
+  \begin{figure}
+    \includegraphics[width=0.6\textwidth]{img/alan/toy_model.drawio.pdf}
+  \end{figure}
+
+  \begin{itemize}[<+->]
+    \item E.g. with the model from before with $n=3$, $P(x, z) =  P(z_1) P(z_2 | z_1) P(z_3 | z_2) P(x | z_3)$, we can move the sums inside the product and get a bunch of tensor products:
+  \end{itemize}
+    \pause
+    $$
+    % \begin{aligned}
+      \mathcal{P}_\text{MP}(z) = \frac{1}{K^3} \sum_{k_1 \in [K]} \sum_{k_2 \in [K]} \sum_{k_3 \in [K]} \frac{P(z_1^{k_1}) P(z_2^{k_2} | z_1^{k_1}) P(z_3^{k_3} | z_2^{k_2}) P(x | z_3^{k_3})}{Q_\text{MP}(z^\mathbf{k}, \mathbf{k})} 
+    $$
+    \pause
+    $$
+      = \frac{1}{K^3} \sum_{k_1 \in [K]} \underbrace{\frac{P(z_1^{k_1})}{Q_\text{MP}(z_1^{k_1}, k_1)}}_{\text{Vector of size } K} 
+      \sum_{k_2 \in [K]} \underbrace{\frac{P(z_2^{k_2} | z_1^{k_1})}{Q_\text{MP}(z_2^{k_2}, \mathbf{k}_{1:2})}}_{\text{Matrix of size } K \times K}
+      \sum_{k_3 \in [K]} \underbrace{\frac{P(z_3^{k_3} | z_2^{k_2})}{Q_\text{MP}(z_3^{k_3}, \mathbf{k}_{2:3})}}_{\text{Matrix of size } K \times K}
+      \underbrace{\frac{P(x | z_3^{k_3})}{Q_\text{MP}(x | z_3^{k_3}, k_3)}}_{\text{Vector of size } K}
+    % \end{aligned}
+    $$
+    % \item This can be computed efficiently on a GPU using tensor operations.
+  % \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Can we hide these complications from the user?}
+  \begin{itemize}[<+->]
+    \item Yes! We do this with \texttt{alan}.
+    \item User specifies the model with P and Q as pytorch modules, and we handle the massively parallel inference for them.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Alan: A Probabilistic Programming Language}
+
+  \begin{minipage}{0.7\textwidth}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.9\textwidth]{img/alan/movielens_code_1.png}
+    \end{figure}
+  \end{minipage}
+  \begin{minipage}{0.25\textwidth}
+    % \vspace{-1cm}
+    \begin{figure}[t]
+      \centering
+      \resizebox{0.8\textwidth}{!}{%
+        \tikz{
+          % nodes
+           \node[obs] (rating) {\(\mathrm{Rating}_{mn}\)};%
+           \node[latent,above=of rating] (peruser) {\(\mathbf{z}_m\)}; %
+           \node[latent, above=of peruser, xshift=-1cm] (psi) {\(\boldsymbol{\psi}\)};
+          \node[latent, above=of peruser, xshift=1cm] (mu) {\(\boldsymbol{\mu}\)};
+          % plate
+           \plate [inner sep=.3cm] {plate2} {(rating)} {\(\mathrm{N}\) Films}; %
+           \plate [inner sep=.3cm] {plate1} {(peruser)(plate2)} {\(\mathrm{M}\) Users}; %
+          edges
+           \edge {psi,mu} {peruser}
+           \edge {peruser} {rating}}
+           }
+    \end{figure}
+  \end{minipage}
+
+\end{frame}
+
+\begin{frame}{MP-VI}
+  \begin{itemize}[<+->]
+    \item Using $\mathcal{P}_\text{MP}(z)$, we can do variational inference (VI) by maximising the ELBO:
+      $$
+      \log P(x) \geq \mathcal{L}_\text{MP}(\theta) = \mathbb{E}_{z \sim Q_\text{MP}(\theta)}[\log \mathcal{P}_\text{MP}(z)]
+      $$
+    \item Aitchison (2019) showed that MP-VI is a tighter bound than the global VI objective (IWAE):
+      $$
+      \log P(x) \geq \mathcal{L}_\text{global}(\theta) = \mathbb{E}_{z \sim Q_\theta}[\log \mathcal{P}_\text{global}(z)]
+      $$
+  \end{itemize}
+  \pause
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/alan/movielens_code_2.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{MP Algorithms}
+  \begin{itemize}[<+->]
+    \item We showed that we can obtain unbiased posterior moment estimates efficiently using autodiff (Bowyer et al. (2024)).
+      $$
+      m_\text{MP}(z) = \frac{1}{K^n} \sum_{\mathbf{k} \in [K]^n} \frac{r_\mathbf{k}(z)}{\mathcal{P}_\text{MP}(z)}m(z^\mathbf{k})
+      $$
+    \item We define a modified marginal likelihood estimator with an auxiliary variable $J \in \mathbb{R}$:
+      $$
+      \mathcal{P}_\text{MP}^\text{exp}(z, J) = \frac{1}{K^n} \sum_{\mathbf{k} \in [K]^n} r_\mathbf{k}(z) \exp(J m(z^\mathbf{k}))
+      $$
+    \item Then differentiating with respect to $J$ and setting $J=0$ we get:
+      $$
+      \frac{\partial}{\partial J}\bigg|_{J=0} \log \mathcal{P}_\text{MP}^\text{exp} (z, J) = m_\text{MP}(z)
+      $$
+    \item Through a similar argument, we can set $J$ to be vector- or tensor-valued based on $K$ and the shape of $z$, allowing us to compute marginal likelihoods and importance samples too.
+  \end{itemize}
+  \vspace{0.1cm}
+\end{frame}
+
+\begin{frame}{QEM: An Adaptive Importance Sampling Algorithm}
+  \begin{minipage}{0.4\textwidth}
+    \begin{itemize}
+      \item \textbf{QEM:} use these posterior moment estimates to iteratively update the approximate posterior $Q_\text{MP}$ in an EM-like algorithm for adaptive imortance sampling (Heap et al. (2025)).
+      % \item This algorithm is called QEM (Expectation-Maximisation for Approximate Posteriors).
+    \end{itemize}    
+  \end{minipage}
+  \begin{minipage}{0.59\textwidth}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.95\textwidth]{img/alan/QEM_results.pdf}
+    \end{figure}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}{Conclusions}
+  \begin{itemize}[<+->]
+    \item This project was a great (if, at times, complicated) way to learn about Bayesian inference and numerical and probabilistic programming.
+    \item The results were pretty promising, but but there are some drawbacks to massively parallel methods:
+    \begin{itemize}
+      \item The algorithms are complex to implement (hence wrapping them in a PPL).
+      \item Not all models have lots of conditional independencies to exploit.
+      \item Although it's slower and harder to tune, HMC is often hard to beat in terms of quality of inference.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+% --- Part 3: Bayesian Evals, Uncertainty Quantification for LLM Evals ---
+\section{Bayesian Evals: Uncertainty Quantification for LLM Evals}
+
+\begin{frame}{Bayesian Evals: Uncertainty Quantification for LLM Evals}
+  \begin{figure}
+    \centering
+    \includegraphics[height=0.25\textheight]{img/laurence.png}
+    \includegraphics[height=0.25\textheight]{img/desi.jpg}
+    \includegraphics[height=0.25\textheight]{img/sam.png}
+    \caption{Work done with Laurence Aitchison and Desi R. Ivanova.}
+  \end{figure}
+  \begin{itemize}[<+->]
+    \item Two directions:
+      \begin{itemize}
+        \item Improved UQ for evals with Bayesian methods.
+        \item Interpretability of evals with Bayesian hierarchical modelling and SAE-like approaches.
+      \end{itemize}
+    \item The former direction led to an ICML spotlight position paper.%: `Position: Don't Use the CLT in LLM Evals With Fewer Than a Few Hundred Datapoints'.
+    \item The latter fell by the wayside, but is something I'd like to come back to at some point.
+  \end{itemize}
+\end{frame}
+
+% --- Slide 2: Motivation ---
+\begin{frame}{Motivation}
+  \begin{block}{Central Limit Theorem (CLT)}
+    If $X_1, \dots, X_N$ are IID r.v.s with mean $\mu \in \mathbb{R}$ and finite variance $\sigma^2$, then 
+    $$
+      \sqrt{N} (\hat{\mu} - \mu) \xrightarrow{d} \mathcal{N}( 0, \sigma^2 ) \; \text{as } N \rightarrow \infty,
+    $$
+    where $\hat{\mu} = \frac{1}{N}\sum_{i=1}^N X_i$ is the sample mean.
+  \end{block}
+  \pause
+  \begin{itemize}[<+->]
+      % \item Error bars are important for interpreting evals.
+      \item In the case of binary data, the CLT-based confidence interval is:
+      $$
+        \text{CI}_{1-\alpha}(\theta) = \bar{X} \pm z_{\alpha/2} \sqrt{\frac{\bar{X}(1-\bar{X})}{N}}
+      $$
+      where $z_{\alpha/2}$ is the $100(1-\alpha/2)$-th percentile of $\mathcal{N}(0, 1)$.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Real-World Failures of the CLT}
+  \begin{itemize}[<+->]
+    \item If $N$ is too small, CLT-based error bars can collapse to \alert{zero-width} or \alert{extend past $[0,1]$}.
+    \item Smaller, more intricate, and expensive LLM benchmarks are becoming increasingly common, so we need to find alternatives for the few-data regime.
+  \end{itemize}
+  \vspace{0.5cm}
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{figure}
+      \includegraphics[height=4.2cm, keepaspectratio]{img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png}
+      \caption{Math Arena's AIME II 2025 Benchmark (N=15)}
+    \end{figure}
+  \end{minipage}
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{figure}
+        \includegraphics[height=4.2cm, keepaspectratio]{img/bayes_evals/langchain_clt.png}
+        \caption{Langchain Typewriter Tool Use Benchmark (N=20)}
+    \end{figure}
+  \end{minipage}
+\end{frame}
+
+% --- Slide 3: Bayesian Alternative -- Beta-Bernoulli Model ---
+\begin{frame}{Bayesian Alternative: Beta-Binomial Model}
+  \begin{itemize}[<+->]
+    \item Treat the data as IID Bernoulli with a \alert{uniform prior} on the parameter $\theta$.
+    $$
+      \begin{aligned}
+      \theta &\sim \text{Beta}(1, 1) = \text{Uniform}[0, 1] \\
+      y_i &\sim \text{Bernoulli}(\theta) \; \text{for } i=1,\dots N 
+      \end{aligned}
+    $$
+    \item Say $y_i$ is correct if $y_i = 1$ and incorrect if $y_i = 0$. %(Think of $\theta$ as the probability of correctness.)  
+    \item Obtain quantile-based Bayesian \alert{credible intervals} for $\theta$ from the closed form posterior.
+    $$
+      p(\theta | y_{1:N}) = \text{Beta}\left(1+\sum_{i=1}^N y_i, 1 + \sum_{i=1}^N (1-y_i)\right)
+    $$
+
+  \end{itemize}
+  
+\pause
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/bayes_evals/bayes_evals_code1.png}
+\end{figure}
+
+
+% \begin{pbox}[label={ex:bayes_simple}]{Beta-Bernoulli Bayesian Credible Interval}
+%   \begin{minted}[fontsize=\scriptsize,breaklines]{python}
+%  y is a length N binary "eval" vector
+% S, N = y.sum(), len(y)  total successes & questions
+
+% # Bayesian Credible interval
+% posterior = scipy.stats.beta(1 + sum(y), 1 + N - sum(y))
+% bayes_ci  = posterior.interval(confidence=0.95)
+%   \end{minted}
+% \end{pbox}
+
+\end{frame}
+
+% --- Slide 4: Frequentist Alternatives ---
+\begin{frame}{Frequentist Alternatives}
+  % \vspace{1cm}
+  \begin{itemize}[<+->]
+      \item \alert{Wilson score interval}: Based on normal approximation to the binomial distribution.
+        \pause
+        $$ \text{CI}_{1-\alpha, \text{Wilson}}(\theta) = \frac{\hat{\theta} + \frac{z_{\alpha/2}^2}{2N}}{1 + \frac{z_{\alpha/2}^2}{N}} \pm \frac{\frac{z_{\alpha/2}}{2N}}{1 + \frac{z_{\alpha/2}^2}{N}}\sqrt{4N\hat{\theta}(1 - \hat{\theta}) + z_{\alpha/2}^2} $$
+      \item \alert{Clopper-Pearson `exact' interval}: A 'worst-case' approach; very conservative method guaranteed to never under-cover.
+      $\text{CI}_{1-\alpha, \text{CP}}(\theta) = [\theta_\text{lower}, \theta_\text{upper}]$, 
+        \pause
+        $$ \theta_\text{lower} = B\left(\frac{\alpha}{2}, \sum_{i=1}^N y_i, 1+\sum_{i=1}^N(1-y_i)\right) \; \text{and} \; \theta_\text{upper} = B\left(1-\frac{\alpha}{2}, 1+ \sum_{i=1}^N y_i, \sum_{i=1}^N(1-y_i)\right) $$
+        where $B(\alpha, a, b)$ is the $\alpha$-th quantile of the Beta$(a, b)$ distribution.
+  \end{itemize}
+  
+  \pause
+  % \vspace{1cm}
+  % Implementation using \texttt{scipy}:
+%   \begin{verbatim}
+% # y is a length N binary "eval" vector
+% S, N = y.sum(), len(y) # total successes & questions
+% result = scipy.stats.binomtest(k=S, n=N)
+
+% # 95% Wilson score interval and Clopper-Pearson exact interval
+% wilson_ci = result.proportion_ci("wilson", 0.95)
+% cp_ci = result.proportion_ci("exact", 0.95)
+%   \end{verbatim}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/bayes_evals/bayes_evals_code2.png}
+\end{figure}
+\end{frame}
+
+% --- Slide 5: Interval Comparison Simulations ---
+\begin{frame}{Interval Comparison Simulations}
+  \vspace{1cm}
+  We use synthetic eval data so that we \alert{know} the true parameter $\theta$.
+  
+  \begin{itemize}[<+->]
+      \item Draw $\theta \sim \text{Uniform}[0, 1]$.
+      \item Draw $N \in \{3,10,30,100\}$ IID Bernoulli datapoints with parameter $\theta$.
+      \item Construct intervals with various methods for various $1-\alpha$ confidence levels.
+      \item Repeat many times and calculate the true coverage and width of the intervals.
+      \begin{itemize}
+        \item Coverage: What proportion of the time does a $1-\alpha$ confidence-level interval \alert{actually contain} the true parameter? (A frequentist metric, really.)
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+% --- Slide 6: IID Questions Setting ---
+\begin{frame}{IID Questions Setting: Results}
+  \begin{figure}
+      \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/pngs/exp4-1.png}
+      % \caption{Simulation results comparing Coverage and Width for different $N$.}
+  \end{figure}
+\end{frame}
+
+% --- Slide 7: Other Eval Settings ---
+\begin{frame}{Other Eval Settings}
+  \begin{itemize}[<+->]
+      \item \textbf{Clustered Questions}
+      \begin{itemize}
+          \item We have $T$ tasks, each with $N_t$ IID questions, instead of $N$ IID questions.
+      \end{itemize}
+      
+      \item \textbf{Comparisons Between Two Models, $\theta_A$ and $\theta_B$}
+      \begin{itemize}
+          \item Independent Comparisons (using $N_A, N_B, \bar{y}_A, \bar{y}_B$ only).
+          \item Paired Comparisons (using $N_A = N_B, \{y_{A;i}\}_{i=1}^N, \{y_{B;i}\}_{i=1}^N$).
+      \end{itemize}
+      
+      \item \textbf{Metrics that aren't simple averages of binary results} (e.g. F1 score).
+      
+      \item \textbf{Prior Mismatch} (i.e. what if the uniform prior is incorrect, $\theta \nsim \text{Uniform}[0, 1]$?).
+  \end{itemize}
+\end{frame}
+
+
+% --- Slide 8: Clustered Questions Setting ---
+\begin{frame}{Clustered Questions Setting: Frequentist Approach}
+  \begin{itemize}[<+->]
+    \item Instead of $N$ IID questions, we have $T$ tasks, each with $N_t$ IID questions.
+    \item Some tasks are easier than others.% (e.g. each task asks $N_t$ questions about a single piece of input text, with texts varying in difficulty).
+    \item Frequentist approach (Miller, 2024):
+    $$
+    \text{CI}_{1-\alpha}(\theta) = \bar{X} \pm z_{\alpha/2} \text{SE}_\text{Clustered}
+    $$
+    $$
+    \text{SE}_\text{Clustered} = \sqrt{\text{SE}_\text{CLT}^2 + \frac{1}{N^2}\sum_{t=1}^T \sum_{i=1}^{N_t} \sum_{j \neq i} (y_{i,t} - \bar{y})(y_{j,t} - \bar{y})}
+    $$
+    % \item An improved standard error, but fundamentally still using the CLT.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Clustered Questions Setting: A Bayesian Approach}
+  \begin{itemize}[<+->]
+    \item 'Dispersion' parameter $d$ controls the range of difficulty across tasks,
+    $$d \sim \text{Gamma}(1, 1).$$
+    \item $\theta$ is the mean difficulty of the questions across tasks,
+    $$
+    \theta \sim \text{Beta}(1, 1) = \text{Uniform}[0, 1].
+    $$
+    \item $\theta_t$ is the difficulty of the questions in task $t$ (we ensure that $\mathbb{E}[\theta_t] = \theta$),
+    $$  
+    \theta_t \sim \text{Beta}(d \theta, d (1-\theta)).
+    $$
+    \item If $d$ is small, then $\theta_t$ is close to $\theta$ for all tasks.
+    \item If $d$ is large, then $\theta_t$ is more variable across tasks.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Clustered Questions Setting: A Bayesian Approach}
+  \vspace{-0.5cm}
+  $$
+    \begin{aligned}
+    d &\sim \text{Gamma}(1, 1), \quad 
+    \theta \sim \text{Beta}(1, 1), \quad 
+    \theta_t &\sim \text{Beta}(d \theta, d (1-\theta)), \quad
+    y_{i,t} \sim \text{Bernoulli}(\theta_t)
+    \end{aligned}
+  $$
+  \vspace{-0.5cm}
+  \pause
+  \begin{itemize}[<+->]
+    \item Can we integrate out the per-task difficulty parameters $\theta_t$?
+    \item Yes! The number of successes per task is \alert{Beta-Binomial} distributed: 
+      $$
+        \sum_{i=1}^{N_t} y_{i,t} = Y_t \sim \text{BetaBinomial}(N_t, d \theta, d (1-\theta)).
+      $$
+    \item Get an \alert{importance-weighted posterior} for $\theta$: draw prior samples $\{(\theta^{(k)}, d^{(k)})\}_{k=1}^K$, then compute weights
+      $$
+        w^{(k)} = \prod_{t=1}^T p(Y_t | \theta^{(k)}, d^{(k)}).
+      $$
+    \item Compute quantile-based Bayesian credible intervals for $\theta$.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Clustered Questions Setting: Results}
+  \begin{figure}
+      \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/pngs/exp4-2.png}
+      % \caption{Simulation results comparing Coverage and Width for different $N$.}
+  \end{figure}
+\end{frame}
+
+% --- Slide 9: Conclusion ---
+\begin{frame}{Conclusion}
+  Advice to practitioners:
+  
+  \begin{itemize}[<+->]
+      \item Use \alert{Bayesian Beta-Bernoulli} or \alert{Wilson Score intervals}.
+      \item It's \textbf{simple} (use \texttt{scipy} or \texttt{bayes\_evals}).
+      \item It's \textbf{safer} than CLT-based methods.
+      \item It's still \textbf{cheap} for large $N$.
+  \end{itemize}
+  
+  \vspace{1cm}
+
+  \pause
+  My takeaways from this project:
+  \begin{itemize}[<+->]
+    \item The project really cemented my understanding of Bayesianism vs Frequentism in practice.
+    \item There's a big communication gap between AI researchers and classical statisticians.
+    \item UQ for evals is an incredibly rich space.
+  \end{itemize}
+  % \begin{columns}
+  %     \column{0.5\textwidth}
+  %     \centering
+  %     \textbf{Paper} \\
+  %     \href{https://arxiv.org/pdf/2503.01747}{https://arxiv.org/pdf/2503.01747} \\
+  %     \vspace{0.5cm}
+  %     \includegraphics[width=3cm]{img/bayes_evals/arxiv_qr.png}
+      
+  %     \column{0.5\textwidth}
+  %     \centering
+  %     \textbf{\texttt{bayes\_evals} package} \\
+  %     \href{https://github.com/sambowyer/bayes_evals}{https://github.com/sambowyer/bayes\_evals} \\
+  %     \vspace{0.5cm}
+  %     \includegraphics[width=3cm]{img/bayes_evals/github_qr.png}
+  % \end{columns}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+  \nocite{*}
+  \printbibliography
+\end{frame}
+
+\end{document}

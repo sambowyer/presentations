@@ -1,0 +1,329 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{bowyerPositionDontUse2025a}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=74669cb9bed680624702576f9911d60d}{%
+           family={Bowyer},
+           familyi={B\bibinitperiod},
+           given={Sam},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b9a95b2bf7ae9a32128a7ce471a4b27f}{%
+           family={Aitchison},
+           familyi={A\bibinitperiod},
+           given={Laurence},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=22a6a7b2d51198270bd46269cbf580a3}{%
+           family={Ivanova},
+           familyi={I\bibinitperiod},
+           given={Desi\bibnamedelima R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{d056d5c0ba9f0d972cb65d195188b3a0}
+      \strng{fullhash}{d056d5c0ba9f0d972cb65d195188b3a0}
+      \strng{fullhashraw}{d056d5c0ba9f0d972cb65d195188b3a0}
+      \strng{bibnamehash}{d056d5c0ba9f0d972cb65d195188b3a0}
+      \strng{authorbibnamehash}{d056d5c0ba9f0d972cb65d195188b3a0}
+      \strng{authornamehash}{d056d5c0ba9f0d972cb65d195188b3a0}
+      \strng{authorfullhash}{d056d5c0ba9f0d972cb65d195188b3a0}
+      \strng{authorfullhashraw}{d056d5c0ba9f0d972cb65d195188b3a0}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Rigorous statistical evaluations of large language models (LLMs), including valid error bars and significance testing, are essential for meaningful and reliable performance assessment. Currently, when such statistical measures are reported, they typically rely on the Central Limit Theorem (CLT). In this position paper, we argue that while CLT-based methods for uncertainty quantification are appropriate when benchmarks consist of thousands of examples, they fail to provide adequate uncertainty estimates for LLM evaluations that rely on smaller, highly specialized benchmarks. In these small-data settings, we demonstrate that CLT-based methods perform very poorly, usually dramatically underestimating uncertainty (i.e. producing error bars that are too small). We give recommendations for alternative frequentist and Bayesian methods that are both easy to implement and more appropriate in these increasingly common scenarios.}
+      \field{booktitle}{Proceedings of the 42nd {International} {Conference} on {Machine} {Learning}}
+      \field{month}{10}
+      \field{note}{ISSN: 2640-3498}
+      \field{shorttitle}{Position}
+      \field{title}{Position: {Don}’t {Use} the {CLT} in {LLM} {Evals} {With} {Fewer} {Than} a {Few} {Hundred} {Datapoints}}
+      \field{urlday}{9}
+      \field{urlmonth}{11}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{81143\bibrangedash 81184}
+      \range{pages}{42}
+      \verb{file}
+      \verb Full Text PDF:/home/dg22309/Zotero/storage/32REFA97/Bowyer et al. - 2025 - Position Don’t Use the CLT in LLM Evals With Fewer Than a Few Hundred Datapoints.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://proceedings.mlr.press/v267/bowyer25a.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.mlr.press/v267/bowyer25a.html
+      \endverb
+    \endentry
+    \entry{bowyerUsingAutodiffEstimate2024c}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=74669cb9bed680624702576f9911d60d}{%
+           family={Bowyer},
+           familyi={B\bibinitperiod},
+           given={Sam},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7ede734b61bd779ea566688cb0e71019}{%
+           family={Heap},
+           familyi={H\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b9a95b2bf7ae9a32128a7ce471a4b27f}{%
+           family={Aitchison},
+           familyi={A\bibinitperiod},
+           given={Laurence},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{7471316e6061cce0652bb5c4abd5de1e}
+      \strng{fullhash}{7471316e6061cce0652bb5c4abd5de1e}
+      \strng{fullhashraw}{7471316e6061cce0652bb5c4abd5de1e}
+      \strng{bibnamehash}{7471316e6061cce0652bb5c4abd5de1e}
+      \strng{authorbibnamehash}{7471316e6061cce0652bb5c4abd5de1e}
+      \strng{authornamehash}{7471316e6061cce0652bb5c4abd5de1e}
+      \strng{authorfullhash}{7471316e6061cce0652bb5c4abd5de1e}
+      \strng{authorfullhashraw}{7471316e6061cce0652bb5c4abd5de1e}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Importance sampling is a popular technique in Bayesian inference: by reweighting samples drawn from a proposal distribution we are able to obtain samples and moment estimates from a Bayesian posterior over latent variables. Recent work, however, indicates that importance sampling scales poorly — in order to accurately approximate the true posterior, the required number of importance samples grows is exponential in the number of latent variables [Chatterjee and Diaconis, 2018]. Massively parallel importance sampling works around this issue by drawing KKK samples for each of the nnn latent variables and reasoning about all KnKnK{\textasciicircum}n combinations of latent samples. In principle, we can reason efficiently over KnKnK{\textasciicircum}n combinations of samples by exploiting conditional independencies in the generative model. However, in practice this requires complex algorithms that traverse backwards through the graphical model, and we need separate backward traversals for each computation (posterior expectations, marginals and samples). Our contribution is to exploit the source term trick from physics to entirely avoid the need to hand-write backward traversals. Instead, we demonstrate how to simply and easily compute all the required quantities — posterior expectations, marginals and samples — by differentiating through a slightly modified marginal likelihood estimator.}
+      \field{booktitle}{Proceedings of the {Fortieth} {Conference} on {Uncertainty} in {Artificial} {Intelligence}}
+      \field{month}{9}
+      \field{note}{ISSN: 2640-3498}
+      \field{title}{Using {Autodiff} to {Estimate} {Posterior} {Moments}, {Marginals} and {Samples}}
+      \field{urlday}{9}
+      \field{urlmonth}{11}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{394\bibrangedash 417}
+      \range{pages}{24}
+      \verb{file}
+      \verb Full Text PDF:/home/dg22309/Zotero/storage/WXBW5T6W/Bowyer et al. - 2024 - Using Autodiff to Estimate Posterior Moments, Marginals and Samples.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://proceedings.mlr.press/v244/bowyer24a.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.mlr.press/v244/bowyer24a.html
+      \endverb
+    \endentry
+    \entry{chatterjeeSampleSizeRequired2018}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=225d0c64bc582e380c1334293c4db1a3}{%
+           family={Chatterjee},
+           familyi={C\bibinitperiod},
+           given={Sourav},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f5a7dd4f4a0c79d2eaaf29d6dda0f4b3}{%
+           family={Diaconis},
+           familyi={D\bibinitperiod},
+           given={Persi},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{6fb5794194c84497e9b72fdec3ccad16}
+      \strng{fullhash}{6fb5794194c84497e9b72fdec3ccad16}
+      \strng{fullhashraw}{6fb5794194c84497e9b72fdec3ccad16}
+      \strng{bibnamehash}{6fb5794194c84497e9b72fdec3ccad16}
+      \strng{authorbibnamehash}{6fb5794194c84497e9b72fdec3ccad16}
+      \strng{authornamehash}{6fb5794194c84497e9b72fdec3ccad16}
+      \strng{authorfullhash}{6fb5794194c84497e9b72fdec3ccad16}
+      \strng{authorfullhashraw}{6fb5794194c84497e9b72fdec3ccad16}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1050-5164}
+      \field{journaltitle}{The Annals of Applied Probability}
+      \field{month}{4}
+      \field{number}{2}
+      \field{title}{The sample size required in importance sampling}
+      \field{urlday}{3}
+      \field{urlmonth}{2}
+      \field{urlyear}{2023}
+      \field{volume}{28}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{doi}
+      \verb 10.1214/17-AAP1326
+      \endverb
+      \verb{file}
+      \verb Chatterjee and Diaconis - 2018 - The sample size required in importance sampling.pdf:/home/dg22309/Zotero/storage/PPZTY3I3/Chatterjee and Diaconis - 2018 - The sample size required in importance sampling.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://projecteuclid.org/journals/annals-of-applied-probability/volume-28/issue-2/The-sample-size-required-in-importance-sampling/10.1214/17-AAP1326.full
+      \endverb
+      \verb{url}
+      \verb https://projecteuclid.org/journals/annals-of-applied-probability/volume-28/issue-2/The-sample-size-required-in-importance-sampling/10.1214/17-AAP1326.full
+      \endverb
+    \endentry
+    \entry{heapMassivelyParallelExpectation2025b}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=7ede734b61bd779ea566688cb0e71019}{%
+           family={Heap},
+           familyi={H\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=74669cb9bed680624702576f9911d60d}{%
+           family={Bowyer},
+           familyi={B\bibinitperiod},
+           given={Sam},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b9a95b2bf7ae9a32128a7ce471a4b27f}{%
+           family={Aitchison},
+           familyi={A\bibinitperiod},
+           given={Laurence},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{63f18775bb82fd9d264e57142565e3ba}
+      \strng{fullhash}{63f18775bb82fd9d264e57142565e3ba}
+      \strng{fullhashraw}{63f18775bb82fd9d264e57142565e3ba}
+      \strng{bibnamehash}{63f18775bb82fd9d264e57142565e3ba}
+      \strng{authorbibnamehash}{63f18775bb82fd9d264e57142565e3ba}
+      \strng{authornamehash}{63f18775bb82fd9d264e57142565e3ba}
+      \strng{authorfullhash}{63f18775bb82fd9d264e57142565e3ba}
+      \strng{authorfullhashraw}{63f18775bb82fd9d264e57142565e3ba}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Bayesian inference for hierarchical models can be very challenging. MCMC methods have difficulty scaling to large models with many observations and latent variables. While variational inference (VI) and reweighted wake-sleep (RWS) can be more scalable, they are gradient-based methods and so often require many iterations to converge. Our key insight was that modern massively parallel importance weighting methods (Bowyer et al., 2024) give fast and accurate posterior moment estimates, and we can use these moment estimates to rapidly learn an approximate posterior. Specifically, we propose using expectation maximization to fit the approximate posterior, which we call QEM. The expectation step involves computing the posterior moments using high-quality massively parallel estimates from Bowyer et al. (2024). The maximization step involves fitting the approximate posterior using these moments, which can be done straightforwardly for simple approximate posteriors such as Gaussian, Gamma, Beta, Dirichlet, Binomial, Multinomial, Categorical, etc. (or combinations thereof). We show that QEM is faster than state-of-the-art, massively parallel variants of RWS and VI, and is invariant to reparameterizations of the model that dramatically slow down gradient based methods.}
+      \field{booktitle}{Proceedings of the 7th {Symposium} on {Advances} in {Approximate} {Bayesian} {Inference}}
+      \field{month}{7}
+      \field{note}{ISSN: 2640-3498}
+      \field{title}{Massively {Parallel} {Expectation} {Maximization} {For} {Approximate} {Posteriors}}
+      \field{urlday}{9}
+      \field{urlmonth}{11}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{25\bibrangedash 66}
+      \range{pages}{42}
+      \verb{file}
+      \verb Full Text PDF:/home/dg22309/Zotero/storage/N6GEJV9C/Heap et al. - 2025 - Massively Parallel Expectation Maximization For Approximate Posteriors.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://proceedings.mlr.press/v289/heap25a.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.mlr.press/v289/heap25a.html
+      \endverb
+    \endentry
+    \entry{millerAddingErrorBars2024}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=ac004a72f317bb04dcf539660a0feee0}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={Evan},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{ac004a72f317bb04dcf539660a0feee0}
+      \strng{fullhash}{ac004a72f317bb04dcf539660a0feee0}
+      \strng{fullhashraw}{ac004a72f317bb04dcf539660a0feee0}
+      \strng{bibnamehash}{ac004a72f317bb04dcf539660a0feee0}
+      \strng{authorbibnamehash}{ac004a72f317bb04dcf539660a0feee0}
+      \strng{authornamehash}{ac004a72f317bb04dcf539660a0feee0}
+      \strng{authorfullhash}{ac004a72f317bb04dcf539660a0feee0}
+      \strng{authorfullhashraw}{ac004a72f317bb04dcf539660a0feee0}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Evaluations are critical for understanding the capabilities of large language models (LLMs). Fundamentally, evaluations are experiments; but the literature on evaluations has largely ignored the literature from other sciences on experiment analysis and planning. This article shows researchers with some training in statistics how to think about and analyze data from language model evaluations. Conceptualizing evaluation questions as having been drawn from an unseen super-population, we present formulas for analyzing evaluation data, measuring differences between two models, and planning an evaluation experiment. We make a number of specific recommendations for running language model evaluations and reporting experiment results in a way that minimizes statistical noise and maximizes informativeness.}
+      \field{month}{11}
+      \field{note}{arXiv:2411.00640 [stat]}
+      \field{shorttitle}{Adding {Error} {Bars} to {Evals}}
+      \field{title}{Adding {Error} {Bars} to {Evals}: {A} {Statistical} {Approach} to {Language} {Model} {Evaluations}}
+      \field{urlday}{17}
+      \field{urlmonth}{12}
+      \field{urlyear}{2024}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{doi}
+      \verb 10.48550/arXiv.2411.00640
+      \endverb
+      \verb{file}
+      \verb Miller - 2024 - Adding Error Bars to Evals A Statistical Approach.pdf:/home/dg22309/Zotero/storage/NFT3MERJ/Miller - 2024 - Adding Error Bars to Evals A Statistical Approach.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2411.00640
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2411.00640
+      \endverb
+      \keyw{Computer Science - Computation and Language,Statistics - Applications}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
