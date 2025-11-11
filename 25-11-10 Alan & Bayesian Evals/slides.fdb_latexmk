@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber slides"] 0 "slides.bcf" "slides.bbl" "slides" 1762775908.04322 -1
+["biber slides"] 0 "slides.bcf" "slides.bbl" "slides" 1762787510.35273 -1
   "refs.bib" 1762720531.00552 8111 1ae2476cec64ed0ea69b8b412515a1e9 ""
-  "slides.bcf" 1762775907.79762 108605 e19cb51b18d12c385a8c138f37d80ff0 "pdflatex"
+  "slides.bcf" 1762787510.2554 108605 e19cb51b18d12c385a8c138f37d80ff0 "pdflatex"
   (generated)
   "slides.bbl"
   "slides.blg"
   (rewritten before read)
-["pdflatex"] 1762775902.1443 "/home/dg22309/Documents/presentations/25-11-10 Alan & Bayesian Evals/slides.tex" "slides.pdf" "slides" 1762775908.04376 0
-  "/home/dg22309/Documents/presentations/25-11-10 Alan & Bayesian Evals/slides.tex" 1762775901.85858 34175 120bf46b8c18ab637af0743312476d5e ""
+["pdflatex"] 1762787505.48337 "/home/dg22309/Documents/presentations/25-11-10 Alan & Bayesian Evals/slides.tex" "slides.pdf" "slides" 1762787510.35293 0
+  "/home/dg22309/Documents/presentations/25-11-10 Alan & Bayesian Evals/slides.tex" 1762787503.11132 34454 36c8a77177d1dad0f38d8faf5f4ba40d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1246382020 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1246382020 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
@@ -309,13 +309,13 @@
   "img/laurence.png" 1762711236.07262 334176 b9b6e335adaaa3bc4752387518422b42 ""
   "img/sam.png" 1762711236.10662 228383 a70eb6f99f3f14e3721ce4a1adfbfa1a ""
   "img/thomas.png" 1762711111.82309 224149 ef1c52345aaa00d7df6f2e22415d3943 ""
-  "slides.aux" 1762775907.79562 7396 87c58a806093da3a37ab242e836bcd97 "pdflatex"
+  "slides.aux" 1762787510.2534 7264 125c535703064b0b6caf67bcbaf4fcc2 "pdflatex"
   "slides.bbl" 1762720805.05856 17307 0edec8d88fb8e625cf4dddbb070fc0b1 "biber slides"
-  "slides.nav" 1762775907.79762 4554 a0c3d430f16e599ada2951d439ff1805 "pdflatex"
-  "slides.out" 1762775907.79662 825 a6210496374dff682b6fbf819b715323 "pdflatex"
-  "slides.run.xml" 1762775907.79762 2319 5310aa2981dec530562fa4c501b1e1b9 "pdflatex"
-  "slides.tex" 1762775901.85858 34175 120bf46b8c18ab637af0743312476d5e ""
-  "slides.toc" 1762775907.79762 223 7e5bc13c29daf47846f12fac4182037a "pdflatex"
+  "slides.nav" 1762787510.2554 4458 cfa0ca90d93d137541809f22c5750bbb "pdflatex"
+  "slides.out" 1762787510.2544 825 a6210496374dff682b6fbf819b715323 "pdflatex"
+  "slides.run.xml" 1762787510.2554 2319 5310aa2981dec530562fa4c501b1e1b9 "pdflatex"
+  "slides.tex" 1762787503.11132 34454 36c8a77177d1dad0f38d8faf5f4ba40d ""
+  "slides.toc" 1762787510.2554 223 01ac80d48348b09587a0fd410057a6a1 "pdflatex"
   (generated)
   "slides.aux"
   "slides.bcf"

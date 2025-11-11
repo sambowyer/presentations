@@ -126,7 +126,7 @@
           $$z = (z^1, \ldots, z^K) \sim Q(z).$$ 
         \item Compute importance weights: 
           $$r_k(z) = \frac{P(x , z^k)}{Q(z^k)}.$$ 
-        \item Approximate the normalising constant using the 'global' estimator: 
+        \item Approximate the normalising constant using the `global' estimator: 
           $$\mathcal{P}_\text{global}(z) = \frac{1}{K} \sum_{k=1}^K r_k(z) \quad \text{such that } \quad \mathbb{E}_{z \sim Q}[\mathcal{P}_\text{global}(z)] = P(x).$$ 
       \end{enumerate}
   \end{itemize}
@@ -136,13 +136,13 @@
   \begin{itemize}[<+->]
     \item Global IS scales poorly with the number of latent variables, $n$.
     \begin{itemize}
-      \item $z = (z_1, \ldots, z_n) \in \mathcal{Z}$.
+      \item $z^k = (z_1^k, \ldots, z_n^k) \in \mathcal{Z}$.
       % \item E.g. $n$ is the dimension of $z$ if all latent variables are scalar.
     \end{itemize} 
     \item Chatterjee \& Diaconis (2018) show that as $n$ increases, the number of samples, $K$, must increase with $O(e^{D_{\text{KL}}(P(z|x) || Q(z))}) \approx O(e^n)$. (This is a lot!)
     \item Solution: \textbf{Massively Parallel Importance Sampling (MP-IS)}
       \begin{itemize}
-        \item Reason about all $K^N$ possible joint samples at once.
+        \item Reason about all $K^n$ possible joint samples at once.
       \end{itemize}
   \end{itemize}
 \end{frame}
@@ -181,28 +181,29 @@
   \end{minipage}
 \end{frame}
 
-\begin{frame}{MP-IS: Some Complications...}
-  $$\mathcal{P}_\text{MP}(z) = \frac{1}{K^n} \sum_{\mathbf{k}\in [K]^n} \frac{P(x, z^\mathbf{k})}{Q_\text{MP}(z^\mathbf{k}, \mathbf{k})}.$$
-  \begin{itemize}[<+->]
-    \item We have to be careful about how we define $Q_\text{MP}$ over the space of all $K^n$ joint samples.
-    \item We can use a hierarchical model:
-      $$Q_\text{MP}(z, \mathbf{k}) = \prod_{i=1}^n Q_\text{MP}(z_i^{k_i} | z_j \text{ for } j \in \text{qa}(i)),$$
-      where $\text{qa}(i)$ is the set of indices of parents of $z_i$ in the proposal model.
-    \item If variable $z_i$ has a parent samples $z_j = (z_j^1, \ldots, z_j^K) \sim Q(z_j)$, then we can sample $z_i^{k_i}$ from $Q(z_i^{k_i} | z_j^{\pi(k_i)})$ for a (uniformly) random permutation $\pi$ of $[K]$.  \end{itemize}
-\end{frame}
+% \begin{frame}{MP-IS: Some Complications...}
+%   $$\mathcal{P}_\text{MP}(z) = \frac{1}{K^n} \sum_{\mathbf{k}\in [K]^n} \frac{P(x, z^\mathbf{k})}{Q_\text{MP}(z^\mathbf{k}, \mathbf{k})}.$$
+%   \begin{itemize}[<+->]
+%     \item We have to be careful about how we define $Q_\text{MP}$ over the space of all $K^n$ joint samples.
+%     \item We can use a hierarchical model:
+%       $$Q_\text{MP}(z, \mathbf{k}) = \prod_{i=1}^n Q_\text{MP}(z_i^{k_i} | z_j \text{ for } j \in \text{qa}(i)),$$
+%       where $\text{qa}(i)$ is the set of indices of parents of $z_i$ in the proposal model.
+%     \item If variable $z_i$ has a parent samples $z_j = (z_j^1, \ldots, z_j^K) \sim Q(z_j)$, then we can sample $z_i^{k_i}$ from $Q(z_i^{k_i} | z_j^{\pi(k_i)})$ for a (uniformly) random permutation $\pi$ of $[K]$.  \end{itemize}
+% \end{frame}
 
-\begin{frame}{MP-IS: Some More Complications...}
+\begin{frame}{MP-IS: Some Complications...}
   $$\mathcal{P}_\text{MP}(z) = \frac{1}{K^n} \sum_{\mathbf{k}\in [K]^n} \frac{P(x, z^\mathbf{k})}{Q_\text{MP}(z^\mathbf{k}, \mathbf{k})} = \frac{1}{K^n} \sum_{\mathbf{k}\in [K]^n} r_\mathbf{k}(z).$$
 
   \begin{itemize}[<+->]
-    \item At first glance, this thing doesn't look all that nice to compute...
+    \item We have to be careful about how we define $Q_\text{MP}$ over the space of all $K^n$ joint samples.
+    \item Also, at first glance, this thing doesn't look all that nice to compute...
     \item But we can exploit the conditional independencies in the model to render it tractable.
   \end{itemize}
 
 \end{frame}
 
 
-\begin{frame}{MP-IS: Some More Complications...}
+\begin{frame}{MP-IS: Some Complications...}
 
   \begin{figure}
     \includegraphics[width=0.6\textwidth]{img/alan/toy_model.drawio.pdf}
@@ -276,7 +277,7 @@
       $$
     \item Aitchison (2019) showed that MP-VI is a tighter bound than the global VI objective (IWAE):
       $$
-      \log P(x) \geq \mathcal{L}_\text{global}(\theta) = \mathbb{E}_{z \sim Q_\theta}[\log \mathcal{P}_\text{global}(z)]
+      \log P(x) \geq \mathcal{L}_\text{MP}(\theta) \geq \mathcal{L}_\text{global}(\theta) = \mathbb{E}_{z \sim Q(\theta)}[\log \mathcal{P}_\text{global}(z)]
       $$
   \end{itemize}
   \pause
@@ -300,7 +301,7 @@
       $$
       \frac{\partial}{\partial J}\bigg|_{J=0} \log \mathcal{P}_\text{MP}^\text{exp} (z, J) = \frac{\frac{\partial}{\partial J}\bigg|_{J=0} \mathcal{P}_\text{MP}^\text{exp} (z, J)}{\mathcal{P}_\text{MP}^\text{exp} (z, 0)} = m_\text{MP}(z)
       $$
-    \item By similar arguments: $J \in \mathbb{R}^K$ gives us marginal importance weights; $J \in \mathbb{R}^{K^{1+|pa(i)|}}$ gives us importance samples for $z_i$, given its parents $pa(i)$
+    \item By similar arguments: $J \in \mathbb{R}^K$ gives us marginal importance weights; $J \in \mathbb{R}^{K^{1+|pa(i)|}}$ gives us importance samples for $z_i$, given its parents $pa(i)$.
   \end{itemize}
   \vspace{0.1cm}
 \end{frame}
@@ -353,7 +354,7 @@
         \item Improved UQ for evals with Bayesian methods.
         \item Interpretability of evals with Bayesian hierarchical modelling and SAE-like approaches.
       \end{itemize}
-    \item The former direction led to an ICML spotlight position paper.%: `Position: Don't Use the CLT in LLM Evals With Fewer Than a Few Hundred Datapoints'.
+    \item The former direction led to an ICML spotlight position paper: \emph{`Position: Don't Use the CLT in LLM Evals With Fewer Than a Few Hundred Datapoints'}.
     \item The latter fell by the wayside, but is something I'd like to come back to at some point.
   \end{itemize}
 \end{frame}
@@ -485,9 +486,10 @@
       \item Draw $\theta \sim \text{Uniform}[0, 1]$.
       \item Draw $N \in \{3,10,30,100\}$ IID Bernoulli datapoints with parameter $\theta$.
       \item Construct intervals with various methods for various $1-\alpha$ confidence levels.
-      \item Repeat many times and calculate the true coverage and width of the intervals.
+      \item Repeat many times and calculate the true coverage and average width of the intervals.
       \begin{itemize}
         \item Coverage: What proportion of the time does a $1-\alpha$ confidence-level interval \alert{actually contain} the true parameter? (A frequentist metric, really.)
+        \item Ideally, $\text{coverage} = 1-\alpha$.
       \end{itemize}
   \end{itemize}
 \end{frame}
@@ -520,80 +522,6 @@
   \end{itemize}
 \end{frame}
 
-
-% --- Slide 8: Clustered Questions Setting ---
-\begin{frame}{Clustered Questions Setting: Frequentist Approach}
-  \begin{itemize}[<+->]
-    \item Instead of $N$ IID questions, we have $T$ tasks, each with $N_t$ IID questions.
-    \item Some tasks are easier than others.% (e.g. each task asks $N_t$ questions about a single piece of input text, with texts varying in difficulty).
-    \item Frequentist approach (Miller, 2024):
-    $$
-    \text{CI}_{1-\alpha}(\theta) = \bar{X} \pm z_{\alpha/2} \text{SE}_\text{Clustered}
-    $$
-    $$
-    \text{SE}_\text{Clustered} = \sqrt{\text{SE}_\text{CLT}^2 + \frac{1}{N^2}\sum_{t=1}^T \sum_{i=1}^{N_t} \sum_{j \neq i} (y_{i,t} - \bar{y})(y_{j,t} - \bar{y})}
-    $$
-    % \item An improved standard error, but fundamentally still using the CLT.
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame}{Clustered Questions Setting: A Bayesian Approach}
-  \begin{itemize}[<+->]
-    \item `Dispersion' parameter $d$ controls the range of difficulty across tasks,
-    $$d \sim \text{Gamma}(1, 1).$$
-    \item $\theta$ is the mean difficulty of the questions across tasks,
-    $$
-    \theta \sim \text{Beta}(1, 1) = \text{Uniform}[0, 1].
-    $$
-    \item $\theta_t$ is the difficulty of the questions in task $t$ (we ensure that $\mathbb{E}[\theta_t | \theta] = \theta$),
-    $$  
-    \theta_t \sim \text{Beta}(d \theta, d (1-\theta)).
-    $$
-    \item $\text{Var}(\theta_t | \theta) = \frac{\theta (1-\theta)}{d^2 + 1}$.
-    \item If $d$ is large, then $\theta_t$ is close to $\theta$ for all tasks.
-    \item If $d$ is small, then $\theta_t$ is more variable across tasks.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Clustered Questions Setting: A Bayesian Approach}
-  \vspace{-0.5cm}
-  $$
-    \begin{aligned}
-    d &\sim \text{Gamma}(1, 1), \quad 
-    \theta \sim \text{Beta}(1, 1), \quad 
-    \theta_t &\sim \text{Beta}(d \theta, d (1-\theta)), \quad
-    y_{i,t} \sim \text{Bernoulli}(\theta_t)
-    \end{aligned}
-  $$
-  \vspace{-0.5cm}
-  \pause
-  \begin{itemize}[<+->]
-    \item Can we integrate out the per-task difficulty parameters $\theta_t$?
-    \item Yes! The number of successes per task is \alert{Beta-Binomial} distributed: 
-      $$
-        \sum_{i=1}^{N_t} y_{i,t} = Y_t \sim \text{BetaBinomial}(N_t, d \theta, d (1-\theta)).
-      $$
-    \item Get an \alert{importance-weighted posterior} for $\theta$: draw prior samples $\{(\theta^{(k)}, d^{(k)})\}_{k=1}^K$, then compute weights
-      $$
-        w^{(k)} = \prod_{t=1}^T p(Y_t | \theta^{(k)}, d^{(k)}).
-      $$
-    \item Compute quantile-based Bayesian credible intervals for $\theta$.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Clustered Questions Setting: Bayesian Implementation}
-  \begin{figure}
-    \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/bayes_evals_code3.png}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Clustered Questions Setting: Results}
-  \begin{figure}
-      \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/pngs/exp4-2.png}
-      % \caption{Simulation results comparing Coverage and Width for different $N$.}
-  \end{figure}
-\end{frame}
 
 % --- Slide 9: Conclusion ---
 \begin{frame}{Conclusion}
@@ -793,7 +721,7 @@
 
 \begin{frame}{Bayesian Evals for Interpretability}
   \begin{itemize}[<+->]
-    \item Given the eval question and reponse for an LLM, use an SAE-like model to enforce sparsity on features across the latent dimensions.
+    \item Given eval questions and reponses, use an SAE-like model to enforce sparsity on features across the latent dimensions of `model performance' and `benchmark difficulty' vectors.
   \end{itemize}
   \vspace{-0.2cm}
   \pause
@@ -820,6 +748,82 @@
 \begin{frame}[allowframebreaks]{References}
   \nocite{*}
   \printbibliography
+\end{frame}
+
+
+
+% --- Slide 8: Clustered Questions Setting ---
+\begin{frame}{Clustered Questions Setting: Frequentist Approach}
+  \begin{itemize}[<+->]
+    \item Instead of $N$ IID questions, we have $T$ tasks, each with $N_t$ IID questions.
+    \item Some tasks are easier than others.% (e.g. each task asks $N_t$ questions about a single piece of input text, with texts varying in difficulty).
+    \item Frequentist approach (Miller, 2024):
+    $$
+    \text{CI}_{1-\alpha}(\theta) = \bar{X} \pm z_{\alpha/2} \text{SE}_\text{Clustered}
+    $$
+    $$
+    \text{SE}_\text{Clustered} = \sqrt{\text{SE}_\text{CLT}^2 + \frac{1}{N^2}\sum_{t=1}^T \sum_{i=1}^{N_t} \sum_{j \neq i} (y_{i,t} - \bar{y})(y_{j,t} - \bar{y})}
+    $$
+    % \item An improved standard error, but fundamentally still using the CLT.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Clustered Questions Setting: A Bayesian Approach}
+  \begin{itemize}[<+->]
+    \item `Dispersion' parameter $d$ controls the range of difficulty across tasks,
+    $$d \sim \text{Gamma}(1, 1).$$
+    \item $\theta$ is the mean difficulty of the questions across tasks,
+    $$
+    \theta \sim \text{Beta}(1, 1) = \text{Uniform}[0, 1].
+    $$
+    \item $\theta_t$ is the difficulty of the questions in task $t$ (we ensure that $\mathbb{E}[\theta_t | \theta] = \theta$),
+    $$  
+    \theta_t \sim \text{Beta}(d \theta, d (1-\theta)).
+    $$
+    \item $\text{Var}(\theta_t | \theta) = \frac{\theta (1-\theta)}{d^2 + 1}$.
+    \item If $d$ is large, then $\theta_t$ is close to $\theta$ for all tasks.
+    \item If $d$ is small, then $\theta_t$ is more variable across tasks.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Clustered Questions Setting: A Bayesian Approach}
+  \vspace{-0.5cm}
+  $$
+    \begin{aligned}
+    d &\sim \text{Gamma}(1, 1), \quad 
+    \theta \sim \text{Beta}(1, 1), \quad 
+    \theta_t &\sim \text{Beta}(d \theta, d (1-\theta)), \quad
+    y_{i,t} \sim \text{Bernoulli}(\theta_t)
+    \end{aligned}
+  $$
+  \vspace{-0.5cm}
+  \pause
+  \begin{itemize}[<+->]
+    \item Can we integrate out the per-task difficulty parameters $\theta_t$?
+    \item Yes! The number of successes per task is \alert{Beta-Binomial} distributed: 
+      $$
+        \sum_{i=1}^{N_t} y_{i,t} = Y_t \sim \text{BetaBinomial}(N_t, d \theta, d (1-\theta)).
+      $$
+    \item Get an \alert{importance-weighted posterior} for $\theta$: draw prior samples $\{(\theta^{(k)}, d^{(k)})\}_{k=1}^K$, then compute weights
+      $$
+        w^{(k)} = \prod_{t=1}^T p(Y_t | \theta^{(k)}, d^{(k)}).
+      $$
+    \item Compute quantile-based Bayesian credible intervals for $\theta$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Clustered Questions Setting: Bayesian Implementation}
+  \begin{figure}
+    \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/bayes_evals_code3.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Clustered Questions Setting: Results}
+  \begin{figure}
+      \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/pngs/exp4-2.png}
+      % \caption{Simulation results comparing Coverage and Width for different $N$.}
+  \end{figure}
 \end{frame}
 
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.14)  10 NOV 2025 11:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.14)  10 NOV 2025 15:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1237,73 +1237,65 @@ Package pdftex.def Info: img/alan/MPIS.pdf  used on input line 182.
 
 ]
 
+pdfTeX warning: pdflatex (file ./img/alan/toy_model.drawio.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<img/alan/toy_model.drawio.pdf, id=825, 424.4658pt x 59.2614pt>
+File: img/alan/toy_model.drawio.pdf Graphic file (type pdf)
+<use img/alan/toy_model.drawio.pdf>
+Package pdftex.def Info: img/alan/toy_model.drawio.pdf  used on input line 231.
+(pdftex.def)             Requested size: 260.00905pt x 36.3031pt.
+
+
 [28
 
-]
+ <./img/alan/toy_model.drawio.pdf>]
+File: img/alan/toy_model.drawio.pdf Graphic file (type pdf)
+<use img/alan/toy_model.drawio.pdf>
+Package pdftex.def Info: img/alan/toy_model.drawio.pdf  used on input line 231.
+(pdftex.def)             Requested size: 260.00905pt x 36.3031pt.
+
 
 [29
 
 ]
-
-pdfTeX warning: pdflatex (file ./img/alan/toy_model.drawio.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/alan/toy_model.drawio.pdf, id=879, 424.4658pt x 59.2614pt>
 File: img/alan/toy_model.drawio.pdf Graphic file (type pdf)
 <use img/alan/toy_model.drawio.pdf>
-Package pdftex.def Info: img/alan/toy_model.drawio.pdf  used on input line 230.
+Package pdftex.def Info: img/alan/toy_model.drawio.pdf  used on input line 231.
 (pdftex.def)             Requested size: 260.00905pt x 36.3031pt.
 
 
 [30
 
- <./img/alan/toy_model.drawio.pdf>]
+]
 File: img/alan/toy_model.drawio.pdf Graphic file (type pdf)
 <use img/alan/toy_model.drawio.pdf>
-Package pdftex.def Info: img/alan/toy_model.drawio.pdf  used on input line 230.
+Package pdftex.def Info: img/alan/toy_model.drawio.pdf  used on input line 231.
 (pdftex.def)             Requested size: 260.00905pt x 36.3031pt.
 
 
 [31
 
 ]
-File: img/alan/toy_model.drawio.pdf Graphic file (type pdf)
-<use img/alan/toy_model.drawio.pdf>
-Package pdftex.def Info: img/alan/toy_model.drawio.pdf  used on input line 230.
-(pdftex.def)             Requested size: 260.00905pt x 36.3031pt.
-
 
 [32
 
 ]
-File: img/alan/toy_model.drawio.pdf Graphic file (type pdf)
-<use img/alan/toy_model.drawio.pdf>
-Package pdftex.def Info: img/alan/toy_model.drawio.pdf  used on input line 230.
-(pdftex.def)             Requested size: 260.00905pt x 36.3031pt.
-
 
 [33
 
 ]
-
-[34
-
-]
-
-[35
-
-]
-<img/alan/movielens_code_1.png, id=1050, 1025.8325pt x 737.75626pt>
+<img/alan/movielens_code_1.png, id=995, 1025.8325pt x 737.75626pt>
 File: img/alan/movielens_code_1.png Graphic file (type png)
 <use img/alan/movielens_code_1.png>
-Package pdftex.def Info: img/alan/movielens_code_1.png  used on input line 269.
+Package pdftex.def Info: img/alan/movielens_code_1.png  used on input line 270.
 (pdftex.def)             Requested size: 273.00368pt x 196.33751pt.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 269.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 270.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <7> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 269.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 270.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 269.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 270.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <9> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 269.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 270.
 
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -1319,42 +1311,50 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 
 
-[36
+[34
 
  <./img/alan/movielens_code_1.png>]
-<img/alan/movielens_code_2.png, id=1083, 1466.47874pt x 401.5pt>
+<img/alan/movielens_code_2.png, id=1029, 1466.47874pt x 401.5pt>
 File: img/alan/movielens_code_2.png Graphic file (type png)
 <use img/alan/movielens_code_2.png>
-Package pdftex.def Info: img/alan/movielens_code_2.png  used on input line 287.
+Package pdftex.def Info: img/alan/movielens_code_2.png  used on input line 288.
+(pdftex.def)             Requested size: 390.00697pt x 106.77682pt.
+
+
+[35
+
+ <./img/alan/movielens_code_2.png>]
+File: img/alan/movielens_code_2.png Graphic file (type png)
+<use img/alan/movielens_code_2.png>
+Package pdftex.def Info: img/alan/movielens_code_2.png  used on input line 288.
+(pdftex.def)             Requested size: 390.00697pt x 106.77682pt.
+
+
+[36
+
+]
+File: img/alan/movielens_code_2.png Graphic file (type png)
+<use img/alan/movielens_code_2.png>
+Package pdftex.def Info: img/alan/movielens_code_2.png  used on input line 288.
 (pdftex.def)             Requested size: 390.00697pt x 106.77682pt.
 
 
 [37
 
- <./img/alan/movielens_code_2.png>]
+]
 File: img/alan/movielens_code_2.png Graphic file (type png)
 <use img/alan/movielens_code_2.png>
-Package pdftex.def Info: img/alan/movielens_code_2.png  used on input line 287.
+Package pdftex.def Info: img/alan/movielens_code_2.png  used on input line 288.
 (pdftex.def)             Requested size: 390.00697pt x 106.77682pt.
 
 
 [38
 
 ]
-File: img/alan/movielens_code_2.png Graphic file (type png)
-<use img/alan/movielens_code_2.png>
-Package pdftex.def Info: img/alan/movielens_code_2.png  used on input line 287.
-(pdftex.def)             Requested size: 390.00697pt x 106.77682pt.
-
 
 [39
 
 ]
-File: img/alan/movielens_code_2.png Graphic file (type png)
-<use img/alan/movielens_code_2.png>
-Package pdftex.def Info: img/alan/movielens_code_2.png  used on input line 287.
-(pdftex.def)             Requested size: 390.00697pt x 106.77682pt.
-
 
 [40
 
@@ -1367,24 +1367,24 @@ Package pdftex.def Info: img/alan/movielens_code_2.png  used on input line 287.
 [42
 
 ]
+<img/alan/QEM_results.pdf, id=1246, 650.43pt x 505.89pt>
+File: img/alan/QEM_results.pdf Graphic file (type pdf)
+<use img/alan/QEM_results.pdf>
+Package pdftex.def Info: img/alan/QEM_results.pdf  used on input line 326.
+(pdftex.def)             Requested size: 242.88702pt x 188.9132pt.
+
 
 [43
 
-]
+ <./img/alan/QEM_results.pdf>]
 
 [44
 
 ]
-<img/alan/QEM_results.pdf, id=1301, 650.43pt x 505.89pt>
-File: img/alan/QEM_results.pdf Graphic file (type pdf)
-<use img/alan/QEM_results.pdf>
-Package pdftex.def Info: img/alan/QEM_results.pdf  used on input line 325.
-(pdftex.def)             Requested size: 242.88702pt x 188.9132pt.
-
 
 [45
 
- <./img/alan/QEM_results.pdf>]
+]
 
 [46
 
@@ -1397,43 +1397,69 @@ Package pdftex.def Info: img/alan/QEM_results.pdf  used on input line 325.
 [48
 
 ]
+File: img/laurence.png Graphic file (type png)
+<use img/laurence.png>
+Package pdftex.def Info: img/laurence.png  used on input line 360.
+(pdftex.def)             Requested size: 60.84729pt x 60.85204pt.
+<img/desi.jpg, id=1466, 271.0125pt x 271.0125pt>
+File: img/desi.jpg Graphic file (type jpg)
+<use img/desi.jpg>
+Package pdftex.def Info: img/desi.jpg  used on input line 360.
+(pdftex.def)             Requested size: 60.85112pt x 60.85204pt.
+File: img/sam.png Graphic file (type png)
+<use img/sam.png>
+Package pdftex.def Info: img/sam.png  used on input line 360.
+(pdftex.def)             Requested size: 60.84729pt x 60.85204pt.
+
 
 [49
 
-]
+ <./img/desi.jpg>]
+File: img/laurence.png Graphic file (type png)
+<use img/laurence.png>
+Package pdftex.def Info: img/laurence.png  used on input line 360.
+(pdftex.def)             Requested size: 60.84729pt x 60.85204pt.
+File: img/desi.jpg Graphic file (type jpg)
+<use img/desi.jpg>
+Package pdftex.def Info: img/desi.jpg  used on input line 360.
+(pdftex.def)             Requested size: 60.85112pt x 60.85204pt.
+File: img/sam.png Graphic file (type png)
+<use img/sam.png>
+Package pdftex.def Info: img/sam.png  used on input line 360.
+(pdftex.def)             Requested size: 60.84729pt x 60.85204pt.
+
 
 [50
 
 ]
 File: img/laurence.png Graphic file (type png)
 <use img/laurence.png>
-Package pdftex.def Info: img/laurence.png  used on input line 359.
+Package pdftex.def Info: img/laurence.png  used on input line 360.
 (pdftex.def)             Requested size: 60.84729pt x 60.85204pt.
-<img/desi.jpg, id=1522, 271.0125pt x 271.0125pt>
 File: img/desi.jpg Graphic file (type jpg)
 <use img/desi.jpg>
-Package pdftex.def Info: img/desi.jpg  used on input line 359.
+Package pdftex.def Info: img/desi.jpg  used on input line 360.
 (pdftex.def)             Requested size: 60.85112pt x 60.85204pt.
 File: img/sam.png Graphic file (type png)
 <use img/sam.png>
-Package pdftex.def Info: img/sam.png  used on input line 359.
+Package pdftex.def Info: img/sam.png  used on input line 360.
 (pdftex.def)             Requested size: 60.84729pt x 60.85204pt.
 
 
 [51
 
- <./img/desi.jpg>]
+]
 File: img/laurence.png Graphic file (type png)
 <use img/laurence.png>
-Package pdftex.def Info: img/laurence.png  used on input line 359.
+Package pdftex.def Info: img/laurence.png  used on input line 360.
 (pdftex.def)             Requested size: 60.84729pt x 60.85204pt.
 File: img/desi.jpg Graphic file (type jpg)
 <use img/desi.jpg>
-Package pdftex.def Info: img/desi.jpg  used on input line 359.
+Package pdftex.def Info: img/desi.jpg  used on input line 360.
 (pdftex.def)             Requested size: 60.85112pt x 60.85204pt.
 File: img/sam.png Graphic file (type png)
 <use img/sam.png>
-Package pdftex.def Info: img/sam.png  used on input line 359.
+Package pdftex.def Info: img/sam.png  used on input line 360.
 (pdftex.def)             Requested size: 60.84729pt x 60.85204pt.
 
 
@@ -1442,56 +1468,38 @@ Package pdftex.def Info: img/sam.png  used on input line 359.
 ]
 File: img/laurence.png Graphic file (type png)
 <use img/laurence.png>
-Package pdftex.def Info: img/laurence.png  used on input line 359.
+Package pdftex.def Info: img/laurence.png  used on input line 360.
 (pdftex.def)             Requested size: 60.84729pt x 60.85204pt.
 File: img/desi.jpg Graphic file (type jpg)
 <use img/desi.jpg>
-Package pdftex.def Info: img/desi.jpg  used on input line 359.
+Package pdftex.def Info: img/desi.jpg  used on input line 360.
 (pdftex.def)             Requested size: 60.85112pt x 60.85204pt.
 File: img/sam.png Graphic file (type png)
 <use img/sam.png>
-Package pdftex.def Info: img/sam.png  used on input line 359.
+Package pdftex.def Info: img/sam.png  used on input line 360.
 (pdftex.def)             Requested size: 60.84729pt x 60.85204pt.
 
 
 [53
 
 ]
-File: img/laurence.png Graphic file (type png)
-<use img/laurence.png>
-Package pdftex.def Info: img/laurence.png  used on input line 359.
-(pdftex.def)             Requested size: 60.84729pt x 60.85204pt.
-File: img/desi.jpg Graphic file (type jpg)
-<use img/desi.jpg>
-Package pdftex.def Info: img/desi.jpg  used on input line 359.
-(pdftex.def)             Requested size: 60.85112pt x 60.85204pt.
-File: img/sam.png Graphic file (type png)
-<use img/sam.png>
-Package pdftex.def Info: img/sam.png  used on input line 359.
-(pdftex.def)             Requested size: 60.84729pt x 60.85204pt.
+Overfull \vbox (12.39894pt too high) detected at line 385
+ []
+
 
 
 [54
 
 ]
-File: img/laurence.png Graphic file (type png)
-<use img/laurence.png>
-Package pdftex.def Info: img/laurence.png  used on input line 359.
-(pdftex.def)             Requested size: 60.84729pt x 60.85204pt.
-File: img/desi.jpg Graphic file (type jpg)
-<use img/desi.jpg>
-Package pdftex.def Info: img/desi.jpg  used on input line 359.
-(pdftex.def)             Requested size: 60.85112pt x 60.85204pt.
-File: img/sam.png Graphic file (type png)
-<use img/sam.png>
-Package pdftex.def Info: img/sam.png  used on input line 359.
-(pdftex.def)             Requested size: 60.84729pt x 60.85204pt.
+Overfull \vbox (12.39894pt too high) detected at line 385
+ []
+
 
 
 [55
 
 ]
-Overfull \vbox (12.39894pt too high) detected at line 384
+Overfull \vbox (12.39894pt too high) detected at line 385
  []
 
 
@@ -1499,15 +1507,37 @@ Overfull \vbox (12.39894pt too high) detected at line 384
 [56
 
 ]
-Overfull \vbox (12.39894pt too high) detected at line 384
+<img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png, id=1714, 234.8775pt x 216.81pt>
+File: img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png Graphic file (type png)
+<use img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png>
+Package pdftex.def Info: img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png  used on input line 407.
+(pdftex.def)             Requested size: 129.46257pt x 119.50148pt.
+<img/bayes_evals/langchain_clt.png, id=1715, 1465.475pt x 893.3375pt>
+File: img/bayes_evals/langchain_clt.png Graphic file (type png)
+<use img/bayes_evals/langchain_clt.png>
+Package pdftex.def Info: img/bayes_evals/langchain_clt.png  used on input line 407.
+(pdftex.def)             Requested size: 196.01932pt x 119.50148pt.
+
+Overfull \hbox (1.01584pt too wide) in paragraph at lines 407--407
+ [] 
  []
 
 
 
 [57
 
-]
-Overfull \vbox (12.39894pt too high) detected at line 384
+ <./img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png> <./img/bayes_evals/langchain_clt.png>]
+File: img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png Graphic file (type png)
+<use img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png>
+Package pdftex.def Info: img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png  used on input line 407.
+(pdftex.def)             Requested size: 129.46257pt x 119.50148pt.
+File: img/bayes_evals/langchain_clt.png Graphic file (type png)
+<use img/bayes_evals/langchain_clt.png>
+Package pdftex.def Info: img/bayes_evals/langchain_clt.png  used on input line 407.
+(pdftex.def)             Requested size: 196.01932pt x 119.50148pt.
+
+Overfull \hbox (1.01584pt too wide) in paragraph at lines 407--407
+ [] 
  []
 
 
@@ -1515,57 +1545,37 @@ Overfull \vbox (12.39894pt too high) detected at line 384
 [58
 
 ]
-<img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png, id=1768, 234.8775pt x 216.81pt>
-File: img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png Graphic file (type png)
-<use img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png>
-Package pdftex.def Info: img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png  used on input line 406.
-(pdftex.def)             Requested size: 129.46257pt x 119.50148pt.
-<img/bayes_evals/langchain_clt.png, id=1769, 1465.475pt x 893.3375pt>
-File: img/bayes_evals/langchain_clt.png Graphic file (type png)
-<use img/bayes_evals/langchain_clt.png>
-Package pdftex.def Info: img/bayes_evals/langchain_clt.png  used on input line 406.
-(pdftex.def)             Requested size: 196.01932pt x 119.50148pt.
-
-Overfull \hbox (1.01584pt too wide) in paragraph at lines 406--406
- [] 
- []
-
+<img/bayes_evals/bayes_evals_code1.png, id=1771, 1437.37pt x 150.5625pt>
+File: img/bayes_evals/bayes_evals_code1.png Graphic file (type png)
+<use img/bayes_evals/bayes_evals_code1.png>
+Package pdftex.def Info: img/bayes_evals/bayes_evals_code1.png  used on input line 445.
+(pdftex.def)             Requested size: 346.67653pt x 36.31262pt.
 
 
 [59
 
- <./img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png> <./img/bayes_evals/langchain_clt.png>]
-File: img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png Graphic file (type png)
-<use img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png>
-Package pdftex.def Info: img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png  used on input line 406.
-(pdftex.def)             Requested size: 129.46257pt x 119.50148pt.
-File: img/bayes_evals/langchain_clt.png Graphic file (type png)
-<use img/bayes_evals/langchain_clt.png>
-Package pdftex.def Info: img/bayes_evals/langchain_clt.png  used on input line 406.
-(pdftex.def)             Requested size: 196.01932pt x 119.50148pt.
-
-Overfull \hbox (1.01584pt too wide) in paragraph at lines 406--406
- [] 
- []
-
+ <./img/bayes_evals/bayes_evals_code1.png>]
+File: img/bayes_evals/bayes_evals_code1.png Graphic file (type png)
+<use img/bayes_evals/bayes_evals_code1.png>
+Package pdftex.def Info: img/bayes_evals/bayes_evals_code1.png  used on input line 445.
+(pdftex.def)             Requested size: 346.67653pt x 36.31262pt.
 
 
 [60
 
 ]
-<img/bayes_evals/bayes_evals_code1.png, id=1824, 1437.37pt x 150.5625pt>
 File: img/bayes_evals/bayes_evals_code1.png Graphic file (type png)
 <use img/bayes_evals/bayes_evals_code1.png>
-Package pdftex.def Info: img/bayes_evals/bayes_evals_code1.png  used on input line 444.
+Package pdftex.def Info: img/bayes_evals/bayes_evals_code1.png  used on input line 445.
 (pdftex.def)             Requested size: 346.67653pt x 36.31262pt.
 
 
 [61
 
- <./img/bayes_evals/bayes_evals_code1.png>]
+]
 File: img/bayes_evals/bayes_evals_code1.png Graphic file (type png)
 <use img/bayes_evals/bayes_evals_code1.png>
-Package pdftex.def Info: img/bayes_evals/bayes_evals_code1.png  used on input line 444.
+Package pdftex.def Info: img/bayes_evals/bayes_evals_code1.png  used on input line 445.
 (pdftex.def)             Requested size: 346.67653pt x 36.31262pt.
 
 
@@ -1574,51 +1584,59 @@ Package pdftex.def Info: img/bayes_evals/bayes_evals_code1.png  used on input li
 ]
 File: img/bayes_evals/bayes_evals_code1.png Graphic file (type png)
 <use img/bayes_evals/bayes_evals_code1.png>
-Package pdftex.def Info: img/bayes_evals/bayes_evals_code1.png  used on input line 444.
+Package pdftex.def Info: img/bayes_evals/bayes_evals_code1.png  used on input line 445.
 (pdftex.def)             Requested size: 346.67653pt x 36.31262pt.
 
 
 [63
 
 ]
-File: img/bayes_evals/bayes_evals_code1.png Graphic file (type png)
-<use img/bayes_evals/bayes_evals_code1.png>
-Package pdftex.def Info: img/bayes_evals/bayes_evals_code1.png  used on input line 444.
-(pdftex.def)             Requested size: 346.67653pt x 36.31262pt.
+<img/bayes_evals/bayes_evals_code2.png, id=1906, 1440.38126pt x 200.75pt>
+File: img/bayes_evals/bayes_evals_code2.png Graphic file (type png)
+<use img/bayes_evals/bayes_evals_code2.png>
+Package pdftex.def Info: img/bayes_evals/bayes_evals_code2.png  used on input line 478.
+(pdftex.def)             Requested size: 346.67653pt x 48.31575pt.
+
+Overfull \vbox (1.46031pt too high) detected at line 478
+ []
+
 
 
 [64
 
-]
-File: img/bayes_evals/bayes_evals_code1.png Graphic file (type png)
-<use img/bayes_evals/bayes_evals_code1.png>
-Package pdftex.def Info: img/bayes_evals/bayes_evals_code1.png  used on input line 444.
-(pdftex.def)             Requested size: 346.67653pt x 36.31262pt.
+ <./img/bayes_evals/bayes_evals_code2.png>]
+File: img/bayes_evals/bayes_evals_code2.png Graphic file (type png)
+<use img/bayes_evals/bayes_evals_code2.png>
+Package pdftex.def Info: img/bayes_evals/bayes_evals_code2.png  used on input line 478.
+(pdftex.def)             Requested size: 346.67653pt x 48.31575pt.
+
+Overfull \vbox (1.46031pt too high) detected at line 478
+ []
+
 
 
 [65
 
 ]
-<img/bayes_evals/bayes_evals_code2.png, id=1960, 1440.38126pt x 200.75pt>
 File: img/bayes_evals/bayes_evals_code2.png Graphic file (type png)
 <use img/bayes_evals/bayes_evals_code2.png>
-Package pdftex.def Info: img/bayes_evals/bayes_evals_code2.png  used on input line 477.
+Package pdftex.def Info: img/bayes_evals/bayes_evals_code2.png  used on input line 478.
 (pdftex.def)             Requested size: 346.67653pt x 48.31575pt.
 
-Overfull \vbox (1.46031pt too high) detected at line 477
+Overfull \vbox (1.46031pt too high) detected at line 478
  []
 
 
 
 [66
 
- <./img/bayes_evals/bayes_evals_code2.png>]
+]
 File: img/bayes_evals/bayes_evals_code2.png Graphic file (type png)
 <use img/bayes_evals/bayes_evals_code2.png>
-Package pdftex.def Info: img/bayes_evals/bayes_evals_code2.png  used on input line 477.
+Package pdftex.def Info: img/bayes_evals/bayes_evals_code2.png  used on input line 478.
 (pdftex.def)             Requested size: 346.67653pt x 48.31575pt.
 
-Overfull \vbox (1.46031pt too high) detected at line 477
+Overfull \vbox (1.46031pt too high) detected at line 478
  []
 
 
@@ -1628,10 +1646,10 @@ Overfull \vbox (1.46031pt too high) detected at line 477
 ]
 File: img/bayes_evals/bayes_evals_code2.png Graphic file (type png)
 <use img/bayes_evals/bayes_evals_code2.png>
-Package pdftex.def Info: img/bayes_evals/bayes_evals_code2.png  used on input line 477.
+Package pdftex.def Info: img/bayes_evals/bayes_evals_code2.png  used on input line 478.
 (pdftex.def)             Requested size: 346.67653pt x 48.31575pt.
 
-Overfull \vbox (1.46031pt too high) detected at line 477
+Overfull \vbox (1.46031pt too high) detected at line 478
  []
 
 
@@ -1641,10 +1659,10 @@ Overfull \vbox (1.46031pt too high) detected at line 477
 ]
 File: img/bayes_evals/bayes_evals_code2.png Graphic file (type png)
 <use img/bayes_evals/bayes_evals_code2.png>
-Package pdftex.def Info: img/bayes_evals/bayes_evals_code2.png  used on input line 477.
+Package pdftex.def Info: img/bayes_evals/bayes_evals_code2.png  used on input line 478.
 (pdftex.def)             Requested size: 346.67653pt x 48.31575pt.
 
-Overfull \vbox (1.46031pt too high) detected at line 477
+Overfull \vbox (1.46031pt too high) detected at line 478
  []
 
 
@@ -1654,10 +1672,10 @@ Overfull \vbox (1.46031pt too high) detected at line 477
 ]
 File: img/bayes_evals/bayes_evals_code2.png Graphic file (type png)
 <use img/bayes_evals/bayes_evals_code2.png>
-Package pdftex.def Info: img/bayes_evals/bayes_evals_code2.png  used on input line 477.
+Package pdftex.def Info: img/bayes_evals/bayes_evals_code2.png  used on input line 478.
 (pdftex.def)             Requested size: 346.67653pt x 48.31575pt.
 
-Overfull \vbox (1.46031pt too high) detected at line 477
+Overfull \vbox (1.46031pt too high) detected at line 478
  []
 
 
@@ -1665,28 +1683,10 @@ Overfull \vbox (1.46031pt too high) detected at line 477
 [70
 
 ]
-File: img/bayes_evals/bayes_evals_code2.png Graphic file (type png)
-<use img/bayes_evals/bayes_evals_code2.png>
-Package pdftex.def Info: img/bayes_evals/bayes_evals_code2.png  used on input line 477.
-(pdftex.def)             Requested size: 346.67653pt x 48.31575pt.
-
-Overfull \vbox (1.46031pt too high) detected at line 477
- []
-
-
 
 [71
 
 ]
-File: img/bayes_evals/bayes_evals_code2.png Graphic file (type png)
-<use img/bayes_evals/bayes_evals_code2.png>
-Package pdftex.def Info: img/bayes_evals/bayes_evals_code2.png  used on input line 477.
-(pdftex.def)             Requested size: 346.67653pt x 48.31575pt.
-
-Overfull \vbox (1.46031pt too high) detected at line 477
- []
-
-
 
 [72
 
@@ -1707,20 +1707,20 @@ Overfull \vbox (1.46031pt too high) detected at line 477
 [76
 
 ]
-
-[77
-
-]
-<img/bayes_evals/pngs/exp4-1.png, id=2281, 433.62pt x 220.4235pt>
+<img/bayes_evals/pngs/exp4-1.png, id=2254, 433.62pt x 220.4235pt>
 File: img/bayes_evals/pngs/exp4-1.png Graphic file (type png)
 <use img/bayes_evals/pngs/exp4-1.png>
-Package pdftex.def Info: img/bayes_evals/pngs/exp4-1.png  used on input line 501.
+Package pdftex.def Info: img/bayes_evals/pngs/exp4-1.png  used on input line 503.
 (pdftex.def)             Requested size: 383.06888pt x 194.72665pt.
 
 
-[78
+[77
 
  <./img/bayes_evals/pngs/exp4-1.png>]
+
+[78
+
+]
 
 [79
 
@@ -1781,54 +1781,301 @@ Package pdftex.def Info: img/bayes_evals/pngs/exp4-1.png  used on input line 501
 [93
 
 ]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
 
 [94
 
 ]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
 
 [95
 
 ]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
 
 [96
 
 ]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
 
 [97
 
 ]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
 
 [98
 
 ]
+<img/bayes_evals/fig/pretrained_bbh_subset.pdf, id=2844, 2168.1pt x 578.16pt>
+File: img/bayes_evals/fig/pretrained_bbh_subset.pdf Graphic file (type pdf)
+<use img/bayes_evals/fig/pretrained_bbh_subset.pdf>
+Package pdftex.def Info: img/bayes_evals/fig/pretrained_bbh_subset.pdf  used on input line 720.
+(pdftex.def)             Requested size: 433.31458pt x 115.55055pt.
+
 
 [99
 
-]
-<img/bayes_evals/bayes_evals_code3.png, id=2869, 1631.09375pt x 712.6625pt>
-File: img/bayes_evals/bayes_evals_code3.png Graphic file (type png)
-<use img/bayes_evals/bayes_evals_code3.png>
-Package pdftex.def Info: img/bayes_evals/bayes_evals_code3.png  used on input line 589.
-(pdftex.def)             Requested size: 433.33289pt x 189.33313pt.
+ <./img/bayes_evals/fig/pretrained_bbh_subset.pdf>]
+File: img/bayes_evals/fig/pretrained_bbh_subset.pdf Graphic file (type pdf)
+<use img/bayes_evals/fig/pretrained_bbh_subset.pdf>
+Package pdftex.def Info: img/bayes_evals/fig/pretrained_bbh_subset.pdf  used on input line 720.
+(pdftex.def)             Requested size: 433.31458pt x 115.55055pt.
 
 
 [100
 
- <./img/bayes_evals/bayes_evals_code3.png>]
-<img/bayes_evals/pngs/exp4-2.png, id=2898, 433.62pt x 220.4235pt>
-File: img/bayes_evals/pngs/exp4-2.png Graphic file (type png)
-<use img/bayes_evals/pngs/exp4-2.png>
-Package pdftex.def Info: img/bayes_evals/pngs/exp4-2.png  used on input line 596.
-(pdftex.def)             Requested size: 383.06888pt x 194.72665pt.
+]
+<img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf, id=2951, 2168.1pt x 1156.32pt>
+File: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf Graphic file (type pdf)
+<use img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>
+Package pdftex.def Info: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf  used on input line 731.
+(pdftex.def)             Requested size: 351.40231pt x 187.41457pt.
+
+Overfull \vbox (8.05452pt too high) detected at line 731
+ []
+
 
 
 [101
 
- <./img/bayes_evals/pngs/exp4-2.png>]
+ <./img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>]
+File: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf Graphic file (type pdf)
+<use img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>
+Package pdftex.def Info: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf  used on input line 731.
+(pdftex.def)             Requested size: 351.40231pt x 187.41457pt.
+
+Overfull \vbox (8.05452pt too high) detected at line 731
+ []
+
+
 
 [102
 
 ]
+File: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf Graphic file (type pdf)
+<use img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>
+Package pdftex.def Info: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf  used on input line 731.
+(pdftex.def)             Requested size: 351.40231pt x 187.41457pt.
+
+Overfull \vbox (8.05452pt too high) detected at line 731
+ []
+
+
 
 [103
 
@@ -1846,11 +2093,17 @@ Package pdftex.def Info: img/bayes_evals/pngs/exp4-2.png  used on input line 596
 
 ]
 
+LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <10.95> not available
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 751.
+
+
+
 [107
 
-]
+ </usr/local/texlive/2024/texmf-dist/tex/latex/beamer/beamericonarticle.pdf>]
 
 [108
+
 
 ]
 
@@ -1861,301 +2114,42 @@ Package pdftex.def Info: img/bayes_evals/pngs/exp4-2.png  used on input line 596
 [110
 
 ]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
 
 [111
 
 ]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
 
 [112
 
 ]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
 
 [113
 
 ]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
 
 [114
 
 ]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
 
 [115
 
 ]
-<img/bayes_evals/fig/pretrained_bbh_subset.pdf, id=3302, 2168.1pt x 578.16pt>
-File: img/bayes_evals/fig/pretrained_bbh_subset.pdf Graphic file (type pdf)
-<use img/bayes_evals/fig/pretrained_bbh_subset.pdf>
-Package pdftex.def Info: img/bayes_evals/fig/pretrained_bbh_subset.pdf  used on input line 792.
-(pdftex.def)             Requested size: 433.31458pt x 115.55055pt.
-
 
 [116
 
- <./img/bayes_evals/fig/pretrained_bbh_subset.pdf>]
-File: img/bayes_evals/fig/pretrained_bbh_subset.pdf Graphic file (type pdf)
-<use img/bayes_evals/fig/pretrained_bbh_subset.pdf>
-Package pdftex.def Info: img/bayes_evals/fig/pretrained_bbh_subset.pdf  used on input line 792.
-(pdftex.def)             Requested size: 433.31458pt x 115.55055pt.
-
+]
 
 [117
 
 ]
-<img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf, id=3410, 2168.1pt x 1156.32pt>
-File: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf Graphic file (type pdf)
-<use img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>
-Package pdftex.def Info: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf  used on input line 803.
-(pdftex.def)             Requested size: 351.40231pt x 187.41457pt.
-
-Overfull \vbox (8.05452pt too high) detected at line 803
- []
-
-
 
 [118
 
- <./img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>]
-File: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf Graphic file (type pdf)
-<use img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>
-Package pdftex.def Info: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf  used on input line 803.
-(pdftex.def)             Requested size: 351.40231pt x 187.41457pt.
-
-Overfull \vbox (8.05452pt too high) detected at line 803
- []
-
-
+]
 
 [119
 
 ]
-File: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf Graphic file (type pdf)
-<use img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>
-Package pdftex.def Info: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf  used on input line 803.
-(pdftex.def)             Requested size: 351.40231pt x 187.41457pt.
-
-Overfull \vbox (8.05452pt too high) detected at line 803
- []
-
-
 
 [120
 
@@ -2168,24 +2162,26 @@ Overfull \vbox (8.05452pt too high) detected at line 803
 [122
 
 ]
+<img/bayes_evals/bayes_evals_code3.png, id=3616, 1631.09375pt x 712.6625pt>
+File: img/bayes_evals/bayes_evals_code3.png Graphic file (type png)
+<use img/bayes_evals/bayes_evals_code3.png>
+Package pdftex.def Info: img/bayes_evals/bayes_evals_code3.png  used on input line 820.
+(pdftex.def)             Requested size: 433.33289pt x 189.33313pt.
+
 
 [123
 
-]
-
-LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <10.95> not available
-(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 823.
-
+ <./img/bayes_evals/bayes_evals_code3.png>]
+<img/bayes_evals/pngs/exp4-2.png, id=3644, 433.62pt x 220.4235pt>
+File: img/bayes_evals/pngs/exp4-2.png Graphic file (type png)
+<use img/bayes_evals/pngs/exp4-2.png>
+Package pdftex.def Info: img/bayes_evals/pngs/exp4-2.png  used on input line 827.
+(pdftex.def)             Requested size: 383.06888pt x 194.72665pt.
 
 
 [124
 
- </usr/local/texlive/2024/texmf-dist/tex/latex/beamer/beamericonarticle.pdf>]
-
-[125
-
-
-]
+ <./img/bayes_evals/pngs/exp4-2.png>]
 \tf@nav=\write7
 \openout7 = `slides.nav'.
 
@@ -2207,18 +2203,18 @@ Package logreq Info: Writing requests to 'slides.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35671 strings out of 473207
- 739963 string characters out of 5716288
+ 35667 strings out of 473207
+ 739926 string characters out of 5716288
  1560883 words of memory out of 5000000
- 58017 multiletter control sequences out of 15000+600000
+ 58015 multiletter control sequences out of 15000+600000
  580738 words of font info for 112 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,123p,1612b,1553s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on slides.pdf (125 pages, 2579360 bytes).
+Output written on slides.pdf (124 pages, 2576004 bytes).
 PDF statistics:
- 3858 PDF objects out of 4296 (max. 8388607)
- 3393 compressed objects within 34 object streams
- 260 named destinations out of 1000 (max. 500000)
+ 3830 PDF objects out of 4296 (max. 8388607)
+ 3367 compressed objects within 34 object streams
+ 258 named destinations out of 1000 (max. 500000)
  321 words of extra memory for PDF output out of 10000 (max. 10000000)
 
