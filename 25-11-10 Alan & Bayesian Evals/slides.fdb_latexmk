@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber slides"] 0 "slides.bcf" "slides.bbl" "slides" 1762787510.35273 -1
+["biber slides"] 0 "slides.bcf" "slides.bbl" "slides" 1762968351.02909 -1
   "refs.bib" 1762720531.00552 8111 1ae2476cec64ed0ea69b8b412515a1e9 ""
-  "slides.bcf" 1762787510.2554 108605 e19cb51b18d12c385a8c138f37d80ff0 "pdflatex"
+  "slides.bcf" 1762968350.91051 108605 e19cb51b18d12c385a8c138f37d80ff0 "pdflatex"
   (generated)
   "slides.bbl"
   "slides.blg"
   (rewritten before read)
-["pdflatex"] 1762787505.48337 "/home/dg22309/Documents/presentations/25-11-10 Alan & Bayesian Evals/slides.tex" "slides.pdf" "slides" 1762787510.35293 0
-  "/home/dg22309/Documents/presentations/25-11-10 Alan & Bayesian Evals/slides.tex" 1762787503.11132 34454 36c8a77177d1dad0f38d8faf5f4ba40d ""
+["pdflatex"] 1762968345.65484 "/home/dg22309/Documents/presentations/25-11-10 Alan & Bayesian Evals/slides.tex" "slides.pdf" "slides" 1762968351.02965 0
+  "/home/dg22309/Documents/presentations/25-11-10 Alan & Bayesian Evals/slides.tex" 1762968345.39349 35860 6c2c6589bb1a48a86e2a781c8ba21d92 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1246382020 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1246382020 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
@@ -299,23 +299,25 @@
   "img/bayes_evals/bayes_evals_code1.png" 1762716137.19921 32057 2be3845f9d6dd8ae79cfba08acb1c7a1 ""
   "img/bayes_evals/bayes_evals_code2.png" 1762716691.82357 48200 0ddc0826336c1b92b0472233c06c9c17 ""
   "img/bayes_evals/bayes_evals_code3.png" 1762773026.72082 181679 b69c1b629a5388b45179da004c48b8fc ""
-  "img/bayes_evals/fig/pretrained_bbh_subset.pdf" 1762774345.79991 47669 d4cc3e5e570136c03989d552de69922f ""
+  "img/bayes_evals/fig/exp4-1_beta-100-20_mismatch.pdf" 1762711235.13262 54405 b93f4fa576ade2e0d1ddb7b569eeda01 ""
+  "img/bayes_evals/fig/exp4-1_inkscape.pdf" 1762968293.48427 100746 77b7acb8513a30e5bca7fa2a50a2c333 ""
+  "img/bayes_evals/fig/exp4-1_top_row_only.pdf" 1762966871.61693 100768 5f3b18a715f2050092aace335720d757 ""
   "img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf" 1762771318.60979 36399 10976252d9df510cf7d547723f426afe ""
   "img/bayes_evals/langchain_clt.png" 1762711235.89762 86000 9c921b5fda597e2bc0ef126c4872ecc7 ""
-  "img/bayes_evals/pngs/exp4-1.png" 1762711235.43662 184928 9e7c9e3391162e20f08450d3d00f053c ""
   "img/bayes_evals/pngs/exp4-2.png" 1762711235.44362 201314 bfb564dfa20ea9d767961ab480e57ce4 ""
   "img/bayes_evals/pngs/real_data_matharena_aime_II_subset.png" 1762711235.49562 91999 afb9b744f05b22432a1bc7c09d89ecf3 ""
+  "img/bayes_evals/pretrained2.png" 1762966208.86864 138007 ea3711bd745e0bd97dd8962ea75ef848 ""
   "img/desi.jpg" 1762711235.83662 10620 410a49e0b811ede4ad5da13e6a9278dd ""
   "img/laurence.png" 1762711236.07262 334176 b9b6e335adaaa3bc4752387518422b42 ""
   "img/sam.png" 1762711236.10662 228383 a70eb6f99f3f14e3721ce4a1adfbfa1a ""
   "img/thomas.png" 1762711111.82309 224149 ef1c52345aaa00d7df6f2e22415d3943 ""
-  "slides.aux" 1762787510.2534 7264 125c535703064b0b6caf67bcbaf4fcc2 "pdflatex"
+  "slides.aux" 1762968350.90851 7528 26a98a700c32daa846b7d88b54d8f4be "pdflatex"
   "slides.bbl" 1762720805.05856 17307 0edec8d88fb8e625cf4dddbb070fc0b1 "biber slides"
-  "slides.nav" 1762787510.2554 4458 cfa0ca90d93d137541809f22c5750bbb "pdflatex"
-  "slides.out" 1762787510.2544 825 a6210496374dff682b6fbf819b715323 "pdflatex"
-  "slides.run.xml" 1762787510.2554 2319 5310aa2981dec530562fa4c501b1e1b9 "pdflatex"
-  "slides.tex" 1762787503.11132 34454 36c8a77177d1dad0f38d8faf5f4ba40d ""
-  "slides.toc" 1762787510.2554 223 01ac80d48348b09587a0fd410057a6a1 "pdflatex"
+  "slides.nav" 1762968350.91051 4650 ebee2a0f2ded86ac92e6db5ae89ea5a7 "pdflatex"
+  "slides.out" 1762968350.90951 825 a6210496374dff682b6fbf819b715323 "pdflatex"
+  "slides.run.xml" 1762968350.91051 2319 5310aa2981dec530562fa4c501b1e1b9 "pdflatex"
+  "slides.tex" 1762968345.39349 35860 6c2c6589bb1a48a86e2a781c8ba21d92 ""
+  "slides.toc" 1762968350.91051 223 01ac80d48348b09587a0fd410057a6a1 "pdflatex"
   (generated)
   "slides.aux"
   "slides.bcf"

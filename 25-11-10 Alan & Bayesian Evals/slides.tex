@@ -497,7 +497,14 @@
 % --- Slide 6: IID Questions Setting ---
 \begin{frame}{IID Questions Setting: Results}
   \begin{figure}
-      \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/pngs/exp4-1.png}
+      \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/fig/exp4-1_top_row_only.pdf}
+      % \caption{Simulation results comparing Coverage and Width for different $N$.}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{IID Questions Setting: Results}
+  \begin{figure}
+      \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/fig/exp4-1_inkscape.pdf}
       % \caption{Simulation results comparing Coverage and Width for different $N$.}
   \end{figure}
 \end{frame}
@@ -514,12 +521,83 @@
       \begin{itemize}
           \item Independent Comparisons (using $N_A, N_B, \bar{y}_A, \bar{y}_B$ only).
           \item Paired Comparisons (using $N_A = N_B, \{y_{A;i}\}_{i=1}^N, \{y_{B;i}\}_{i=1}^N$).
+          % \item Hypothesis testing $H_0: \theta_A = \theta_B$ vs $H_1: \theta_A > \theta_B$.
+          \item With Bayes you can calculate $\mathbb{P}(\theta_A > \theta_B | y_A, y_B)$.
       \end{itemize}
       
       \item \textbf{Metrics that aren't simple averages of binary results} (e.g. F1 score).
       
       \item \textbf{Prior Mismatch} (i.e. what if the uniform prior is incorrect, $\theta \nsim \text{Uniform}[0, 1]$?).
   \end{itemize}
+\end{frame}
+
+
+% --- Slide 8: Clustered Questions Setting ---
+\begin{frame}{Clustered Questions Setting: Frequentist Approach}
+  \begin{itemize}[<+->]
+    \item Instead of $N$ IID questions, we have $T$ tasks, each with $N_t$ IID questions.
+    \item Some tasks are easier than others.% (e.g. each task asks $N_t$ questions about a single piece of input text, with texts varying in difficulty).
+    \item Frequentist approach (Miller, 2024):
+    $$
+    \text{CI}_{1-\alpha}(\theta) = \bar{X} \pm z_{\alpha/2} \text{SE}_\text{Clustered}
+    $$
+    $$
+    \text{SE}_\text{Clustered} = \sqrt{\text{SE}_\text{CLT}^2 + \frac{1}{N^2}\sum_{t=1}^T \sum_{i=1}^{N_t} \sum_{j \neq i} (y_{i,t} - \bar{y})(y_{j,t} - \bar{y})}
+    $$
+    % \item An improved standard error, but fundamentally still using the CLT.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Clustered Questions Setting: A Bayesian Approach}
+  \begin{itemize}[<+->]
+    \item `Dispersion' parameter $d$ controls the range of difficulty across tasks,
+    $$d \sim \text{Gamma}(1, 1).$$
+    \item $\theta$ is the mean difficulty of the questions across tasks,
+    $$
+    \theta \sim \text{Beta}(1, 1) = \text{Uniform}[0, 1].
+    $$
+    \item $\theta_t$ is the difficulty of the questions in task $t$ (we ensure that $\mathbb{E}[\theta_t | \theta] = \theta$),
+    $$  
+    \theta_t \sim \text{Beta}(d \theta, d (1-\theta)).
+    $$
+    \item $\text{Var}(\theta_t | \theta) = \frac{\theta (1-\theta)}{d^2 + 1}$.
+    \item If $d$ is large, then $\theta_t$ is close to $\theta$ for all tasks.
+    \item If $d$ is small, then $\theta_t$ is more variable across tasks.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Clustered Questions Setting: A Bayesian Approach}
+  \vspace{-0.5cm}
+  $$
+    \begin{aligned}
+    d &\sim \text{Gamma}(1, 1), \quad 
+    \theta \sim \text{Beta}(1, 1), \quad 
+    \theta_t &\sim \text{Beta}(d \theta, d (1-\theta)), \quad
+    y_{i,t} \sim \text{Bernoulli}(\theta_t)
+    \end{aligned}
+  $$
+  \vspace{-0.5cm}
+  \pause
+  \begin{itemize}[<+->]
+    \item Can we integrate out the per-task difficulty parameters $\theta_t$?
+    \item Yes! The number of successes per task is \alert{Beta-Binomial} distributed: 
+      $$
+        \sum_{i=1}^{N_t} y_{i,t} = Y_t \sim \text{BetaBinomial}(N_t, d \theta, d (1-\theta)).
+      $$
+    \item Get an \alert{importance-weighted posterior} for $\theta$: draw prior samples $\{(\theta^{(k)}, d^{(k)})\}_{k=1}^K$, then compute weights
+      $$
+        w^{(k)} = \prod_{t=1}^T p(Y_t | \theta^{(k)}, d^{(k)}).
+      $$
+    \item Compute quantile-based Bayesian credible intervals for $\theta$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Clustered Questions Setting: Results}
+  \begin{figure}
+      \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/pngs/exp4-2.png}
+      % \caption{Simulation results comparing Coverage and Width for different $N$.}
+  \end{figure}
 \end{frame}
 
 
@@ -713,28 +791,24 @@
 
 \begin{frame}{Bayesian Evals for Interpretability}
   \begin{figure}
-  \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/fig/pretrained_bbh_subset.pdf}
+  \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/pretrained2.png}
   \end{figure}
   \pause 
   So just use Beta-Binomial!
 \end{frame}
 
-\begin{frame}{Bayesian Evals for Interpretability}
-  \begin{itemize}[<+->]
-    \item Given eval questions and reponses, use an SAE-like model to enforce sparsity on features across the latent dimensions of `model performance' and `benchmark difficulty' vectors.
-  \end{itemize}
-  \vspace{-0.2cm}
-  \pause
-  \begin{figure}
-    \includegraphics[width=\textwidth, height=0.77\textheight, keepaspectratio]{img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf}
-  \end{figure}
-\end{frame}
+
 
 
 \begin{frame}{Future Directions}
   \begin{itemize}[<+->]
-    \item The results were interesting, but not as straightforwardly interpretable as we hoped.
-    \item Perhaps these techniques could be used more successfully for predicting eval performance based on something like pretraining metrics?
+    \item If we make our latent variables for `model performance' and `benchmark difficulty' multivariate and sparse, maybe we can interpret their dimensions as different measures of model capability?
+    \begin{itemize}
+      \item E.g. one dimension is `physics knowledge', another is `reasoning ability' etc.
+    \end{itemize}
+    \item The results for this were interesting, but not as straightforwardly interpretable as we hoped.
+    \item Perhaps these techniques could be used more successfully for predicting eval performance based on the mix of pretraining data?
+    \item Or predicting the effectiveness of post-training on downstream evals?
   \end{itemize}
 \end{frame}
 
@@ -751,78 +825,29 @@
 \end{frame}
 
 
-
-% --- Slide 8: Clustered Questions Setting ---
-\begin{frame}{Clustered Questions Setting: Frequentist Approach}
-  \begin{itemize}[<+->]
-    \item Instead of $N$ IID questions, we have $T$ tasks, each with $N_t$ IID questions.
-    \item Some tasks are easier than others.% (e.g. each task asks $N_t$ questions about a single piece of input text, with texts varying in difficulty).
-    \item Frequentist approach (Miller, 2024):
-    $$
-    \text{CI}_{1-\alpha}(\theta) = \bar{X} \pm z_{\alpha/2} \text{SE}_\text{Clustered}
-    $$
-    $$
-    \text{SE}_\text{Clustered} = \sqrt{\text{SE}_\text{CLT}^2 + \frac{1}{N^2}\sum_{t=1}^T \sum_{i=1}^{N_t} \sum_{j \neq i} (y_{i,t} - \bar{y})(y_{j,t} - \bar{y})}
-    $$
-    % \item An improved standard error, but fundamentally still using the CLT.
-  \end{itemize}
+\begin{frame}{IID Questions Setting: Prior Mismatch}
+  Use $\theta \sim \text{Uniform}[0, 1]$ as the prior, but $\theta \sim \text{Beta}(100, 20)$ as the true data distribution. ($\mathbb{E}[\theta] = 0.83$ and $\text{Var}(\theta) = 0.034^2$.)
+  \begin{figure}
+      \includegraphics[width=\textwidth, height=0.75\textheight, keepaspectratio]{img/bayes_evals/fig/exp4-1_beta-100-20_mismatch.pdf}
+      % \caption{Simulation results comparing Coverage and Width for different $N$.}
+  \end{figure}
 \end{frame}
 
-
-\begin{frame}{Clustered Questions Setting: A Bayesian Approach}
+\begin{frame}{Bayesian Evals for Interpretability}
   \begin{itemize}[<+->]
-    \item `Dispersion' parameter $d$ controls the range of difficulty across tasks,
-    $$d \sim \text{Gamma}(1, 1).$$
-    \item $\theta$ is the mean difficulty of the questions across tasks,
-    $$
-    \theta \sim \text{Beta}(1, 1) = \text{Uniform}[0, 1].
-    $$
-    \item $\theta_t$ is the difficulty of the questions in task $t$ (we ensure that $\mathbb{E}[\theta_t | \theta] = \theta$),
-    $$  
-    \theta_t \sim \text{Beta}(d \theta, d (1-\theta)).
-    $$
-    \item $\text{Var}(\theta_t | \theta) = \frac{\theta (1-\theta)}{d^2 + 1}$.
-    \item If $d$ is large, then $\theta_t$ is close to $\theta$ for all tasks.
-    \item If $d$ is small, then $\theta_t$ is more variable across tasks.
+    \item Given eval questions and reponses, use an SAE-like model to enforce sparsity on features across the latent dimensions of `model performance' and `benchmark difficulty' vectors.
   \end{itemize}
-\end{frame}
-
-\begin{frame}{Clustered Questions Setting: A Bayesian Approach}
-  \vspace{-0.5cm}
-  $$
-    \begin{aligned}
-    d &\sim \text{Gamma}(1, 1), \quad 
-    \theta \sim \text{Beta}(1, 1), \quad 
-    \theta_t &\sim \text{Beta}(d \theta, d (1-\theta)), \quad
-    y_{i,t} \sim \text{Bernoulli}(\theta_t)
-    \end{aligned}
-  $$
-  \vspace{-0.5cm}
+  \vspace{-0.2cm}
   \pause
-  \begin{itemize}[<+->]
-    \item Can we integrate out the per-task difficulty parameters $\theta_t$?
-    \item Yes! The number of successes per task is \alert{Beta-Binomial} distributed: 
-      $$
-        \sum_{i=1}^{N_t} y_{i,t} = Y_t \sim \text{BetaBinomial}(N_t, d \theta, d (1-\theta)).
-      $$
-    \item Get an \alert{importance-weighted posterior} for $\theta$: draw prior samples $\{(\theta^{(k)}, d^{(k)})\}_{k=1}^K$, then compute weights
-      $$
-        w^{(k)} = \prod_{t=1}^T p(Y_t | \theta^{(k)}, d^{(k)}).
-      $$
-    \item Compute quantile-based Bayesian credible intervals for $\theta$.
-  \end{itemize}
+  \begin{figure}
+    \includegraphics[width=\textwidth, height=0.77\textheight, keepaspectratio]{img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf}
+  \end{figure}
 \end{frame}
+
 
 \begin{frame}{Clustered Questions Setting: Bayesian Implementation}
   \begin{figure}
     \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/bayes_evals_code3.png}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Clustered Questions Setting: Results}
-  \begin{figure}
-      \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{img/bayes_evals/pngs/exp4-2.png}
-      % \caption{Simulation results comparing Coverage and Width for different $N$.}
   \end{figure}
 \end{frame}
 

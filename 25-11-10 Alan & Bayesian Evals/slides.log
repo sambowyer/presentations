@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.14)  10 NOV 2025 15:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.14)  12 NOV 2025 17:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1707,20 +1707,26 @@ Overfull \vbox (1.46031pt too high) detected at line 478
 [76
 
 ]
-<img/bayes_evals/pngs/exp4-1.png, id=2254, 433.62pt x 220.4235pt>
-File: img/bayes_evals/pngs/exp4-1.png Graphic file (type png)
-<use img/bayes_evals/pngs/exp4-1.png>
-Package pdftex.def Info: img/bayes_evals/pngs/exp4-1.png  used on input line 503.
-(pdftex.def)             Requested size: 383.06888pt x 194.72665pt.
+<img/bayes_evals/fig/exp4-1_top_row_only.pdf, id=2254, 433.62pt x 220.825pt>
+File: img/bayes_evals/fig/exp4-1_top_row_only.pdf Graphic file (type pdf)
+<use img/bayes_evals/fig/exp4-1_top_row_only.pdf>
+Package pdftex.def Info: img/bayes_evals/fig/exp4-1_top_row_only.pdf  used on input line 503.
+(pdftex.def)             Requested size: 382.394pt x 194.73767pt.
 
 
 [77
 
- <./img/bayes_evals/pngs/exp4-1.png>]
+ <./img/bayes_evals/fig/exp4-1_top_row_only.pdf>]
+<img/bayes_evals/fig/exp4-1_inkscape.pdf, id=2645, 433.62pt x 220.825pt>
+File: img/bayes_evals/fig/exp4-1_inkscape.pdf Graphic file (type pdf)
+<use img/bayes_evals/fig/exp4-1_inkscape.pdf>
+Package pdftex.def Info: img/bayes_evals/fig/exp4-1_inkscape.pdf  used on input line 510.
+(pdftex.def)             Requested size: 382.394pt x 194.73767pt.
+
 
 [78
 
-]
+ <./img/bayes_evals/fig/exp4-1_inkscape.pdf>]
 
 [79
 
@@ -1781,301 +1787,48 @@ Package pdftex.def Info: img/bayes_evals/pngs/exp4-1.png  used on input line 503
 [93
 
 ]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
 
 [94
 
 ]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
 
 [95
 
 ]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
 
 [96
 
 ]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
 
 [97
 
 ]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
 
 [98
 
 ]
-<img/bayes_evals/fig/pretrained_bbh_subset.pdf, id=2844, 2168.1pt x 578.16pt>
-File: img/bayes_evals/fig/pretrained_bbh_subset.pdf Graphic file (type pdf)
-<use img/bayes_evals/fig/pretrained_bbh_subset.pdf>
-Package pdftex.def Info: img/bayes_evals/fig/pretrained_bbh_subset.pdf  used on input line 720.
-(pdftex.def)             Requested size: 433.31458pt x 115.55055pt.
-
 
 [99
 
- <./img/bayes_evals/fig/pretrained_bbh_subset.pdf>]
-File: img/bayes_evals/fig/pretrained_bbh_subset.pdf Graphic file (type pdf)
-<use img/bayes_evals/fig/pretrained_bbh_subset.pdf>
-Package pdftex.def Info: img/bayes_evals/fig/pretrained_bbh_subset.pdf  used on input line 720.
-(pdftex.def)             Requested size: 433.31458pt x 115.55055pt.
-
+]
 
 [100
 
 ]
-<img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf, id=2951, 2168.1pt x 1156.32pt>
-File: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf Graphic file (type pdf)
-<use img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>
-Package pdftex.def Info: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf  used on input line 731.
-(pdftex.def)             Requested size: 351.40231pt x 187.41457pt.
-
-Overfull \vbox (8.05452pt too high) detected at line 731
- []
-
+<img/bayes_evals/pngs/exp4-2.png, id=3621, 433.62pt x 220.4235pt>
+File: img/bayes_evals/pngs/exp4-2.png Graphic file (type png)
+<use img/bayes_evals/pngs/exp4-2.png>
+Package pdftex.def Info: img/bayes_evals/pngs/exp4-2.png  used on input line 601.
+(pdftex.def)             Requested size: 383.06888pt x 194.72665pt.
 
 
 [101
 
- <./img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>]
-File: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf Graphic file (type pdf)
-<use img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>
-Package pdftex.def Info: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf  used on input line 731.
-(pdftex.def)             Requested size: 351.40231pt x 187.41457pt.
-
-Overfull \vbox (8.05452pt too high) detected at line 731
- []
-
-
+ <./img/bayes_evals/pngs/exp4-2.png>]
 
 [102
 
 ]
-File: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf Graphic file (type pdf)
-<use img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>
-Package pdftex.def Info: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf  used on input line 731.
-(pdftex.def)             Requested size: 351.40231pt x 187.41457pt.
-
-Overfull \vbox (8.05452pt too high) detected at line 731
- []
-
-
 
 [103
 
@@ -2093,17 +1846,11 @@ Overfull \vbox (8.05452pt too high) detected at line 731
 
 ]
 
-LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <10.95> not available
-(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 751.
-
-
-
 [107
 
- </usr/local/texlive/2024/texmf-dist/tex/latex/beamer/beamericonarticle.pdf>]
+]
 
 [108
-
 
 ]
 
@@ -2114,30 +1861,261 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <10.95> not available
 [110
 
 ]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
 
 [111
 
 ]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
 
 [112
 
 ]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
 
 [113
 
 ]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
 
 [114
 
 ]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
 
 [115
 
 ]
+<img/bayes_evals/pretrained2.png, id=4025, 1892.06876pt x 731.73375pt>
+File: img/bayes_evals/pretrained2.png Graphic file (type png)
+<use img/bayes_evals/pretrained2.png>
+Package pdftex.def Info: img/bayes_evals/pretrained2.png  used on input line 798.
+(pdftex.def)             Requested size: 433.31895pt x 167.58064pt.
+
 
 [116
 
-]
+ <./img/bayes_evals/pretrained2.png>]
+File: img/bayes_evals/pretrained2.png Graphic file (type png)
+<use img/bayes_evals/pretrained2.png>
+Package pdftex.def Info: img/bayes_evals/pretrained2.png  used on input line 798.
+(pdftex.def)             Requested size: 433.31895pt x 167.58064pt.
+
 
 [117
 
@@ -2162,26 +2140,88 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <10.95> not available
 [122
 
 ]
-<img/bayes_evals/bayes_evals_code3.png, id=3616, 1631.09375pt x 712.6625pt>
-File: img/bayes_evals/bayes_evals_code3.png Graphic file (type png)
-<use img/bayes_evals/bayes_evals_code3.png>
-Package pdftex.def Info: img/bayes_evals/bayes_evals_code3.png  used on input line 820.
-(pdftex.def)             Requested size: 433.33289pt x 189.33313pt.
-
 
 [123
 
- <./img/bayes_evals/bayes_evals_code3.png>]
-<img/bayes_evals/pngs/exp4-2.png, id=3644, 433.62pt x 220.4235pt>
-File: img/bayes_evals/pngs/exp4-2.png Graphic file (type png)
-<use img/bayes_evals/pngs/exp4-2.png>
-Package pdftex.def Info: img/bayes_evals/pngs/exp4-2.png  used on input line 827.
-(pdftex.def)             Requested size: 383.06888pt x 194.72665pt.
+]
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <10.95> not available
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 825.
+
 
 
 [124
 
- <./img/bayes_evals/pngs/exp4-2.png>]
+ </usr/local/texlive/2024/texmf-dist/tex/latex/beamer/beamericonarticle.pdf>]
+
+[125
+
+
+]
+<img/bayes_evals/fig/exp4-1_beta-100-20_mismatch.pdf, id=4317, 433.62pt x 220.42351pt>
+File: img/bayes_evals/fig/exp4-1_beta-100-20_mismatch.pdf Graphic file (type pdf)
+<use img/bayes_evals/fig/exp4-1_beta-100-20_mismatch.pdf>
+Package pdftex.def Info: img/bayes_evals/fig/exp4-1_beta-100-20_mismatch.pdf  used on input line 834.
+(pdftex.def)             Requested size: 359.12376pt x 182.55457pt.
+
+Overfull \vbox (8.4933pt too high) detected at line 834
+ []
+
+
+
+[126
+
+ <./img/bayes_evals/fig/exp4-1_beta-100-20_mismatch.pdf>]
+<img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf, id=4395, 2168.1pt x 1156.32pt>
+File: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf Graphic file (type pdf)
+<use img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>
+Package pdftex.def Info: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf  used on input line 845.
+(pdftex.def)             Requested size: 351.40231pt x 187.41457pt.
+
+Overfull \vbox (8.05452pt too high) detected at line 845
+ []
+
+
+
+[127
+
+ <./img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>]
+File: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf Graphic file (type pdf)
+<use img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>
+Package pdftex.def Info: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf  used on input line 845.
+(pdftex.def)             Requested size: 351.40231pt x 187.41457pt.
+
+Overfull \vbox (8.05452pt too high) detected at line 845
+ []
+
+
+
+[128
+
+]
+File: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf Graphic file (type pdf)
+<use img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf>
+Package pdftex.def Info: img/bayes_evals/fig/task_based_capabilities_IRT_capabilities_3.pdf  used on input line 845.
+(pdftex.def)             Requested size: 351.40231pt x 187.41457pt.
+
+Overfull \vbox (8.05452pt too high) detected at line 845
+ []
+
+
+
+[129
+
+]
+<img/bayes_evals/bayes_evals_code3.png, id=4529, 1631.09375pt x 712.6625pt>
+File: img/bayes_evals/bayes_evals_code3.png Graphic file (type png)
+<use img/bayes_evals/bayes_evals_code3.png>
+Package pdftex.def Info: img/bayes_evals/bayes_evals_code3.png  used on input line 852.
+(pdftex.def)             Requested size: 433.33289pt x 189.33313pt.
+
+
+[130
+
+ <./img/bayes_evals/bayes_evals_code3.png>]
 \tf@nav=\write7
 \openout7 = `slides.nav'.
 
@@ -2203,18 +2243,18 @@ Package logreq Info: Writing requests to 'slides.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35667 strings out of 473207
- 739926 string characters out of 5716288
+ 35697 strings out of 473207
+ 740844 string characters out of 5716288
  1560883 words of memory out of 5000000
- 58015 multiletter control sequences out of 15000+600000
+ 58033 multiletter control sequences out of 15000+600000
  580738 words of font info for 112 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,123p,1612b,1553s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on slides.pdf (124 pages, 2576004 bytes).
+Output written on slides.pdf (130 pages, 2719406 bytes).
 PDF statistics:
- 3830 PDF objects out of 4296 (max. 8388607)
- 3367 compressed objects within 34 object streams
- 258 named destinations out of 1000 (max. 500000)
- 321 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 4717 PDF objects out of 5155 (max. 8388607)
+ 4006 compressed objects within 41 object streams
+ 270 named destinations out of 1000 (max. 500000)
+ 331 words of extra memory for PDF output out of 10000 (max. 10000000)
 
