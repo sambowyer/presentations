@@ -4,6 +4,8 @@ A collection of presentations on various ML subjects/papers.
 Mostly for internal lab meetings.
 
 ## 2025
+- [Alan & Bayesian Evals](<25-11-10 Alan & Bayesian Evals>)
+    - An overview of the first two projects of my PhD: Alan (massively parallel probabilistic programming) & Bayesian Evals (uncertainty quantification for LLM evals).
 - [UQ for LLM Evals](<25-10-21 UQ for LLM Evals>)
     - A presentation on the paper [Position: Don't Use the CLT in LLM Evals With Fewer Than a Few Hundred Datapoints](https://arxiv.org/pdf/2503.01747). Slightly altered version of the 5-min talk in [Don't Use The CLT](<25-05-26 Dont Use The CLT>). 
     - _Lightning talk at the 2025 [Compass Conference](https://www.bristol.ac.uk/cdt/compass/compass-annual-conference/)_
