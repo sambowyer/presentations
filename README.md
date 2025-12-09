@@ -4,8 +4,12 @@ A collection of presentations on various ML subjects/papers.
 Mostly for internal lab meetings.
 
 ## 2025
+- [Limitations of Discrete Diffusion Models](<25-12-09 Limitations of Discrete Diffusion Models>)
+    - A presentation on the benchmark [ParallelBench](https://arxiv.org/pdf/2510.04767) and the blog [Understanding the Limitations of Diffusion LLMs through a Probabilistic Perspective](https://www.notion.so/Understanding-the-Limitations-of-Diffusion-LLMs-through-a-Probabilistic-Perspective-2ae0ba07baa88053b838d5bf0b0aad41#2ae0ba07baa8806e9523c66087797f10).
+    - _Lab meeting presentation_
 - [Alan & Bayesian Evals](<25-11-10 Alan & Bayesian Evals>)
     - An overview of the first two projects of my PhD: Alan (massively parallel probabilistic programming) & Bayesian Evals (uncertainty quantification for LLM evals).
+    - _Interview presentation for Cohere Internship_
 - [UQ for LLM Evals](<25-10-21 UQ for LLM Evals>)
     - A presentation on the paper [Position: Don't Use the CLT in LLM Evals With Fewer Than a Few Hundred Datapoints](https://arxiv.org/pdf/2503.01747). Slightly altered version of the 5-min talk in [Don't Use The CLT](<25-05-26 Dont Use The CLT>). 
     - _Lightning talk at the 2025 [Compass Conference](https://www.bristol.ac.uk/cdt/compass/compass-annual-conference/)_
