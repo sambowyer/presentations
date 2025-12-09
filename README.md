@@ -5,7 +5,7 @@ Mostly for internal lab meetings.
 
 ## 2025
 - [Limitations of Discrete Diffusion Models](<25-12-09 Limitations of Discrete Diffusion Models>)
-    - A presentation on the benchmark [ParallelBench](https://arxiv.org/pdf/2510.04767) and the blog [Understanding the Limitations of Diffusion LLMs through a Probabilistic Perspective](https://www.notion.so/Understanding-the-Limitations-of-Diffusion-LLMs-through-a-Probabilistic-Perspective-2ae0ba07baa88053b838d5bf0b0aad41#2ae0ba07baa8806e9523c66087797f10).
+    - A presentation on the benchmark [ParallelBench](https://arxiv.org/pdf/2510.04767) and the blog [Understanding the Limitations of Diffusion LLMs through a Probabilistic Perspective](https://www.notion.so/Understanding-the-Limitations-of-Diffusion-LLMs-through-a-Probabilistic-Perspective-2ae0ba07baa88053b838d5bf0b0aad41).
     - _Lab meeting presentation_
 - [Alan & Bayesian Evals](<25-11-10 Alan & Bayesian Evals>)
     - An overview of the first two projects of my PhD: Alan (massively parallel probabilistic programming) & Bayesian Evals (uncertainty quantification for LLM evals).
