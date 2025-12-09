@@ -70,6 +70,6 @@ Mostly for internal lab meetings.
     - _Presentation for [Compass CDT](https://www.bristol.ac.uk/cdt/compass/) first-year Statistical Methods 2 module_
 
 ## 2022
-- [HMMs (Bootcamp)](<22-09-07 HMMs (Bootcamp)>)
+- [HMMs (Bootcamp)](<22-12-07 HMMs (Bootcamp)>)
     - An introductory presentation on Hidden Markov Models and the forward-backward and Baum-Welch algorithms.
     - _Presentation for [Compass CDT](https://www.bristol.ac.uk/cdt/compass/) first-year Bootcamp module_
