@@ -4,9 +4,9 @@ A collection of presentations on various ML subjects/papers.
 Mostly for internal lab meetings.
 
 ## 2026
-- [Efficient Benchmarking (mini)](<26-06-15 Efficient Benchmarking>)
+- [Efficient Benchmarking (mini)](<26-06-15 Efficient Benchmarking (mini)>)
     - An 8 min presentation on my paper [Efficient Benchmarking Is Just Feature Selection and Multiple Regression](https://arxiv.org/pdf/2605.25773).
-    - _Short talk at the [Informed AI Summer School 2026](https://informed-ai.net/event/summer-school-2026/) _
+    - _Short talk at the [Informed AI Summer School 2026](https://informed-ai.net/event/summer-school-2026/)_
 - [Efficient Benchmarking](<26-06-03 Efficient Benchmarking>)
     - A ~45 min presentation on my paper [Efficient Benchmarking Is Just Feature Selection and Multiple Regression](https://arxiv.org/pdf/2605.25773).
     - _Cohere reading group_
