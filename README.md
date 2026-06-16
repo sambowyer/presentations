@@ -3,6 +3,17 @@
 A collection of presentations on various ML subjects/papers.
 Mostly for internal lab meetings.
 
+## 2026
+- [Efficient Benchmarking (mini)](<26-06-15 Efficient Benchmarking>)
+    - An 8 min presentation on my paper [Efficient Benchmarking Is Just Feature Selection and Multiple Regression](https://arxiv.org/pdf/2605.25773).
+    - _Short talk at the [Informed AI Summer School 2026](https://informed-ai.net/event/summer-school-2026/) _
+- [Efficient Benchmarking](<26-06-03 Efficient Benchmarking>)
+    - A ~45 min presentation on my paper [Efficient Benchmarking Is Just Feature Selection and Multiple Regression](https://arxiv.org/pdf/2605.25773).
+    - _Cohere reading group_
+- [Measuring All The Noises of LLM Evals](<26-01-14 Measuring All The Noises of LLM Evals>)
+    - A presentation on the paper [Measuring All The Noises of LLM Evals](https://arxiv.org/pdf/2512.21326)
+    - _Cohere reading group_
+
 ## 2025
 - [Limitations of Discrete Diffusion Models](<25-12-09 Limitations of Discrete Diffusion Models>)
     - A presentation on the benchmark [ParallelBench](https://arxiv.org/pdf/2510.04767) and the blog [Understanding the Limitations of Diffusion LLMs through a Probabilistic Perspective](https://www.notion.so/Understanding-the-Limitations-of-Diffusion-LLMs-through-a-Probabilistic-Perspective-2ae0ba07baa88053b838d5bf0b0aad41).
